@@ -35,6 +35,8 @@
     
     [self.tabBar setTranslucent:NO];
     
+    
+    
 }
 
 #pragma -mark  添加根视图
