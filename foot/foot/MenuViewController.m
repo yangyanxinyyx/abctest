@@ -61,7 +61,7 @@
     //加载cell
     [_collectionView registerClass:[MenuCollectionViewCell class] forCellWithReuseIdentifier:@"menu"];
     //加载头
-    [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
+    
 }
 
 #pragma -mark collectionView的代理方法
@@ -171,6 +171,7 @@
 
 -(void)doMain
 {
+    [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
     [self.collectionView reloadData];
 }
 
