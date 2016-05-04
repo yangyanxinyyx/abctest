@@ -30,7 +30,6 @@
 {
 
    CGMutablePathRef path = CGPathCreateMutable();
-//    CGPoint origin = self.bounds.origin;
     CGFloat width = CGRectGetWidth(self.bounds);
     CGFloat height = CGRectGetHeight(self.bounds);
     
@@ -46,6 +45,7 @@
     _maskLayer.frame = self.bounds;
     _maskLayer.contentsCenter = CGRectMake(0.5, 0.5, 0.1, 0.1);
     _maskLayer.contentsScale = [UIScreen mainScreen].scale;//非常关键设置自动拉伸的效果且不变形
+
     
     _contentLayer = [CALayer layer];
     _contentLayer.mask = _maskLayer;

@@ -7,19 +7,22 @@
 //
 
 #import "CombinationView.h"
-
+#define KScreenWidth [UIScreen mainScreen].bounds.size.width
+#define KScreenHeight [UIScreen mainScreen].bounds.size.height
 @implementation CombinationView
 -(instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.layer.cornerRadius = 5;
         self.layer.masksToBounds = YES;
-       self.shapedImageV = [[ShapedImageView alloc]initWithFrame:CGRectMake(0,0, frame.size.width,(450)/3)];
+        
+       self.shapedImageV = [[ShapedImageView alloc]initWithFrame:CGRectMake(0,0, frame.size.width,(frame.size.height -50)/3)];
         [self addSubview:_shapedImageV];
-        self.midImageV = [[MidImageView alloc]initWithFrame:CGRectMake(0, (450)/3-8, frame.size.width, (450)/3+8)];
+        self.midImageV = [[MidImageView alloc]initWithFrame:CGRectMake(0, (frame.size.height -50)/3-8, frame.size.width, (frame.size.height -50)/3+8)];
         [self addSubview:_midImageV];
-        self.endImageV = [[EndImageView alloc]initWithFrame:CGRectMake(0, 2*(450)/3-8,frame.size.width, (450)/3+8)];
+        self.endImageV = [[EndImageView alloc]initWithFrame:CGRectMake(0, 2*(frame.size.height -50)/3-8,frame.size.width, (frame.size.height -50)/3+8)];
         [self addSubview:_endImageV];
-        self.labelTitle = [[UILabel alloc]initWithFrame:CGRectMake(130, 460, 100, 20)];
+        
+        self.labelTitle = [[UILabel alloc]initWithFrame:CGRectMake((KScreenWidth-100)/2-10, frame.size.height-40, 100, 20)];
         self.labelTitle.textAlignment = NSTextAlignmentCenter;
         self.labelTitle.textColor = [UIColor blackColor];
 
