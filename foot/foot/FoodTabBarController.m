@@ -34,7 +34,7 @@
     [self initCustomTabBar];
     
     [self.tabBar setTranslucent:NO];
-    
+    NSLog(@"测试");
 }
 
 #pragma -mark  添加根视图
