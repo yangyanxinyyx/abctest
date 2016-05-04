@@ -18,7 +18,8 @@
         self.selectionFM = model;
         [self addSubview:self.selectImageView];
         [self addSubview:self.labelName];
-        
+        self.layer.cornerRadius = 5;
+        self.layer.masksToBounds = YES;
     }
     return  self;
     
@@ -29,6 +30,7 @@
     if (!_selectImageView) {
         self.selectImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 0,KScreenWidth-20, 100)];
         [_selectImageView sd_setImageWithURL:[NSURL URLWithString:self.selectionFM.image]];
+        
     }
     return _selectImageView;
 }

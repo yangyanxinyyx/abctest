@@ -76,7 +76,7 @@
     if (indexPath.section == 0) {
         return KScreenHeight-64;
     }else
-    return 120;
+    return 160;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
