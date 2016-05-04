@@ -74,7 +74,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        return KScreenHeight;
+        return KScreenHeight-64;
     }else
     return 120;
 }
@@ -91,7 +91,7 @@
     label.text = @"精     选";
     label.textColor = [UIColor redColor];
     label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont systemFontOfSize:15];
+    label.font = [UIFont systemFontOfSize:20];
     [view addSubview:label];
         return view;
     }
