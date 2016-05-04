@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     [self initNavigationController];
     [self initCustomTabBar];
     
@@ -108,6 +108,40 @@
 
 }
 
+-(void)setHidesBottomBarWhenPushed:(BOOL)hidesBottomBarWhenPushed{
+    
+    if (hidesBottomBarWhenPushed) {
+        [self hideTabBar];
+    }
+    else
+    {
+        [self showTabBar];
+    }
+    
+}
+
+- (void)hideTabBar {
+    
+
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         CGRect tabFrame = _tabBarView.frame;
+                         tabFrame.origin.x = 0 - tabFrame.size.width;
+                         _tabBarView.frame = tabFrame;
+                     }];
+
+}
+
+- (void)showTabBar {
+  
+    [UIView animateWithDuration:0.01
+                     animations:^{
+                         CGRect tabFrame = _tabBarView.frame;
+                         tabFrame.origin.x = CGRectGetWidth(tabFrame) + CGRectGetMinX(tabFrame);
+                         _tabBarView.frame = tabFrame;
+                     }];
+
+}
 
 
 - (void)didReceiveMemoryWarning {
