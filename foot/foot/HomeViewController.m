@@ -18,6 +18,8 @@
 #import "SelectionFoodModel.h"
 #import "SelectionTableViewCell.h"
 #import "FirstTableViewCell.h"
+#import "NewestViewController.h"
+#import "VideoViewController.h"
 @interface HomeViewController ()<UIScrollViewDelegate,FirstTableViewCellDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong)CombinationView *combinationV;
 @property (nonatomic,strong)UIPageControl *pageControl;
@@ -33,7 +35,7 @@
     self.navigationItem.title = @"首页";
     self.selectDataArray = [NSMutableArray array];
 #pragma mark - 精选
-    self.tab = [[UITableView alloc]initWithFrame:CGRectMake(0,0, KScreenWidth, KScreenHeight) style:UITableViewStylePlain];
+    self.tab = [[UITableView alloc]initWithFrame:CGRectMake(0,0, KScreenWidth, KScreenHeight-64-49) style:UITableViewStylePlain];
     self.tab.delegate = self;
     self.tab.dataSource = self;
     [self.view addSubview:self.tab];
@@ -68,15 +70,18 @@
     if (cell == nil) {
         cell = [[SelectionTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier withModel:model];
     }
+        [cell.selectImageView sd_setImageWithURL:[NSURL URLWithString:model.image]];
+        cell.labelName.text = model.name;
+        cell.labelName.textAlignment = NSTextAlignmentRight;
         return cell;
     }
 
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        return KScreenHeight-64;
+        return KScreenHeight-64-39;
     }else
-    return 160;
+    return 200;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
@@ -93,6 +98,8 @@
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:20];
     [view addSubview:label];
+        view.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        view.layer.borderWidth = 1;
         return view;
     }
 }
@@ -124,9 +131,14 @@
     }];
 }
 -(void)toucheVideoButtonOnCell{
+    VideoViewController *videoV = [[VideoViewController alloc]init];
+    [self.navigationController pushViewController:videoV animated:YES];
     NSLog(@"点击视频");
 }
 -(void)toucheNewestButtonOnCell{
+    NewestViewController *newestV = [[NewestViewController alloc]init];
+    [self.navigationController pushViewController:newestV animated:YES];
     NSLog(@"点击今日");
 }
+
 @end

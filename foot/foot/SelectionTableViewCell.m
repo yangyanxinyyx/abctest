@@ -15,7 +15,7 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withModel:(SelectionFoodModel *)model{
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.selectionFM = model;
+
         [self addSubview:self.selectImageView];
         [self addSubview:self.labelName];
         self.layer.cornerRadius = 5;
@@ -28,16 +28,17 @@
 #pragma MARK -懒加载
 -(UIImageView *)selectImageView{
     if (!_selectImageView) {
-        self.selectImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 0,KScreenWidth-20, 100)];
-        [_selectImageView sd_setImageWithURL:[NSURL URLWithString:self.selectionFM.image]];
-        
+        self.selectImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 0,KScreenWidth-20, 190)];
+        self.selectImageView.layer.cornerRadius = 10;
+        self.selectImageView.layer.masksToBounds = YES;
     }
     return _selectImageView;
 }
 -(UILabel *)labelName{
     if (!_labelName) {
-        self.labelName = [[UILabel alloc]initWithFrame:CGRectMake(10, 100, KScreenWidth-20, 20)];
-        _labelName.text = self.selectionFM.name;
+        self.labelName = [[UILabel alloc]initWithFrame:CGRectMake(KScreenWidth-120, 160, 100, 20)];
+        self.labelName.textColor = [UIColor whiteColor];
+        
     }
     return _labelName;
 }

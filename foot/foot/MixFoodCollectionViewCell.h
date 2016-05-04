@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MixFoodModel.h"
+#import "UIImageView+WebCache.h"
 
 @interface MixFoodCollectionViewCell : UICollectionViewCell
 
 @property(nonatomic,strong)UIImageView *imageV;
 @property(nonatomic,strong)UILabel *labelName;
 
+@property(nonatomic,strong)MixFoodModel *mixFood;
 @end
