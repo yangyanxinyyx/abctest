@@ -11,6 +11,7 @@
 #import "UIImageView+WebCache.h"
 #import "MenuModel.h"
 #import "MenuCollectionViewCell.h"
+#import "MenuListViewController.h"
 
 #define SCREEN_W [UIScreen mainScreen].bounds.size.width
 #define SCREEN_H [UIScreen mainScreen].bounds.size.height
@@ -36,7 +37,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"菜谱";
     
     [self createCollectionView];
     [self loadData];
@@ -118,7 +118,7 @@
         {
             whiteView.frame = CGRectMake(0, 5, SCREEN_W, 30);
             UIView *grayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, 5)];
-            grayView.backgroundColor = Color(220, 220, 220, 1);
+            grayView.backgroundColor = Color(230, 230, 230, 0.6);
             [header addSubview:grayView];
         }
         return header;
@@ -137,6 +137,17 @@
         return CGSizeMake(SCREEN_W, 35);
     }
 }
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *array = [_dataArray[indexPath.section] allValues].lastObject;
+    MenuModel *menu = array[indexPath.row];
+    MenuListViewController *list = [[MenuListViewController alloc] init];
+    list.identitfiy = menu.identify;
+    //[list setHidesBottomBarWhenPushed:YES];
+    [self.navigationController pushViewController:list animated:YES];
+}
+
 
 #pragma -mark  加载数据
 -(void)loadData
@@ -158,7 +169,7 @@
         }
         [dic1 setValue:array1 forKey:dict[@"name"]];
         [self.dataArray addObject:dic1];
-        NSLog(@"%@",_dataArray);
+        //NSLog(@"%@",_dataArray);
     }
     
     [self performSelectorOnMainThread:@selector(doMain) withObject:nil waitUntilDone:YES];
