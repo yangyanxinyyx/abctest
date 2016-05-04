@@ -43,7 +43,12 @@
     scrollViewImageViewS.delegate = self;
     [self addSubview:scrollViewImageViewS];
     
-    self.pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(0, height-10, KScreenWidth, 10)];
+    
+    self.pageControl = [[UIPageControl alloc]init];
+    CGPoint point = self.center;
+    self.pageControl.frame = CGRectMake(0, height-10, KScreenWidth, 10);
+    self.pageControl.center = CGPointMake(point.x, height-10);
+    
     _pageControl.numberOfPages = 5;
     _pageControl.pageIndicatorTintColor = [UIColor grayColor];
     _pageControl.currentPageIndicatorTintColor = [UIColor redColor];
