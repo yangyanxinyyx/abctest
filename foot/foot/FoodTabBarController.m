@@ -35,6 +35,9 @@
     
     [self.tabBar setTranslucent:NO];
     NSLog(@"测试");
+    NSLog(@"ceshi 2");
+    
+    
 }
 
 #pragma -mark  添加根视图
