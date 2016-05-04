@@ -34,8 +34,7 @@
     [self initCustomTabBar];
     
     [self.tabBar setTranslucent:NO];
-    NSLog(@"测试");
-    NSLog(@"ceshi 2");
+    
     
     
 }

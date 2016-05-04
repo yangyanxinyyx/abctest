@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F050F201CD9A64C0050FE22 /* MenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F050F1F1CD9A64C0050FE22 /* MenuModel.m */; settings = {ASSET_TAGS = (); }; };
+		3F050F231CD9A66F0050FE22 /* MenuCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F050F221CD9A66F0050FE22 /* MenuCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		3F050F261CD9A68B0050FE22 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F050F251CD9A68B0050FE22 /* MenuViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3F050F291CD9A6A80050FE22 /* FoodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F050F281CD9A6A80050FE22 /* FoodModel.m */; settings = {ASSET_TAGS = (); }; };
 		3F59E2361CD8DCA400749116 /* MixFoodCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F59E2351CD8DCA400749116 /* MixFoodCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		3F59E23A1CD8E4CA00749116 /* 后退.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F59E2381CD8E4CA00749116 /* 后退.png */; settings = {ASSET_TAGS = (); }; };
 		3F59E23B1CD8E4CA00749116 /* 前进.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F59E2391CD8E4CA00749116 /* 前进.png */; settings = {ASSET_TAGS = (); }; };
@@ -21,7 +25,6 @@
 		3FDDB1E11CD8ADCA009FA128 /* FoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDDB1E01CD8ADCA009FA128 /* FoodViewController.m */; settings = {ASSET_TAGS = (); }; };
 		3FDDB1F31CD8BEEB009FA128 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDDB1F21CD8BEEB009FA128 /* HomeViewController.m */; settings = {ASSET_TAGS = (); }; };
 		3FDDB1F61CD8BF57009FA128 /* MakeUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDDB1F51CD8BF57009FA128 /* MakeUpViewController.m */; settings = {ASSET_TAGS = (); }; };
-		3FDDB1F91CD8BF6D009FA128 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDDB1F81CD8BF6D009FA128 /* MenuViewController.m */; settings = {ASSET_TAGS = (); }; };
 		3FDDB1FC1CD8BF76009FA128 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDDB1FB1CD8BF76009FA128 /* MyViewController.m */; settings = {ASSET_TAGS = (); }; };
 		3FDDB2071CD8C53F009FA128 /* 我1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FDDB1FF1CD8C53F009FA128 /* 我1.png */; settings = {ASSET_TAGS = (); }; };
 		3FDDB2081CD8C53F009FA128 /* 我.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FDDB2001CD8C53F009FA128 /* 我.png */; settings = {ASSET_TAGS = (); }; };
@@ -68,6 +71,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F050F1E1CD9A64C0050FE22 /* MenuModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuModel.h; sourceTree = "<group>"; };
+		3F050F1F1CD9A64C0050FE22 /* MenuModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuModel.m; sourceTree = "<group>"; };
+		3F050F211CD9A66F0050FE22 /* MenuCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCollectionViewCell.h; sourceTree = "<group>"; };
+		3F050F221CD9A66F0050FE22 /* MenuCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuCollectionViewCell.m; sourceTree = "<group>"; };
+		3F050F241CD9A68B0050FE22 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		3F050F251CD9A68B0050FE22 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		3F050F271CD9A6A80050FE22 /* foodModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = foodModel.h; sourceTree = "<group>"; };
+		3F050F281CD9A6A80050FE22 /* FoodModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodModel.m; sourceTree = "<group>"; };
 		3F59E2341CD8DCA400749116 /* MixFoodCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixFoodCollectionViewCell.h; sourceTree = "<group>"; };
 		3F59E2351CD8DCA400749116 /* MixFoodCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixFoodCollectionViewCell.m; sourceTree = "<group>"; };
 		3F59E2381CD8E4CA00749116 /* 后退.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "后退.png"; sourceTree = "<group>"; };
@@ -95,8 +106,6 @@
 		3FDDB1F21CD8BEEB009FA128 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		3FDDB1F41CD8BF57009FA128 /* MakeUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MakeUpViewController.h; sourceTree = "<group>"; };
 		3FDDB1F51CD8BF57009FA128 /* MakeUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MakeUpViewController.m; sourceTree = "<group>"; };
-		3FDDB1F71CD8BF6D009FA128 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
-		3FDDB1F81CD8BF6D009FA128 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		3FDDB1FA1CD8BF76009FA128 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
 		3FDDB1FB1CD8BF76009FA128 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		3FDDB1FF1CD8C53F009FA128 /* 我1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "我1.png"; sourceTree = "<group>"; };
@@ -253,6 +262,8 @@
 				3FDDB1DD1CD8AD90009FA128 /* FoodNavigationController.m */,
 				3FDDB1DF1CD8ADCA009FA128 /* FoodViewController.h */,
 				3FDDB1E01CD8ADCA009FA128 /* FoodViewController.m */,
+				3F050F271CD9A6A80050FE22 /* foodModel.h */,
+				3F050F281CD9A6A80050FE22 /* FoodModel.m */,
 			);
 			name = BaseClass;
 			sourceTree = "<group>";
@@ -367,8 +378,8 @@
 		3FDDB1EB1CD8BE70009FA128 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				3FDDB1F71CD8BF6D009FA128 /* MenuViewController.h */,
-				3FDDB1F81CD8BF6D009FA128 /* MenuViewController.m */,
+				3F050F241CD9A68B0050FE22 /* MenuViewController.h */,
+				3F050F251CD9A68B0050FE22 /* MenuViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -376,6 +387,8 @@
 		3FDDB1EC1CD8BE71009FA128 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				3F050F211CD9A66F0050FE22 /* MenuCollectionViewCell.h */,
+				3F050F221CD9A66F0050FE22 /* MenuCollectionViewCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -383,6 +396,8 @@
 		3FDDB1ED1CD8BE76009FA128 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				3F050F1E1CD9A64C0050FE22 /* MenuModel.h */,
+				3F050F1F1CD9A64C0050FE22 /* MenuModel.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -609,9 +624,12 @@
 				3FDDB1E11CD8ADCA009FA128 /* FoodViewController.m in Sources */,
 				3FDDB23C1CD8DB64009FA128 /* SDWebImagePrefetcher.m in Sources */,
 				3FDDB23B1CD8DB64009FA128 /* SDWebImageManager.m in Sources */,
+				3F050F231CD9A66F0050FE22 /* MenuCollectionViewCell.m in Sources */,
 				3FDDB2111CD8D60B009FA128 /* NetworkRequestManager.m in Sources */,
 				3FDDB1DE1CD8AD90009FA128 /* FoodNavigationController.m in Sources */,
+				3F050F261CD9A68B0050FE22 /* MenuViewController.m in Sources */,
 				3FDDB2421CD8DB64009FA128 /* UIImageView+WebCache.m in Sources */,
+				3F050F201CD9A64C0050FE22 /* MenuModel.m in Sources */,
 				3FDDB2371CD8DB64009FA128 /* SDWebImageCompat.m in Sources */,
 				3FDDB1FC1CD8BF76009FA128 /* MyViewController.m in Sources */,
 				3FDDB2381CD8DB64009FA128 /* SDWebImageDecoder.m in Sources */,
@@ -620,9 +638,9 @@
 				3FDDB2401CD8DB64009FA128 /* UIImage+WebP.m in Sources */,
 				3FDDB23A1CD8DB64009FA128 /* SDWebImageDownloaderOperation.m in Sources */,
 				3FDDB2431CD8DB64009FA128 /* UIView+WebCacheOperation.m in Sources */,
+				3F050F291CD9A6A80050FE22 /* FoodModel.m in Sources */,
 				3FDDB2391CD8DB64009FA128 /* SDWebImageDownloader.m in Sources */,
 				3FDDB23E1CD8DB64009FA128 /* UIImage+GIF.m in Sources */,
-				3FDDB1F91CD8BF6D009FA128 /* MenuViewController.m in Sources */,
 				3FDDB1A61CD8A94E009FA128 /* AppDelegate.m in Sources */,
 				3FDDB1A31CD8A94E009FA128 /* main.m in Sources */,
 				3FDDB2411CD8DB64009FA128 /* UIImageView+HighlightedWebCache.m in Sources */,
