@@ -12,9 +12,10 @@
 -(void)setValuesForKeysWithDictionary:(NSDictionary<NSString *,id> *)keyedValues{
     
     self.aid =[keyedValues objectForKey:@"id"];
-    self.lastModifyDate = [keyedValues objectForKey:@"lastModifyDate"];
-    self.image = [keyedValues objectForKey:@"imageUrl"];
-    self.name = [keyedValues objectForKey:@"name"];
+    self.img = [keyedValues objectForKey:@"img"];
+    self.n = [keyedValues objectForKey:@"n"];
+    self.vc = [keyedValues objectForKey:@"vc"];
+    self.fc = [keyedValues objectForKey:@"fc"];
     
 }
 @end

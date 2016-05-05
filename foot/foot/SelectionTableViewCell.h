@@ -14,5 +14,5 @@
 @property (nonatomic,strong)UILabel *labelBrowse;
 @property (nonatomic,strong)UILabel *labelCollect;
 @property (nonatomic,strong)SelectionFoodModel *selectionFM;
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withModel:(SelectionFoodModel *)model;
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier ;
 @end

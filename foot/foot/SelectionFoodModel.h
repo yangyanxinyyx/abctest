@@ -10,7 +10,9 @@
 
 @interface SelectionFoodModel : FoodModel
 @property (nonatomic,strong)NSString *aid;
-@property (nonatomic,strong)NSString *image;
+@property (nonatomic,strong)NSString *img;
 @property (nonatomic,strong)NSString *lastModifyDate;
-@property (nonatomic,strong)NSString *name;
+@property (nonatomic,strong)NSString *n;
+@property (nonatomic,strong)NSString *vc;
+@property (nonatomic,strong)NSString *fc;
 @end
