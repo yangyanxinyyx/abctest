@@ -11,5 +11,6 @@
 @interface MenuListViewController : FoodViewController
 
 @property(nonatomic,strong)NSString *identitfiy; //分类id
+@property(nonatomic,strong)NSString *navTitle;
 
 @end

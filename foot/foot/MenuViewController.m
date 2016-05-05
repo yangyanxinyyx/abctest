@@ -144,7 +144,7 @@
     MenuModel *menu = array[indexPath.row];
     MenuListViewController *list = [[MenuListViewController alloc] init];
     list.identitfiy = menu.identify;
-    //[list setHidesBottomBarWhenPushed:YES];
+    list.navTitle = menu.name;
     [self.navigationController pushViewController:list animated:YES];
 }
 

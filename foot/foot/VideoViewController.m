@@ -10,7 +10,7 @@
 #import "VideoViewController.h"
 #import "NetworkRequestManager.h"
 #import "VideoModel.h"
-#import "SelectionTableViewCell.h"
+#import "VideoTableViewCell.h"
 #import "UIImageView+WebCache.h"
 @interface VideoViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong)UITableView *tabVideo;
@@ -37,12 +37,14 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identifier = @"cell";
-    SelectionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    VideoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
-        cell  = [[SelectionTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
+        cell  = [[VideoTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
     }
     VideoModel *model = [self.arrayVideo objectAtIndex:indexPath.row];
-    [cell.selectImageView sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"等待占位图"]];
+    [cell.ImageView sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"等待占位图"]];
+    cell.labelName.text = model.name;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
