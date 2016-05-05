@@ -40,7 +40,7 @@
     self.tab.dataSource = self;
     [self.view addSubview:self.tab];
     
-    [self getData];
+    [self getDataWith:@"0"];
 
 
   }
@@ -60,6 +60,7 @@
         if (cell == nil) {
             cell = [[FirstTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
             cell.delegate = self;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         return cell;
     
@@ -68,20 +69,22 @@
     SelectionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         SelectionFoodModel *model = [_selectDataArray objectAtIndex:indexPath.row];
     if (cell == nil) {
-        cell = [[SelectionTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier withModel:model];
+        cell = [[SelectionTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
     }
-        [cell.selectImageView sd_setImageWithURL:[NSURL URLWithString:model.image]];
-        cell.labelName.text = model.name;
-        cell.labelName.textAlignment = NSTextAlignmentRight;
+        [cell.selectImageView sd_setImageWithURL:[NSURL URLWithString:model.img]];
+        cell.labelName.text = model.n;
+        cell.labelBrowse.text = [NSString stringWithFormat:@"%@浏览",model.vc];
+        cell.labelCollect.text = [NSString stringWithFormat:@"·  %@收藏",model.fc];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
 
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        return KScreenHeight-64-39;
+        return  KScreenWidth/375*500+80;
     }else
-    return 200;
+    return 300;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
@@ -110,26 +113,33 @@
     return 40;
 }
 #pragma mark 获取tab数据
--(void)getData{
-    [NetworkRequestManager requestWithType:POST urlString:@"http://www.xdmeishi.com/index.php?m=mobile&c=index&a=getRecipeTheme&id=18&pageNum=1&pageSize=20" parDic:nil header:nil finish:^(NSData *data) {
+-(void)getDataWith:(NSString *)pageId{
+    NSString *url = [NSString stringWithFormat:@"http://api.douguo.net/recipe/home/%@/20",pageId];
+    [NetworkRequestManager requestWithType:POST urlString:url parDic:[NSDictionary dictionaryWithObjectsAndKeys:@"4",@"client", nil] header:[NSDictionary dictionaryWithObjectsAndKeys:@"application/x-www-form-urlencoded; charset=utf-8",@"Content-Type",@"611.2",@"version", nil] finish:^(NSData *data) {
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        if ([[dic objectForKey:@"result"]isEqualToString:@"ok"]) {
-            NSArray *dataArray = [dic objectForKey:@"data"];
-            for (NSDictionary *dic1 in dataArray) {
-                SelectionFoodModel *selectionFM = [[SelectionFoodModel alloc]init];
-                [selectionFM setValuesForKeysWithDictionary:dic1];
-                [self.selectDataArray addObject:selectionFM];
-            }
+        if ([[dic objectForKey:@"state"] isEqualToString:@"success"]) {
+            NSDictionary *dicResult = [dic objectForKey:@"result"];
+            NSArray *arrayList = [dicResult objectForKey:@"list"];
+            for (NSDictionary * dicList in arrayList ) {
+                NSDictionary *dicR = [dicList objectForKey:@"r"];
+                if (dicR) {
+                    SelectionFoodModel *model = [[SelectionFoodModel alloc]init];
+                    [model setValuesForKeysWithDictionary:dicR];
+                    [self.selectDataArray addObject:model];
+                }
 
+            }
+            [self.tab reloadData];
         }
-            
-        [self.tab reloadData];
-  
+        else {
+            NSLog(@"失败");
+        }
        
     } error:^(NSError *error) {
         
     }];
 }
+#pragma firstCell的代理方法
 -(void)toucheVideoButtonOnCell{
     VideoViewController *videoV = [[VideoViewController alloc]init];
     [self.navigationController pushViewController:videoV animated:YES];
@@ -139,6 +149,15 @@
     NewestViewController *newestV = [[NewestViewController alloc]init];
     [self.navigationController pushViewController:newestV animated:YES];
     NSLog(@"点击今日");
+}
+#pragma mark点击cell
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        
+    }else{
+        
+    }
 }
 
 @end
