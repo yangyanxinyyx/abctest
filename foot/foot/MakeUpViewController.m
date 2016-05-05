@@ -15,6 +15,7 @@
 #import "MixKindModel.h"
 #import "MixFoodModel.h"
 #import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
 #import "MixFoodTableViewCell.h"
 
 @interface MakeUpViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UITableViewDataSource,UITableViewDelegate>
@@ -86,7 +87,7 @@
     layout.itemSize = CGSizeMake((SCREEN_W-50-10*3)/3, (SCREEN_W-50-10*3)/3);
     
     
-    self.mixFoodCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_H-64-49-80) collectionViewLayout:layout];
+    self.mixFoodCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_H-64-49-SCREEN_W/5) collectionViewLayout:layout];
     self.mixFoodCollectionView.backgroundColor = [UIColor whiteColor];
     self.mixFoodCollectionView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.mixFoodCollectionView];
@@ -125,47 +126,67 @@
 {
     [self.labelPrompt removeFromSuperview];
     
+    //分割线
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_W/5*4, 0, 1, self.bottomView.frame.size.height)];
+    label.backgroundColor = [UIColor grayColor];
+    [self.bottomView addSubview:label];
+    
+    //开始组合食材
     if (self.arraySelected.count<3) {
         MixFoodModel *foodModel = [self.dataArrayColl objectAtIndex:indexPath.row];
         [self.arraySelected addObject:foodModel];
         NSLog(@"%ld",self.arraySelected.count);
+        
+        
+        UIButton *bu = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.bottomView addSubview:bu];
+        bu.tag = self.arraySelected.count;
+        bu.backgroundColor = [UIColor orangeColor];
+        bu.layer.cornerRadius = (SCREEN_W/5*4-110)/3/2;
+        bu.layer.masksToBounds = YES;
+        bu.frame = CGRectMake(20+(30+(SCREEN_W/5*4-110)/3) * (self.arraySelected.count-1), (self.bottomView.frame.size.height-(SCREEN_W/5*4-110)/3)/2, (SCREEN_W/5*4-110)/3, (SCREEN_W/5*4-110)/3);
+        MixFoodModel *model = [self.arraySelected objectAtIndex:bu.tag-1];
+        [bu setTitle:model.text forState:UIControlStateNormal];
+        [bu setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        
+        [bu sd_setBackgroundImageWithURL:[NSURL URLWithString:model.image] forState:UIControlStateNormal];
+        
+        
     }else
     {
-        UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_W-200)/2, self.bottomView.frame.origin.y-40, 200, 40)];
+        //弹出提示动画
+        UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_W-200)/2, self.bottomView.frame.origin.y-38, 200, 38)];
             [self.view addSubview:lab];
-        lab.backgroundColor = [UIColor whiteColor];
-        lab.textColor = [UIColor blackColor];
-        [UIView animateWithDuration:5 animations:^{
-            
+        lab.textAlignment = NSTextAlignmentCenter;
+        lab.alpha = 0;
+        [UIView animateWithDuration:0.5 animations:^{
             lab.backgroundColor = [UIColor blackColor];
             lab.text = @"最多只能选择3种食材哦~";
             lab.textColor = [UIColor whiteColor];
-           
+            lab.alpha = 0.8;
         } completion:^(BOOL finished) {
-            
+            [UIView animateWithDuration:0.5 delay:1 options:UIViewAnimationOptionTransitionNone animations:^{
+                lab.alpha = 0;
+            } completion:^(BOOL finished) {
+                [lab removeFromSuperview];
+            }];
         }];
-        
     }
-    
-    
-    
-    
-    
-    
+   
 }
 
 
 #pragma mark- 设置下方view
 -(void)setBottomView
 {
-    self.bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, self.mixFoodCollectionView.frame.size.height, SCREEN_W, 80)];
+    self.bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, self.mixFoodCollectionView.frame.size.height, SCREEN_W, SCREEN_W/5)];
     self.bottomView.backgroundColor = [UIColor whiteColor];
     self.bottomView.layer.borderWidth = 1;
     self.bottomView.layer.borderColor = [UIColor grayColor].CGColor;
     [self.view addSubview:self.bottomView];
     
     
-    self.labelPrompt = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, 80)];
+    self.labelPrompt = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_W/5)];
     self.labelPrompt.text = @"选择2个或3个食材\n爸爸告诉你可以做哪些菜";
     self.labelPrompt.textAlignment = NSTextAlignmentCenter;
     self.labelPrompt.numberOfLines = 0;
@@ -177,7 +198,7 @@
 {
     //右侧按钮
     self.buRight = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.buRight.frame = CGRectMake(SCREEN_W-30, (self.mixFoodCollectionView.frame.size.height-80)/2, 35, 80);
+    self.buRight.frame = CGRectMake(SCREEN_W-30, (self.mixFoodCollectionView.frame.size.height-SCREEN_W/5)/2, 35, SCREEN_W/5);
     [self.buRight setImage:[UIImage imageNamed:@"后退"] forState:UIControlStateNormal];
     self.buRight.layer.cornerRadius = 5;
     self.buRight.layer.masksToBounds = YES;
@@ -188,7 +209,7 @@
     [self.view addSubview:self.buRight];
     
     //右侧view
-    self.rightView = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_W, 0, SCREEN_W/2, SCREEN_H-64-49-80)];
+    self.rightView = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_W, 0, SCREEN_W/2, SCREEN_H-64-49-SCREEN_W/5)];
     self.rightView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.rightView];
     
@@ -221,9 +242,9 @@
         //右侧弹出
         [self.buRight setImage:[UIImage imageNamed:@"前进"] forState:UIControlStateNormal];
         [UIView animateWithDuration:0.8 animations:^{
-            self.buRight.frame = CGRectMake(SCREEN_W/2-30, (self.mixFoodCollectionView.frame.size.height-80)/2, 35, 80);
+            self.buRight.frame = CGRectMake(SCREEN_W/2-30, (self.mixFoodCollectionView.frame.size.height-SCREEN_W/5)/2, 35, SCREEN_W/5);
             
-            self.rightView.frame = CGRectMake(SCREEN_W/2, 0, SCREEN_W/2, SCREEN_H-64-49-80);
+            self.rightView.frame = CGRectMake(SCREEN_W/2, 0, SCREEN_W/2, SCREEN_H-64-49-SCREEN_W/5);
         }];
     }else
     {
@@ -231,9 +252,9 @@
         //右侧收回
         [self.buRight setImage:[UIImage imageNamed:@"后退"] forState:UIControlStateNormal];
         [UIView animateWithDuration:0.8 animations:^{
-            self.buRight.frame = CGRectMake(SCREEN_W-30, (self.mixFoodCollectionView.frame.size.height-80)/2, 35, 80);
+            self.buRight.frame = CGRectMake(SCREEN_W-30, (self.mixFoodCollectionView.frame.size.height-SCREEN_W/5)/2, 35, SCREEN_W/5);
             
-            self.rightView.frame = CGRectMake(SCREEN_W, 0, SCREEN_W/2, SCREEN_H-64-49-80);
+            self.rightView.frame = CGRectMake(SCREEN_W, 0, SCREEN_W/2, SCREEN_H-64-49-SCREEN_W/5);
         }];
     }
     
@@ -328,6 +349,16 @@
        
    }];
 }
+
+#pragma mark- 页面出现的方法
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    if (self.isOpen == YES) {
+        [self touchRightBu];
+    }
+}
+
 
 
 - (void)didReceiveMemoryWarning {

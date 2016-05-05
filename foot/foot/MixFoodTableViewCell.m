@@ -6,6 +6,8 @@
 //  Copyright © 2016年 念恩. All rights reserved.
 //
 
+#define SCREEN_W [UIScreen mainScreen].bounds.size.width
+#define SCREEN_H [UIScreen mainScreen].bounds.size.height
 #import "MixFoodTableViewCell.h"
 
 @implementation MixFoodTableViewCell
@@ -26,9 +28,9 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    self.imageV.frame = CGRectMake(10, 5, 60, 40);
+    self.imageV.frame = CGRectMake(10, 5, SCREEN_W/5-20, 40);
     
-    self.labelText.frame = CGRectMake(85, 10, self.contentView.frame.size.width-85, 30);
+    self.labelText.frame = CGRectMake(SCREEN_W/5, 10, self.contentView.frame.size.width-SCREEN_W/5, 30);
     
 }
 
