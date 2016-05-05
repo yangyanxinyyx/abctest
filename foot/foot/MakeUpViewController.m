@@ -38,9 +38,13 @@
 //collectionView的数据源数组
 @property(nonatomic,strong)NSMutableArray *dataArrayColl;
 
+@property(nonatomic,assign)BOOL isHave;
+
 
 //提示框
 @property(nonatomic,strong)UILabel *labelPrompt;
+//分割线
+@property(nonatomic,strong)UILabel *labelLine;
 //选择的菜的数组
 @property(nonatomic,strong)NSMutableArray *arraySelected;
 
@@ -115,6 +119,18 @@
  
     [cell.imageV sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"等待占位图"]];
 
+    cell.imageSelect.backgroundColor = [UIColor clearColor];
+    
+    //点击变成变成已点击的状态 --> 159行
+    for (MixFoodModel *food in self.arraySelected) {
+        if (food.text == foodModel.text) {
+            cell.imageSelect.backgroundColor = [UIColor yellowColor];
+        }
+    }
+    
+
+    
+    
     cell.labelName.text = foodModel.text;
     [cell.labelName sizeToFit];
     cell.labelName.center = [cell.subviews lastObject].center;
@@ -124,36 +140,89 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.labelPrompt removeFromSuperview];
+    
     
     //分割线
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_W/5*4, 0, 1, self.bottomView.frame.size.height)];
-    label.backgroundColor = [UIColor grayColor];
-    [self.bottomView addSubview:label];
+    if (!self.labelLine) {
+        self.labelLine = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_W/5*4, 0, 1, self.bottomView.frame.size.height)];
+        self.labelLine.backgroundColor = [UIColor grayColor];
+        [self.bottomView addSubview:self.labelLine];
+    }
+    self.labelLine.hidden = NO;
+    self.labelPrompt.hidden = YES;
     
     //开始组合食材
     if (self.arraySelected.count<3) {
         MixFoodModel *foodModel = [self.dataArrayColl objectAtIndex:indexPath.row];
-        [self.arraySelected addObject:foodModel];
-        NSLog(@"%ld",self.arraySelected.count);
         
         
-        //选择的菜的按钮
-        UIButton *bu = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self.bottomView addSubview:bu];
-        bu.tag = self.arraySelected.count;
-        bu.backgroundColor = [UIColor orangeColor];
-        bu.layer.cornerRadius = (SCREEN_W/5*4-110)/3/2;
-        bu.layer.masksToBounds = YES;
-        bu.frame = CGRectMake(20+(30+(SCREEN_W/5*4-110)/3) * (self.arraySelected.count-1), (self.bottomView.frame.size.height-(SCREEN_W/5*4-110)/3)/2, (SCREEN_W/5*4-110)/3, (SCREEN_W/5*4-110)/3);
-        MixFoodModel *model = [self.arraySelected objectAtIndex:bu.tag-1];
-        [bu setTitle:model.text forState:UIControlStateNormal];
-        [bu setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [bu sd_setBackgroundImageWithURL:[NSURL URLWithString:model.image] forState:UIControlStateNormal];
-        [bu addTarget:self action:@selector(cancelChoose:) forControlEvents:UIControlEventTouchUpInside];
-        
-        
-    }else
+        if (self.arraySelected.count == 0) {
+            [self.arraySelected addObject:foodModel];
+            //点击变成变成已点击的状态 --> 122行
+            MixFoodCollectionViewCell *cell = (MixFoodCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+            cell.imageSelect.backgroundColor = [UIColor yellowColor];
+            //选择的菜的按钮
+            UIButton *bu = [UIButton buttonWithType:UIButtonTypeCustom];
+            [self.bottomView addSubview:bu];
+            bu.tag = self.arraySelected.count;
+            bu.backgroundColor = [UIColor orangeColor];
+            bu.layer.cornerRadius = (SCREEN_W/5*4-110)/3/2;
+            bu.layer.masksToBounds = YES;
+            bu.frame = CGRectMake(20+(30+(SCREEN_W/5*4-110)/3) * (self.arraySelected.count-1), (self.bottomView.frame.size.height-(SCREEN_W/5*4-110)/3)/2, (SCREEN_W/5*4-110)/3, (SCREEN_W/5*4-110)/3);
+            MixFoodModel *model = [self.arraySelected objectAtIndex:bu.tag-1];
+            [bu setTitle:model.text forState:UIControlStateNormal];
+            [bu setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [bu sd_setBackgroundImageWithURL:[NSURL URLWithString:model.image] forState:UIControlStateNormal];
+            [bu addTarget:self action:@selector(cancelChoose:) forControlEvents:UIControlEventTouchUpInside];
+            
+        }else
+        {
+            for (MixFoodModel *model in self.arraySelected) {
+                if (foodModel.text == model.text) {
+            
+                    self.isHave = YES;
+                    MixFoodCollectionViewCell *cell = (MixFoodCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+                    cell.imageSelect.backgroundColor = [UIColor clearColor];
+                    NSArray *array = self.bottomView.subviews;
+                    for (UIView *view in array) {
+                        if ([view isKindOfClass:[UIButton class]]) {
+                            [self cancelChoose:(UIButton *)view];
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                   
+                    self.isHave = NO;
+                }
+                break;
+       
+            }
+            
+            if (self.isHave == NO) {
+                [self.arraySelected addObject:foodModel];
+                //点击变成变成已点击的状态 --> 122行
+                MixFoodCollectionViewCell *cell = (MixFoodCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+                cell.imageSelect.backgroundColor = [UIColor yellowColor];
+                //选择的菜的按钮
+                UIButton *bu = [UIButton buttonWithType:UIButtonTypeCustom];
+                [self.bottomView addSubview:bu];
+                bu.tag = self.arraySelected.count;
+                bu.backgroundColor = [UIColor orangeColor];
+                bu.layer.cornerRadius = (SCREEN_W/5*4-110)/3/2;
+                bu.layer.masksToBounds = YES;
+                bu.frame = CGRectMake(20+(30+(SCREEN_W/5*4-110)/3) * (self.arraySelected.count-1), (self.bottomView.frame.size.height-(SCREEN_W/5*4-110)/3)/2, (SCREEN_W/5*4-110)/3, (SCREEN_W/5*4-110)/3);
+                MixFoodModel *model = [self.arraySelected objectAtIndex:bu.tag-1];
+                [bu setTitle:model.text forState:UIControlStateNormal];
+                [bu setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                [bu sd_setBackgroundImageWithURL:[NSURL URLWithString:model.image] forState:UIControlStateNormal];
+                [bu addTarget:self action:@selector(cancelChoose:) forControlEvents:UIControlEventTouchUpInside];
+            }
+            
+        }
+    }
+    else
     {
         //弹出提示动画
         UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_W-200)/2, self.bottomView.frame.origin.y-38, 200, 38)];
@@ -174,11 +243,38 @@
         }];
     }
    
+    
+    
 }
 
 #pragma mark- 点击取消选择的菜
 -(void)cancelChoose:(UIButton*)bu
 {
+    [bu removeFromSuperview];
+    
+    if (self.arraySelected.count == 1) {
+        [self.arraySelected removeLastObject];
+    }else if (self.arraySelected.count == 2)
+    {
+        if (bu.tag == 1) {
+            [self.arraySelected removeObjectAtIndex:0];
+        }else
+        {
+           [self.arraySelected removeLastObject];
+        }
+    }else
+    {
+        [self.arraySelected removeObjectAtIndex:bu.tag-1];
+    }
+    
+    
+    if (self.arraySelected.count == 0) {
+        self.labelLine.hidden = YES;;
+        self.labelPrompt.hidden = NO;
+        
+    }
+        
+    
     
 }
 
