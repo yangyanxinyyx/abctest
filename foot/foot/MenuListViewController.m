@@ -11,6 +11,7 @@
 #import "MenuListModel.h"
 #import "MenuListTableViewCell.h"
 #import "UIImageView+WebCache.h"
+#import "MJRefresh.h"
 
 #define SCREEN_W [UIScreen mainScreen].bounds.size.width
 #define SCREEN_H [UIScreen mainScreen].bounds.size.height
@@ -48,13 +49,14 @@
     [self.view addSubview:self.tableView];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    
     //self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 #pragma -mark  tableView的代理方法
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return self.dataArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -62,14 +64,14 @@
     static NSString *iden = @"listCell";
     MenuListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
     if (cell == nil) {
-        cell = [[MenuListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
+        cell = [[MenuListTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:iden];
     }
-//    MenuListModel *list = _dataArray[indexPath.row];
-//    [cell.imageV sd_setImageWithURL:[NSURL URLWithString:list.imageUrl]];
-//    cell.nameLabel.text = list.name;
-//    cell.titleLabel.text = list.title;
-//    cell.collectLabel.text =[NSString stringWithFormat:@"收藏:  %@",list.collectCount];
-    
+    MenuListModel *list = _dataArray[indexPath.row];
+    [cell.imageV sd_setImageWithURL:[NSURL URLWithString:list.imageUrl]];
+    cell.nameLabel.text = list.name;
+    cell.titleLabel.text = list.title;
+    cell.collectLabel.text =[NSString stringWithFormat:@"收藏:  %@",list.collectCount];
+    //cell.backgroundColor = [UIColor yellowColor];
     return cell;
 }
 
