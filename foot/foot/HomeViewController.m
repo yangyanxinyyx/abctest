@@ -20,7 +20,12 @@
 #import "FirstTableViewCell.h"
 #import "NewestViewController.h"
 #import "VideoViewController.h"
-@interface HomeViewController ()<UIScrollViewDelegate,FirstTableViewCellDelegate,UITableViewDataSource,UITableViewDelegate>
+#import "MJRefresh.h"
+#import "SearchViewController.h"
+@interface HomeViewController ()<UIScrollViewDelegate,FirstTableViewCellDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+{
+    NSInteger flag;
+}
 @property (nonatomic,strong)CombinationView *combinationV;
 @property (nonatomic,strong)UIPageControl *pageControl;
 @property (nonatomic,strong)UITableView *tab;
@@ -32,16 +37,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationItem.title = @"首页";
+//    self.navigationItem.title = @"首页";
+    flag = 0;
     self.selectDataArray = [NSMutableArray array];
-#pragma mark - 精选
+
+#pragma mark 搜素引擎
+    UIButton *buttonSearch = [UIButton buttonWithType:UIButtonTypeCustom];
+    buttonSearch.frame = CGRectMake(0, 30, 250, 30);
+    buttonSearch.backgroundColor = [UIColor lightGrayColor];
+    [buttonSearch setTitle:@"🔍 搜素菜谱" forState:UIControlStateNormal];
+    [buttonSearch setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    buttonSearch.titleLabel.textAlignment = NSTextAlignmentLeft;
+    self.navigationItem.titleView = buttonSearch;
+    [buttonSearch addTarget:self action:@selector(touchButtonSearch) forControlEvents:UIControlEventTouchDown];
+    buttonSearch.layer.cornerRadius =5;
+    buttonSearch.layer.masksToBounds = YES;
+    buttonSearch.layer.borderColor = [UIColor grayColor].CGColor;
+    buttonSearch.layer.borderWidth = 1;
+  
+
+#pragma mark - UITableView;
     self.tab = [[UITableView alloc]initWithFrame:CGRectMake(0,0, KScreenWidth, KScreenHeight-64-49) style:UITableViewStylePlain];
     self.tab.delegate = self;
     self.tab.dataSource = self;
     [self.view addSubview:self.tab];
     
     [self getDataWith:@"0"];
-
+    [self.tab addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(footRefreshing)];
 
   }
 
@@ -159,5 +181,19 @@
         
     }
 }
+#pragma mark 上拉加载
+-(void)footRefreshing{
+    flag ++;
+    NSString *number = [NSString stringWithFormat:@"%ld",flag*20];
+    [self getDataWith:number];
+    [self.tab.footer endRefreshing];
+}
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    [self.view endEditing:YES];
 
+}
+-(void)touchButtonSearch{
+    SearchViewController *searchVC  = [[SearchViewController alloc]init];
+    [self.navigationController pushViewController:searchVC animated:YES];
+}
 @end

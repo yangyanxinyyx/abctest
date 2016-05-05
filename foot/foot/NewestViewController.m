@@ -13,7 +13,13 @@
 #import "SelectionFoodModel.h"
 #import "SelectionTableViewCell.h"
 #import "UIImageView+WebCache.h"
+#import "MJRefresh.h"
+
+
 @interface NewestViewController ()<UITableViewDataSource,UITableViewDelegate>
+{
+    NSInteger flag;
+}
 @property (nonatomic,strong)UITableView *newestTab;
 @property (nonatomic,strong)NSMutableArray *newestArray;
 @end
@@ -22,13 +28,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"今日最新";
+    flag = 0;
     self.newestArray = [NSMutableArray array];
-    
     self.newestTab = [[UITableView alloc]initWithFrame:CGRectMake(0,0, KScreenWidth, KScreenHeight-64+10) style:UITableViewStylePlain];
     self.newestTab.delegate = self;
     self.newestTab.dataSource = self;
     [self.view addSubview:self.newestTab];
     [self getDataWit:@"0"];
+    [self.newestTab addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(footRefreshing)];
     
 }
 
@@ -84,7 +92,14 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 300;
 }
-
+#pragma mark 下拉刷新;
+-(void)footRefreshing{
+    flag ++;
+    NSString *number = [NSString stringWithFormat:@"%ld",flag*10];
+    [self getDataWit:number];
+    [self.newestTab.footer endRefreshing];
+    
+}
 #pragma -mark  tabBar的隐藏和显示
 -(void)viewWillAppear:(BOOL)animated
 {

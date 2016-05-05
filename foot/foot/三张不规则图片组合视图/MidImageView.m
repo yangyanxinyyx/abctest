@@ -17,8 +17,8 @@
     CGFloat height = CGRectGetHeight(self.bounds);
     
     CGPathMoveToPoint(path, NULL, origin.x, origin.y );//点到点
-    CGPathAddLineToPoint(path, NULL,origin.x + width,origin.y+15);
-    CGPathAddLineToPoint(path, NULL, origin.x + width, origin.y +height -15);
+    CGPathAddLineToPoint(path, NULL,origin.x + width,origin.y+20);
+    CGPathAddLineToPoint(path, NULL, origin.x + width, origin.y +height -20);
     CGPathAddLineToPoint(path, NULL, origin.x, origin.y +height );
     
     _maskLayer = [CAShapeLayer layer];

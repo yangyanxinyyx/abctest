@@ -52,6 +52,7 @@
     _pageControl.numberOfPages = 5;
     _pageControl.pageIndicatorTintColor = [UIColor grayColor];
     _pageControl.currentPageIndicatorTintColor = [UIColor redColor];
+    [_pageControl addTarget:self action:@selector(TouchePageControl) forControlEvents:UIControlEventTouchDown];
     [self addSubview:_pageControl];
     
 #pragma mark - 视屏推荐 和今日最新
@@ -109,5 +110,9 @@
 }
 -(void)toucheVideoButton{
     [self.delegate toucheVideoButtonOnCell];
+}
+#pragma mark 点击pageControl的方法
+-(void)TouchePageControl{
+    
 }
 @end

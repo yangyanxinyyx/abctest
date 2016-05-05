@@ -12,7 +12,14 @@
 #import "VideoModel.h"
 #import "VideoTableViewCell.h"
 #import "UIImageView+WebCache.h"
+#import "PlayVideoViewController.h"
+#import "MJRefresh.h"
+
+
 @interface VideoViewController ()<UITableViewDataSource,UITableViewDelegate>
+{
+    NSInteger flag;
+}
 @property (nonatomic,strong)UITableView *tabVideo;
 @property (nonatomic,strong)NSMutableArray *arrayVideo;
 @end
@@ -21,13 +28,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    flag = 0;
     self.view.backgroundColor = [UIColor redColor];
+    self.navigationItem.title = @"视频推荐";
     self.arrayVideo = [NSMutableArray array];
     self.tabVideo = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
     self.tabVideo.delegate = self;
     self.tabVideo.dataSource = self;
     [self.view addSubview:self.tabVideo];
-    [self getDataWith:@"10"];
+    [self getDataWith:@"0"];
+    [self.tabVideo addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(footRefreshing)];
     
 }
 #pragma mark - UITableView的代理
@@ -44,11 +54,21 @@
     VideoModel *model = [self.arrayVideo objectAtIndex:indexPath.row];
     [cell.ImageView sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"等待占位图"]];
     cell.labelName.text = model.name;
+    cell.labelBrowse_Collerc.text = model.intro;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 300;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    PlayVideoViewController *playVideoV = [[PlayVideoViewController alloc]init];
+    VideoModel *model  = [self.arrayVideo objectAtIndex:indexPath.row];
+    playVideoV.videoUrl = model.video_url;
+    playVideoV.videoiID = model.videoID;
+    [self.navigationController pushViewController:playVideoV animated:YES];
+    
+    
 }
 #pragma  mark 获取数据
 -(void)getDataWith:(NSString *)offsetNumber{
@@ -70,6 +90,17 @@
 -(void)doMainThread{
      [self.tabVideo reloadData];
 }
+-(void)footRefreshing{
+    flag++;
+    NSString *number = [NSString stringWithFormat:@"%ld",flag*10];
+    [self getDataWith:number];
+    [_tabVideo.footer endRefreshing];
+}
+
+
+
+
+
 #pragma -mark  tabBar的隐藏和显示
 -(void)viewWillAppear:(BOOL)animated
 {
