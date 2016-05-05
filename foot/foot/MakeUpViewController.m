@@ -138,6 +138,7 @@
         NSLog(@"%ld",self.arraySelected.count);
         
         
+        //选择的菜的按钮
         UIButton *bu = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.bottomView addSubview:bu];
         bu.tag = self.arraySelected.count;
@@ -148,8 +149,8 @@
         MixFoodModel *model = [self.arraySelected objectAtIndex:bu.tag-1];
         [bu setTitle:model.text forState:UIControlStateNormal];
         [bu setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        
         [bu sd_setBackgroundImageWithURL:[NSURL URLWithString:model.image] forState:UIControlStateNormal];
+        [bu addTarget:self action:@selector(cancelChoose:) forControlEvents:UIControlEventTouchUpInside];
         
         
     }else
@@ -173,6 +174,12 @@
         }];
     }
    
+}
+
+#pragma mark- 点击取消选择的菜
+-(void)cancelChoose:(UIButton*)bu
+{
+    
 }
 
 
