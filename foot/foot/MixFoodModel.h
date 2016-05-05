@@ -14,4 +14,5 @@
 @property(nonatomic,strong)NSString *text;
 @property(nonatomic,strong)NSArray *data;
 
+@property(nonatomic,assign)BOOL isSelect;
 @end

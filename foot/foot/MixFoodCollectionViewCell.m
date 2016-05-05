@@ -18,7 +18,9 @@
         
         self.labelName = [[UILabel alloc] init];
         [self.contentView addSubview:self.labelName];
-
+        
+        self.imageSelect = [[UIImageView alloc] init];
+        [self.contentView addSubview:self.imageSelect];
     }
     return self;
 }
@@ -32,6 +34,9 @@
     self.imageV.layer.cornerRadius = self.contentView.frame.size.width/2;
     self.imageV.layer.masksToBounds = YES;
 
+    self.imageSelect.frame = self.contentView.frame;
+    self.imageSelect.layer.cornerRadius = self.contentView.frame.size.width/2;
+    self.imageSelect.layer.masksToBounds = YES;
     
 
  
@@ -46,4 +51,11 @@
     
     
 }
+
+//-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+//{
+//    UIImageView *image = [[UIImageView alloc] initWithFrame:self.contentView.frame];
+//    image.backgroundColor = [UIColor redColor];
+//    [self.contentView addSubview:image];
+//}
 @end
