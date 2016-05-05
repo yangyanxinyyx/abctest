@@ -161,14 +161,22 @@
         NSMutableDictionary *dic1 = [NSMutableDictionary dictionary];
         NSMutableArray *array1 = [NSMutableArray array];
         for (NSDictionary *dictionary in arr) {
-            MenuModel *menu = [[MenuModel alloc] init];
-            menu.name = dictionary[@"name"];
-            menu.identify = dictionary[@"id"];
-            menu.imageUrl = [NSString stringWithFormat:@"http://pic.ecook.cn/web/%@.jpg",dictionary[@"imageid"]];
-            [array1 addObject:menu];
+            if (![dictionary[@"name"] isEqualToString:@"视频菜谱"]) {
+               
+                MenuModel *menu = [[MenuModel alloc] init];
+                menu.name = dictionary[@"name"];
+                menu.identify = dictionary[@"id"];
+                menu.imageUrl = [NSString stringWithFormat:@"http://pic.ecook.cn/web/%@.jpg",dictionary[@"imageid"]];
+                [array1 addObject:menu];
+            }
+            
         }
         [dic1 setValue:array1 forKey:dict[@"name"]];
-        [self.dataArray addObject:dic1];
+        if (![dict[@"name"] isEqualToString:@"视频专区"]) {
+            [self.dataArray addObject:dic1];
+        }
+        
+        
         //NSLog(@"%@",_dataArray);
     }
     

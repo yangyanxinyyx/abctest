@@ -39,11 +39,12 @@
 		3F59E2361CD8DCA400749116 /* MixFoodCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F59E2351CD8DCA400749116 /* MixFoodCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		3F59E23A1CD8E4CA00749116 /* 后退.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F59E2381CD8E4CA00749116 /* 后退.png */; settings = {ASSET_TAGS = (); }; };
 		3F59E23B1CD8E4CA00749116 /* 前进.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F59E2391CD8E4CA00749116 /* 前进.png */; settings = {ASSET_TAGS = (); }; };
-
 		3FA8CE291CDAF03300EC7599 /* VideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA8CE281CDAF03300EC7599 /* VideoModel.m */; settings = {ASSET_TAGS = (); }; };
 		3FA8CE2C1CDAFCA800EC7599 /* VideoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA8CE2B1CDAFCA800EC7599 /* VideoTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		3FA8CE301CDB049400EC7599 /* 播放.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FA8CE2F1CDB049400EC7599 /* 播放.png */; settings = {ASSET_TAGS = (); }; };
-
+		3FABA3D61CDB352700D35CEA /* CookDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FABA3D51CDB352700D35CEA /* CookDetailsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3FABA3DB1CDB427100D35CEA /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FABA3DA1CDB427100D35CEA /* back.png */; settings = {ASSET_TAGS = (); }; };
+		3FABA3E21CDB518100D35CEA /* FoodDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FABA3E11CDB518100D35CEA /* FoodDetailsModel.m */; settings = {ASSET_TAGS = (); }; };
 		3FAEB0A01CDB1EB300F36ED1 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3FAEB0861CDB1EB300F36ED1 /* MJRefresh.bundle */; settings = {ASSET_TAGS = (); }; };
 		3FAEB0A11CDB1EB300F36ED1 /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FAEB0891CDB1EB300F36ED1 /* MJRefreshComponent.m */; settings = {ASSET_TAGS = (); }; };
 		3FAEB0A21CDB1EB300F36ED1 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FAEB08B1CDB1EB300F36ED1 /* MJRefreshConst.m */; settings = {ASSET_TAGS = (); }; };
@@ -57,7 +58,6 @@
 		3FAEB0AA1CDB1EB300F36ED1 /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FAEB09B1CDB1EB300F36ED1 /* UIScrollView+MJExtension.m */; settings = {ASSET_TAGS = (); }; };
 		3FAEB0AB1CDB1EB300F36ED1 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FAEB09D1CDB1EB300F36ED1 /* UIScrollView+MJRefresh.m */; settings = {ASSET_TAGS = (); }; };
 		3FAEB0AC1CDB1EB300F36ED1 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FAEB09F1CDB1EB300F36ED1 /* UIView+MJExtension.m */; settings = {ASSET_TAGS = (); }; };
-
 		3FDDB1A31CD8A94E009FA128 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDDB1A21CD8A94E009FA128 /* main.m */; };
 		3FDDB1A61CD8A94E009FA128 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDDB1A51CD8A94E009FA128 /* AppDelegate.m */; };
 		3FDDB1AE1CD8A94E009FA128 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FDDB1AD1CD8A94E009FA128 /* Assets.xcassets */; };
@@ -173,13 +173,16 @@
 		3F59E2351CD8DCA400749116 /* MixFoodCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixFoodCollectionViewCell.m; sourceTree = "<group>"; };
 		3F59E2381CD8E4CA00749116 /* 后退.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "后退.png"; sourceTree = "<group>"; };
 		3F59E2391CD8E4CA00749116 /* 前进.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "前进.png"; sourceTree = "<group>"; };
-
 		3FA8CE271CDAF03300EC7599 /* VideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoModel.h; sourceTree = "<group>"; };
 		3FA8CE281CDAF03300EC7599 /* VideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoModel.m; sourceTree = "<group>"; };
 		3FA8CE2A1CDAFCA800EC7599 /* VideoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoTableViewCell.h; sourceTree = "<group>"; };
 		3FA8CE2B1CDAFCA800EC7599 /* VideoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoTableViewCell.m; sourceTree = "<group>"; };
 		3FA8CE2F1CDB049400EC7599 /* 播放.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "播放.png"; sourceTree = "<group>"; };
-
+		3FABA3D41CDB352700D35CEA /* CookDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CookDetailsViewController.h; sourceTree = "<group>"; };
+		3FABA3D51CDB352700D35CEA /* CookDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CookDetailsViewController.m; sourceTree = "<group>"; };
+		3FABA3DA1CDB427100D35CEA /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		3FABA3E01CDB518100D35CEA /* FoodDetailsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodDetailsModel.h; sourceTree = "<group>"; };
+		3FABA3E11CDB518100D35CEA /* FoodDetailsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodDetailsModel.m; sourceTree = "<group>"; };
 		3FAEB0861CDB1EB300F36ED1 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		3FAEB0871CDB1EB300F36ED1 /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		3FAEB0881CDB1EB300F36ED1 /* MJRefreshComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshComponent.h; sourceTree = "<group>"; };
@@ -206,7 +209,6 @@
 		3FAEB09D1CDB1EB300F36ED1 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		3FAEB09E1CDB1EB300F36ED1 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		3FAEB09F1CDB1EB300F36ED1 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
-
 		3FDDB19E1CD8A94E009FA128 /* foot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = foot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FDDB1A21CD8A94E009FA128 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3FDDB1A41CD8A94E009FA128 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -340,6 +342,49 @@
 			name = "食材组合";
 			sourceTree = "<group>";
 		};
+		3FABA3D31CDB34BB00D35CEA /* 做菜详细页面 */ = {
+			isa = PBXGroup;
+			children = (
+				3FABA3DE1CDB513700D35CEA /* model */,
+				3FABA3DD1CDB513200D35CEA /* view */,
+				3FABA3DC1CDB513000D35CEA /* controller */,
+			);
+			name = "做菜详细页面";
+			sourceTree = "<group>";
+		};
+		3FABA3D71CDB410000D35CEA /* navigation */ = {
+			isa = PBXGroup;
+			children = (
+				3FABA3DA1CDB427100D35CEA /* back.png */,
+			);
+			name = navigation;
+			sourceTree = "<group>";
+		};
+		3FABA3DC1CDB513000D35CEA /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				3FABA3D41CDB352700D35CEA /* CookDetailsViewController.h */,
+				3FABA3D51CDB352700D35CEA /* CookDetailsViewController.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		3FABA3DD1CDB513200D35CEA /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		3FABA3DE1CDB513700D35CEA /* model */ = {
+			isa = PBXGroup;
+			children = (
+				3FABA3E01CDB518100D35CEA /* FoodDetailsModel.h */,
+				3FABA3E11CDB518100D35CEA /* FoodDetailsModel.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
 		3FAEB0851CDB1EB300F36ED1 /* MJRefresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -399,6 +444,7 @@
 				3FDDB1D81CD8AC61009FA128 /* Tool */,
 				3FDDB1D51CD8A9A9009FA128 /* Resource */,
 				3FDDB1D41CD8A9A6009FA128 /* BaseClass */,
+				3FABA3D31CDB34BB00D35CEA /* 做菜详细页面 */,
 				3FDDB1D61CD8AC51009FA128 /* 首页 */,
 				3FDDB1E21CD8BDAA009FA128 /* 食材组合 */,
 				3FDDB1E31CD8BDAC009FA128 /* 菜谱 */,
@@ -457,6 +503,7 @@
 		3FDDB1D51CD8A9A9009FA128 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				3FABA3D71CDB410000D35CEA /* navigation */,
 				3FF9BD211CD9D2D600D11A51 /* 首页 */,
 				3FF9BD1C1CD9C83E00D11A51 /* 启动图.jpg */,
 				3FDDB1FE1CD8C51D009FA128 /* tabBarIcon */,
@@ -800,14 +847,12 @@
 				3FDDB20E1CD8C53F009FA128 /* 首页.png in Resources */,
 				3FDDB1B11CD8A94E009FA128 /* LaunchScreen.storyboard in Resources */,
 				3F1782BB1CDA12A9001FD16D /* 等待占位图.png in Resources */,
+				3FABA3DB1CDB427100D35CEA /* back.png in Resources */,
 				3FF9BD271CD9DBD800D11A51 /* 视频.png in Resources */,
 				3FDDB20D1CD8C53F009FA128 /* 首页1.png in Resources */,
 				3FDDB1AE1CD8A94E009FA128 /* Assets.xcassets in Resources */,
-
 				3FA8CE301CDB049400EC7599 /* 播放.png in Resources */,
-
 				3FAEB0A01CDB1EB300F36ED1 /* MJRefresh.bundle in Resources */,
-
 				3FDDB20A1CD8C53F009FA128 /* 食谱.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -884,17 +929,16 @@
 				3F177C491CDAE20B00936877 /* MenuListTableViewCell.m in Sources */,
 				3FAEB0A91CDB1EB300F36ED1 /* UIScrollView+CRScrollIndicator.m in Sources */,
 				3F1782E41CDA1D86001FD16D /* SDWebImageDownloaderOperation.m in Sources */,
-
 				3FA8CE2C1CDAFCA800EC7599 /* VideoTableViewCell.m in Sources */,
-
 				3FAEB0A71CDB1EB300F36ED1 /* MJRefreshLegendFooter.m in Sources */,
 				3FAEB0AB1CDB1EB300F36ED1 /* UIScrollView+MJRefresh.m in Sources */,
-
 				3F1782B61CD9EE6F001FD16D /* MixFoodTableViewCell.m in Sources */,
+				3FABA3E21CDB518100D35CEA /* FoodDetailsModel.m in Sources */,
 				3F1782E51CDA1D86001FD16D /* SDWebImageManager.m in Sources */,
 				3F1782EA1CDA1D86001FD16D /* UIImage+WebP.m in Sources */,
 				3FF9BD151CD9AA6300D11A51 /* ShapedImageView.m in Sources */,
 				3F1782E01CDA1D86001FD16D /* SDImageCache.m in Sources */,
+				3FABA3D61CDB352700D35CEA /* CookDetailsViewController.m in Sources */,
 				3F49E3581CDA3FCC00E9028A /* NewestViewController.m in Sources */,
 				3FAEB0A31CDB1EB300F36ED1 /* MJRefreshFooter.m in Sources */,
 			);

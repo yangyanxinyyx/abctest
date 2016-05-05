@@ -12,6 +12,7 @@
 #import "MenuListTableViewCell.h"
 #import "UIImageView+WebCache.h"
 #import "MJRefresh.h"
+#import "CookDetailsViewController.h"
 
 #define SCREEN_W [UIScreen mainScreen].bounds.size.width
 #define SCREEN_H [UIScreen mainScreen].bounds.size.height
@@ -19,6 +20,7 @@
 @interface MenuListViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSInteger _page;
+    BOOL _isDownRefresh;  //是否下拉刷新
 }
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *dataArray; //数据
@@ -36,13 +38,18 @@
     self.navigationItem.title = self.navTitle;
     
     _page = 0;
+    _isDownRefresh = NO;
     [self loadData];
     
     [self createTableView];
     
+    //设置nav左返回按钮
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
     
 }
 
+
+#pragma -mark 创建tableview
 -(void)createTableView
 {
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_H - 64) style:UITableViewStylePlain];
@@ -50,8 +57,41 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    //self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    //上拉加载
+    [self.tableView addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(refreshMore)];
+    [self.tableView.footer setTitle:@"上拉加载更多美食" forState:MJRefreshFooterStateRefreshing];
+    
+    //下拉刷新
+    [self.tableView addLegendHeaderWithRefreshingTarget:self refreshingAction:@selector(downRefresh)];
+    
 }
+
+#pragma -mark  上拉加载
+-(void)refreshMore
+{
+    _page ++;
+    [self loadData];
+    [self.tableView.footer endRefreshing];
+}
+
+#pragma -mark 下拉加载
+-(void)downRefresh
+{
+    _isDownRefresh = YES;
+    _page = 0;
+    [self loadData];
+    [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(refresh) userInfo:nil repeats:NO];
+    self.tableView.userInteractionEnabled = NO ;
+}
+
+-(void)refresh
+{
+    self.tableView.userInteractionEnabled = YES ;
+    [self.tableView.header endRefreshing];
+}
+
 
 #pragma -mark  tableView的代理方法
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -80,14 +120,38 @@
     return 110;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CookDetailsViewController *cook = [[CookDetailsViewController alloc] init];
+    MenuListModel *list = _dataArray[indexPath.row];
+    cook.url = @"http://api.ecook.cn/public/getRecipeListByIds.shtm";
+    cook.parDic = [NSDictionary dictionaryWithObjectsAndKeys:list.identifiy,@"ids", nil];
+    cook.header = [NSDictionary dictionaryWithObjectsAndKeys:@"application/x-www-form-urlencoded",@"Content-Type", nil];
+    [self.navigationController pushViewController:cook animated:YES];
+}
+
+
+-(void)back
+{
+    self.tabBarController.hidesBottomBarWhenPushed = NO;
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma -mark 加载数据
 -(void)loadData
 {
+    
+    
     NSDictionary *parDic = [NSDictionary dictionaryWithObjectsAndKeys:_identitfiy,@"id",[NSString stringWithFormat:@"%ld",_page],@"page", nil];
     
     NSDictionary *header = [NSDictionary dictionaryWithObjectsAndKeys:@"application/x-www-form-urlencoded",@"Content-Type", nil];
     
     [NetworkRequestManager requestWithType:POST urlString:@"http://api.ecook.cn/public/getContentsBySubClassid.shtml" parDic:parDic header:header finish:^(NSData *data) {
+        
+        if (_isDownRefresh) {
+            [self.dataArray removeAllObjects];
+            _isDownRefresh = NO;
+        }
         
         NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         NSArray *array = dictionary[@"list"];
@@ -114,16 +178,16 @@
 }
 
 
-#pragma -mark  tabBar的隐藏和显示
+
 -(void)viewWillAppear:(BOOL)animated
 {
     self.tabBarController.hidesBottomBarWhenPushed = YES;
 }
 
--(void)viewWillDisappear:(BOOL)animated
-{
-    self.tabBarController.hidesBottomBarWhenPushed = NO;
-}
+//-(void)viewWillDisappear:(BOOL)animated
+//{
+//    self.tabBarController.hidesBottomBarWhenPushed = NO;
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
