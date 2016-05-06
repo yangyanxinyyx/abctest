@@ -18,7 +18,7 @@
     CGFloat width = CGRectGetWidth(self.bounds);
     CGFloat height = CGRectGetHeight(self.bounds);
     
-    CGPathMoveToPoint(path, NULL, origin.x, origin.y +15 );//点到点
+    CGPathMoveToPoint(path, NULL, origin.x, origin.y +20 );//点到点
     CGPathAddLineToPoint(path, NULL,origin.x + width,origin.y);
     CGPathAddLineToPoint(path, NULL, origin.x + width, origin.y +height );
     CGPathAddLineToPoint(path, NULL, origin.x, origin.y +height );

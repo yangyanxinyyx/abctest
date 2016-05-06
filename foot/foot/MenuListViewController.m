@@ -124,9 +124,10 @@
 {
     CookDetailsViewController *cook = [[CookDetailsViewController alloc] init];
     MenuListModel *list = _dataArray[indexPath.row];
-    cook.url = @"http://api.ecook.cn/public/getRecipeListByIds.shtm";
+    cook.url = @"http://api.ecook.cn/public/getRecipeListByIds.shtml";
     cook.parDic = [NSDictionary dictionaryWithObjectsAndKeys:list.identifiy,@"ids", nil];
     cook.header = [NSDictionary dictionaryWithObjectsAndKeys:@"application/x-www-form-urlencoded",@"Content-Type", nil];
+    cook.urlId = 3;
     [self.navigationController pushViewController:cook animated:YES];
 }
 
@@ -160,6 +161,7 @@
             MenuListModel *model = [[MenuListModel alloc] init];
             model.title = dic[@"description"];
             model.imageUrl = [NSString stringWithFormat:@"http://pic.ecook.cn/web/%@.jpg",dic[@"imageid"]];
+            model.identifiy = dic[@"id"];
             [model setValuesForKeysWithDictionary:dic];
             [self.dataArray addObject:model];
         }

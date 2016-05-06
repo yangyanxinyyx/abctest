@@ -10,20 +10,16 @@
 
 @implementation VideoModel
 -(void)setValuesForKeysWithDictionary:(NSDictionary<NSString *,id> *)keyedValues{
-    
+    self.videoID = [keyedValues objectForKey:@"id"];
     self.name = [keyedValues objectForKey:@"name"];
     NSString *str = [keyedValues objectForKey:@"intro"];
     NSArray *introName = [str componentsSeparatedByString:@"&nbsp;·&nbsp;"];
     if ([introName[0] isEqualToString:@"精选视频推荐"]) {
-        self.browse = introName[0];
+        self.intro = introName[0];
     }else{
-    self.browse = introName[0];
-        if (introName.count == 3) {
-                self.collect = [introName[1] stringByAppendingString:introName[2]];
-        }else{
-            self.collect = introName[1];
-        }
+        self.intro = [introName componentsJoinedByString:@"  ·  "];
     }
-       self.pic = [keyedValues objectForKey:@"pic"];
+    self.pic = [keyedValues objectForKey:@"pic"];
+    self.video_url = [keyedValues objectForKey:@"video_url"];
 }
 @end

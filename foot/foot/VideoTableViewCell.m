@@ -18,7 +18,7 @@
         [self addSubview:viewBack];
         [viewBack addSubview:self.ImageView];
         [viewBack addSubview:self.labelName];
-
+        [viewBack addSubview:self.labelBrowse_Collerc];
 
         UIView *viewGray = [[UIView alloc]initWithFrame:CGRectMake(0, 300-10, KScreenWidth, 10)];
         viewGray.backgroundColor = [UIColor lightGrayColor];
@@ -46,5 +46,14 @@
         
     }
     return _labelName;
+}
+-(UILabel *)labelBrowse_Collerc{
+    
+    if (!_labelBrowse_Collerc) {
+        self.labelBrowse_Collerc = [[UILabel alloc]initWithFrame:CGRectMake(20, 260, KScreenWidth-40, 20)];
+        _labelBrowse_Collerc.textColor = [UIColor blackColor];
+        _labelBrowse_Collerc.font = [UIFont systemFontOfSize:15];
+    }
+    return _labelBrowse_Collerc;
 }
 @end

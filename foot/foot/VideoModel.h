@@ -14,4 +14,6 @@
 @property (nonatomic,strong)NSString *intro;
 @property (nonatomic,strong)NSString *browse;
 @property (nonatomic,strong)NSString *collect;
+@property (nonatomic,strong)NSString *video_url;
+@property (nonatomic,strong)NSString *videoID;
 @end

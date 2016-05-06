@@ -14,6 +14,7 @@
 
 @property(nonatomic,strong)UIImageView *imageV;
 @property(nonatomic,strong)UILabel *labelName;
+@property(nonatomic,strong)UIImageView *imageSelect;
 
 @property(nonatomic,strong)MixFoodModel *mixFood;
 @end
