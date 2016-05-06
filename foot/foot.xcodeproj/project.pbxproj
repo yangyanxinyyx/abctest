@@ -47,6 +47,7 @@
 		3F59E2361CD8DCA400749116 /* MixFoodCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F59E2351CD8DCA400749116 /* MixFoodCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		3F59E23A1CD8E4CA00749116 /* 后退.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F59E2381CD8E4CA00749116 /* 后退.png */; settings = {ASSET_TAGS = (); }; };
 		3F59E23B1CD8E4CA00749116 /* 前进.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F59E2391CD8E4CA00749116 /* 前进.png */; settings = {ASSET_TAGS = (); }; };
+		3F6520CE1CDCC906007CD97B /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6520CD1CDCC906007CD97B /* libsqlite3.0.tbd */; };
 		3FA8CE291CDAF03300EC7599 /* VideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA8CE281CDAF03300EC7599 /* VideoModel.m */; settings = {ASSET_TAGS = (); }; };
 		3FA8CE2C1CDAFCA800EC7599 /* VideoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA8CE2B1CDAFCA800EC7599 /* VideoTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		3FA8CE301CDB049400EC7599 /* 播放.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FA8CE2F1CDB049400EC7599 /* 播放.png */; settings = {ASSET_TAGS = (); }; };
@@ -68,7 +69,6 @@
 		3FAEB0AC1CDB1EB300F36ED1 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FAEB09F1CDB1EB300F36ED1 /* UIView+MJExtension.m */; settings = {ASSET_TAGS = (); }; };
 		3FB0DCA41CDB842D000D9C61 /* DetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB0DCA31CDB842D000D9C61 /* DetailsModel.m */; settings = {ASSET_TAGS = (); }; };
 		3FB0DCBC1CDB9416000D9C61 /* HistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB0DCBB1CDB9416000D9C61 /* HistoryModel.m */; settings = {ASSET_TAGS = (); }; };
-		3FB0DCBE1CDB95A2000D9C61 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB0DCBD1CDB95A2000D9C61 /* libsqlite3.0.tbd */; };
 		3FB88C131CDB49660085FE05 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB88C121CDB49660085FE05 /* SearchViewController.m */; settings = {ASSET_TAGS = (); }; };
 		3FB88C151CDB4ADD0085FE05 /* 返回.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB88C141CDB4ADD0085FE05 /* 返回.png */; settings = {ASSET_TAGS = (); }; };
 		3FB88C181CDB52780085FE05 /* 搜索.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB88C171CDB52780085FE05 /* 搜索.png */; settings = {ASSET_TAGS = (); }; };
@@ -97,6 +97,11 @@
 		3FDDB20D1CD8C53F009FA128 /* 首页1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FDDB2051CD8C53F009FA128 /* 首页1.png */; settings = {ASSET_TAGS = (); }; };
 		3FDDB20E1CD8C53F009FA128 /* 首页.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FDDB2061CD8C53F009FA128 /* 首页.png */; settings = {ASSET_TAGS = (); }; };
 		3FDDB2111CD8D60B009FA128 /* NetworkRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDDB2101CD8D60B009FA128 /* NetworkRequestManager.m */; settings = {ASSET_TAGS = (); }; };
+		3FF0027D1CDC387D00F85D4E /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF002731CDC387D00F85D4E /* FMDatabase.m */; settings = {ASSET_TAGS = (); }; };
+		3FF0027E1CDC387D00F85D4E /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF002751CDC387D00F85D4E /* FMDatabaseAdditions.m */; settings = {ASSET_TAGS = (); }; };
+		3FF0027F1CDC387D00F85D4E /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF002771CDC387D00F85D4E /* FMDatabasePool.m */; settings = {ASSET_TAGS = (); }; };
+		3FF002801CDC387D00F85D4E /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF002791CDC387D00F85D4E /* FMDatabaseQueue.m */; settings = {ASSET_TAGS = (); }; };
+		3FF002811CDC387D00F85D4E /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF0027C1CDC387D00F85D4E /* FMResultSet.m */; settings = {ASSET_TAGS = (); }; };
 		3FF9BD121CD9AA6300D11A51 /* CombinationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9BD0B1CD9AA6300D11A51 /* CombinationView.m */; settings = {ASSET_TAGS = (); }; };
 		3FF9BD131CD9AA6300D11A51 /* EndImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9BD0D1CD9AA6300D11A51 /* EndImageView.m */; settings = {ASSET_TAGS = (); }; };
 		3FF9BD141CD9AA6300D11A51 /* MidImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9BD0F1CD9AA6300D11A51 /* MidImageView.m */; settings = {ASSET_TAGS = (); }; };
@@ -206,6 +211,7 @@
 		3F59E2351CD8DCA400749116 /* MixFoodCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixFoodCollectionViewCell.m; sourceTree = "<group>"; };
 		3F59E2381CD8E4CA00749116 /* 后退.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "后退.png"; sourceTree = "<group>"; };
 		3F59E2391CD8E4CA00749116 /* 前进.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "前进.png"; sourceTree = "<group>"; };
+		3F6520CD1CDCC906007CD97B /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		3FA8CE271CDAF03300EC7599 /* VideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoModel.h; sourceTree = "<group>"; };
 		3FA8CE281CDAF03300EC7599 /* VideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoModel.m; sourceTree = "<group>"; };
 		3FA8CE2A1CDAFCA800EC7599 /* VideoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoTableViewCell.h; sourceTree = "<group>"; };
@@ -246,7 +252,6 @@
 		3FB0DCA31CDB842D000D9C61 /* DetailsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsModel.m; sourceTree = "<group>"; };
 		3FB0DCBA1CDB9416000D9C61 /* HistoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryModel.h; sourceTree = "<group>"; };
 		3FB0DCBB1CDB9416000D9C61 /* HistoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryModel.m; sourceTree = "<group>"; };
-		3FB0DCBD1CDB95A2000D9C61 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		3FB88C111CDB49660085FE05 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		3FB88C121CDB49660085FE05 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		3FB88C141CDB4ADD0085FE05 /* 返回.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "返回.png"; sourceTree = "<group>"; };
@@ -292,6 +297,17 @@
 		3FDDB2061CD8C53F009FA128 /* 首页.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "首页.png"; sourceTree = "<group>"; };
 		3FDDB20F1CD8D60B009FA128 /* NetworkRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkRequestManager.h; sourceTree = "<group>"; };
 		3FDDB2101CD8D60B009FA128 /* NetworkRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkRequestManager.m; sourceTree = "<group>"; };
+		3FF002721CDC387D00F85D4E /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		3FF002731CDC387D00F85D4E /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		3FF002741CDC387D00F85D4E /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		3FF002751CDC387D00F85D4E /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		3FF002761CDC387D00F85D4E /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		3FF002771CDC387D00F85D4E /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		3FF002781CDC387D00F85D4E /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		3FF002791CDC387D00F85D4E /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		3FF0027A1CDC387D00F85D4E /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		3FF0027B1CDC387D00F85D4E /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		3FF0027C1CDC387D00F85D4E /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		3FF9BD0A1CD9AA6300D11A51 /* CombinationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CombinationView.h; sourceTree = "<group>"; };
 		3FF9BD0B1CD9AA6300D11A51 /* CombinationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CombinationView.m; sourceTree = "<group>"; };
 		3FF9BD0C1CD9AA6300D11A51 /* EndImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndImageView.h; sourceTree = "<group>"; };
@@ -322,6 +338,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F6520CE1CDCC906007CD97B /* libsqlite3.0.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,7 +346,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FB0DCBE1CDB95A2000D9C61 /* libsqlite3.0.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,7 +559,7 @@
 		3FDDB1951CD8A94E009FA128 = {
 			isa = PBXGroup;
 			children = (
-				3FB0DCBD1CDB95A2000D9C61 /* libsqlite3.0.tbd */,
+				3F6520CD1CDCC906007CD97B /* libsqlite3.0.tbd */,
 				3FDDB1A01CD8A94E009FA128 /* foot */,
 				3FDDB1BA1CD8A94E009FA128 /* footTests */,
 				3FDDB1C51CD8A94E009FA128 /* footUITests */,
@@ -656,6 +672,7 @@
 				3FDDB20F1CD8D60B009FA128 /* NetworkRequestManager.h */,
 				3FDDB2101CD8D60B009FA128 /* NetworkRequestManager.m */,
 				3FAEB0851CDB1EB300F36ED1 /* MJRefresh */,
+				3FF002711CDC387D00F85D4E /* fmdb */,
 				3F1782BC1CDA1D86001FD16D /* SDWebImage01 */,
 			);
 			name = Tool;
@@ -835,6 +852,24 @@
 				3FDDB2061CD8C53F009FA128 /* 首页.png */,
 			);
 			name = tabBarIcon;
+			sourceTree = "<group>";
+		};
+		3FF002711CDC387D00F85D4E /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				3FF002721CDC387D00F85D4E /* FMDatabase.h */,
+				3FF002731CDC387D00F85D4E /* FMDatabase.m */,
+				3FF002741CDC387D00F85D4E /* FMDatabaseAdditions.h */,
+				3FF002751CDC387D00F85D4E /* FMDatabaseAdditions.m */,
+				3FF002761CDC387D00F85D4E /* FMDatabasePool.h */,
+				3FF002771CDC387D00F85D4E /* FMDatabasePool.m */,
+				3FF002781CDC387D00F85D4E /* FMDatabaseQueue.h */,
+				3FF002791CDC387D00F85D4E /* FMDatabaseQueue.m */,
+				3FF0027A1CDC387D00F85D4E /* FMDB.h */,
+				3FF0027B1CDC387D00F85D4E /* FMResultSet.h */,
+				3FF0027C1CDC387D00F85D4E /* FMResultSet.m */,
+			);
+			path = fmdb;
 			sourceTree = "<group>";
 		};
 		3FF9BD091CD9AA6300D11A51 /* 三张不规则图片组合视图 */ = {
@@ -1019,6 +1054,7 @@
 				3F1782E81CDA1D86001FD16D /* UIImage+GIF.m in Sources */,
 				3FF9BD201CD9CFA600D11A51 /* VideoBuutonAndNewestButton.m in Sources */,
 				3F177C461CDAD9C700936877 /* MenuListModel.m in Sources */,
+				3FF0027D1CDC387D00F85D4E /* FMDatabase.m in Sources */,
 				3F49E3551CDA3FB900E9028A /* VideoViewController.m in Sources */,
 				3FDDB1DB1CD8AD25009FA128 /* FoodTabBarController.m in Sources */,
 				3F1782B91CD9F607001FD16D /* MixFoodModel.m in Sources */,
@@ -1028,6 +1064,7 @@
 				3FAEB0A11CDB1EB300F36ED1 /* MJRefreshComponent.m in Sources */,
 				3F050F2C1CD9DF310050FE22 /* MenuListViewController.m in Sources */,
 				3FF9BD2E1CD9F57100D11A51 /* SelectionFoodModel.m in Sources */,
+				3FF0027F1CDC387D00F85D4E /* FMDatabasePool.m in Sources */,
 				3F050F231CD9A66F0050FE22 /* MenuCollectionViewCell.m in Sources */,
 				3FB88C131CDB49660085FE05 /* SearchViewController.m in Sources */,
 				3FAEB0A51CDB1EB300F36ED1 /* MJRefreshGifHeader.m in Sources */,
@@ -1063,6 +1100,7 @@
 				3FDDB1A61CD8A94E009FA128 /* AppDelegate.m in Sources */,
 				3FDDB1A31CD8A94E009FA128 /* main.m in Sources */,
 				3FAEB0A81CDB1EB300F36ED1 /* MJRefreshLegendHeader.m in Sources */,
+				3FF0027E1CDC387D00F85D4E /* FMDatabaseAdditions.m in Sources */,
 				3F1782ED1CDA1D86001FD16D /* UIView+WebCacheOperation.m in Sources */,
 				3F1782E11CDA1D86001FD16D /* SDWebImageCompat.m in Sources */,
 				3FF9BD181CD9AAA200D11A51 /* HomeViewController.m in Sources */,
@@ -1072,6 +1110,8 @@
 				3FF9BD131CD9AA6300D11A51 /* EndImageView.m in Sources */,
 				3FF9BD121CD9AA6300D11A51 /* CombinationView.m in Sources */,
 				3F1782E61CDA1D86001FD16D /* SDWebImagePrefetcher.m in Sources */,
+				3FF002811CDC387D00F85D4E /* FMResultSet.m in Sources */,
+				3FF002801CDC387D00F85D4E /* FMDatabaseQueue.m in Sources */,
 				3FA8CE291CDAF03300EC7599 /* VideoModel.m in Sources */,
 				3FDDB1F61CD8BF57009FA128 /* MakeUpViewController.m in Sources */,
 				3F177C491CDAE20B00936877 /* MenuListTableViewCell.m in Sources */,
