@@ -107,9 +107,21 @@
 		3FF0027F1CDC387D00F85D4E /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF002771CDC387D00F85D4E /* FMDatabasePool.m */; settings = {ASSET_TAGS = (); }; };
 		3FF002801CDC387D00F85D4E /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF002791CDC387D00F85D4E /* FMDatabaseQueue.m */; settings = {ASSET_TAGS = (); }; };
 		3FF002811CDC387D00F85D4E /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF0027C1CDC387D00F85D4E /* FMResultSet.m */; settings = {ASSET_TAGS = (); }; };
+
 		3FF002821CDC38A000F85D4E /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		3FF581F81CDCE2F300BF1D46 /* ClauseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF581F71CDCE2F300BF1D46 /* ClauseView.m */; settings = {ASSET_TAGS = (); }; };
 		3FF581FC1CDCE71200BF1D46 /* Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF581FB1CDCE71200BF1D46 /* Tool.m */; settings = {ASSET_TAGS = (); }; };
+
+
+		3FF002821CDC38A000F85D4E /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB0DCBD1CDB95A2000D9C61 /* libsqlite3.0.tbd */; };
+		3FF0028C1CDC961D00F85D4E /* 勾勾.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FF0028B1CDC961D00F85D4E /* 勾勾.png */; settings = {ASSET_TAGS = (); }; };
+		3FF0028E1CDC9C0C00F85D4E /* 加号红.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FF0028D1CDC9C0C00F85D4E /* 加号红.png */; settings = {ASSET_TAGS = (); }; };
+
+
+		3FF002821CDC38A000F85D4E /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+
+
+
 		3FF9BD121CD9AA6300D11A51 /* CombinationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9BD0B1CD9AA6300D11A51 /* CombinationView.m */; settings = {ASSET_TAGS = (); }; };
 		3FF9BD131CD9AA6300D11A51 /* EndImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9BD0D1CD9AA6300D11A51 /* EndImageView.m */; settings = {ASSET_TAGS = (); }; };
 		3FF9BD141CD9AA6300D11A51 /* MidImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9BD0F1CD9AA6300D11A51 /* MidImageView.m */; settings = {ASSET_TAGS = (); }; };
@@ -325,10 +337,15 @@
 		3FF0027A1CDC387D00F85D4E /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
 		3FF0027B1CDC387D00F85D4E /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		3FF0027C1CDC387D00F85D4E /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+
 		3FF581F61CDCE2F300BF1D46 /* ClauseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClauseView.h; sourceTree = "<group>"; };
 		3FF581F71CDCE2F300BF1D46 /* ClauseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClauseView.m; sourceTree = "<group>"; };
 		3FF581FA1CDCE71200BF1D46 /* Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tool.h; sourceTree = "<group>"; };
 		3FF581FB1CDCE71200BF1D46 /* Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tool.m; sourceTree = "<group>"; };
+
+		3FF0028B1CDC961D00F85D4E /* 勾勾.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "勾勾.png"; sourceTree = "<group>"; };
+		3FF0028D1CDC9C0C00F85D4E /* 加号红.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "加号红.png"; sourceTree = "<group>"; };
+
 		3FF9BD0A1CD9AA6300D11A51 /* CombinationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CombinationView.h; sourceTree = "<group>"; };
 		3FF9BD0B1CD9AA6300D11A51 /* CombinationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CombinationView.m; sourceTree = "<group>"; };
 		3FF9BD0C1CD9AA6300D11A51 /* EndImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndImageView.h; sourceTree = "<group>"; };
@@ -428,6 +445,8 @@
 				3F59E2381CD8E4CA00749116 /* 后退.png */,
 				3F59E2391CD8E4CA00749116 /* 前进.png */,
 				3F1782BA1CDA12A9001FD16D /* 等待占位图.png */,
+				3FF0028B1CDC961D00F85D4E /* 勾勾.png */,
+				3FF0028D1CDC9C0C00F85D4E /* 加号红.png */,
 			);
 			name = "食材组合";
 			sourceTree = "<group>";
@@ -1045,7 +1064,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+
+				3FF0028C1CDC961D00F85D4E /* 勾勾.png in Resources */,
+
 				3F57104D1CDC7634005008DB /* 未收藏.png in Resources */,
+
 				3FF9BD2B1CD9DDE800D11A51 /* 最新.png in Resources */,
 				3FDDB20C1CD8C53F009FA128 /* 食材.png in Resources */,
 				3F59E23B1CD8E4CA00749116 /* 前进.png in Resources */,
@@ -1069,6 +1092,7 @@
 				3FA8CE301CDB049400EC7599 /* 播放.png in Resources */,
 				3FB88C151CDB4ADD0085FE05 /* 返回.png in Resources */,
 				3FA8CE301CDB049400EC7599 /* 播放.png in Resources */,
+				3FF0028E1CDC9C0C00F85D4E /* 加号红.png in Resources */,
 				3FAEB0A01CDB1EB300F36ED1 /* MJRefresh.bundle in Resources */,
 				3FDDB20A1CD8C53F009FA128 /* 食谱.png in Resources */,
 			);
