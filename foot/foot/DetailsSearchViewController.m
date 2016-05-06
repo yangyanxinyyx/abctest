@@ -105,16 +105,21 @@
             [self presentViewController:alertC animated:YES completion:^{
                 
             }];
-        }else{
-        [self.tabDetails reloadData];
         }
+        else{
+            [self performSelectorOnMainThread:@selector(doMainThread) withObject:nil waitUntilDone:NO];
+            
+                    }
     } error:^(NSError *error) {
         
     }];
     
     
 }
+-(void)doMainThread{
+    [self.tabDetails reloadData];
 
+}
 #pragma -mark  tabBar的隐藏和显示
 -(void)viewWillAppear:(BOOL)animated
 {

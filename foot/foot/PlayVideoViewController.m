@@ -22,6 +22,7 @@
     
     self.view.backgroundColor = [UIColor grayColor];
     NSString *str = [self.videoUrl substringToIndex:8];
+    //判断数据给的网址是不是需要再次请求的
     if ([str containsString:@"recipes"]) {
          [self getDataWith:self.videoiID];
     }else{
