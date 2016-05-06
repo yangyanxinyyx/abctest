@@ -11,5 +11,6 @@
 @interface VideoTableViewCell : UITableViewCell
 @property (nonatomic,strong)UIImageView *ImageView;
 @property (nonatomic,strong)UILabel *labelName;
+@property (nonatomic,strong)UILabel *labelBrowse_Collerc;
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier ;
 @end

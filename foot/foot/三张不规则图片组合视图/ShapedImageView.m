@@ -36,7 +36,7 @@
     CGPathMoveToPoint(path, NULL, 0, 0);//点到点
     CGPathAddLineToPoint(path, NULL, width,0);
     CGPathAddLineToPoint(path, NULL, width,height);
-    CGPathAddLineToPoint(path, NULL, 0,height -15);
+    CGPathAddLineToPoint(path, NULL, 0,height -20);
     
     _maskLayer = [CAShapeLayer layer];
     _maskLayer.path = path;
