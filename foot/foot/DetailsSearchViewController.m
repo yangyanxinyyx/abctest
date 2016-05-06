@@ -12,6 +12,8 @@
 #import "DetailsModel.h"
 #import "SelectionTableViewCell.h"
 #import "UIImageView+WebCache.h"
+#import "DataBaseUtil.h"
+#import "HistoryModel.h"
 @interface DetailsSearchViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong)UITextField *textF;
 @property (nonatomic,strong)UITableView *tabDetails;
@@ -44,6 +46,8 @@
     self.tabDetails.dataSource = self;
     [self.view addSubview:self.tabDetails];
     [self getDataWith:self.searchContent];
+
+   
 }
 #pragma mark-点击返回和搜素按钮的方法
 -(void)comeBackValue{
@@ -56,6 +60,13 @@
    
     [self getDataWith:self.textF.text];
     [self.textF endEditing:YES];
+    HistoryModel *modele = [[HistoryModel alloc]init];
+    modele.content = self.textF.text;
+    //插入到数据库里
+    if (![[DataBaseUtil shareDataBase]selectModelWithContent:self.textF.text]) {
+    [[DataBaseUtil shareDataBase]insertModel:modele];
+    }
+    
 }
 #pragma mark UITableView的代理方法
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

@@ -22,12 +22,12 @@
 #import "VideoViewController.h"
 #import "MJRefresh.h"
 #import "SearchViewController.h"
+#import "ImageManager.h"
 @interface HomeViewController ()<UIScrollViewDelegate,FirstTableViewCellDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 {
     NSInteger flag;
 }
 @property (nonatomic,strong)CombinationView *combinationV;
-@property (nonatomic,strong)UIPageControl *pageControl;
 @property (nonatomic,strong)UITableView *tab;
 @property (nonatomic,strong)NSMutableArray *selectDataArray;
 @end
@@ -46,7 +46,7 @@
     buttonSearch.frame = CGRectMake(0, 30, 250, 30);
     buttonSearch.backgroundColor = [UIColor lightGrayColor];
     [buttonSearch setTitle:@"🔍 搜素菜谱" forState:UIControlStateNormal];
-    [buttonSearch setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [buttonSearch setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     buttonSearch.titleLabel.textAlignment = NSTextAlignmentLeft;
     self.navigationItem.titleView = buttonSearch;
     [buttonSearch addTarget:self action:@selector(touchButtonSearch) forControlEvents:UIControlEventTouchDown];
@@ -94,6 +94,7 @@
         cell = [[SelectionTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
     }
         [cell.selectImageView sd_setImageWithURL:[NSURL URLWithString:model.img]];
+
         cell.labelName.text = model.n;
         cell.labelBrowse.text = [NSString stringWithFormat:@"%@浏览",model.vc];
         cell.labelCollect.text = [NSString stringWithFormat:@"·  %@收藏",model.fc];
@@ -102,6 +103,7 @@
     }
 
 }
+#pragma 高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         return  KScreenWidth/375*500+80;
