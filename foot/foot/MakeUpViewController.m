@@ -47,6 +47,21 @@
 @property(nonatomic,strong)UILabel *labelLine;
 //选择的菜的数组
 @property(nonatomic,strong)NSMutableArray *arraySelected;
+//选择菜的按钮的数组
+@property(nonatomic,strong)NSMutableArray *arrayButtomSelected;
+//存放cell的数组
+@property(nonatomic,strong)NSMutableArray *arrayCell;
+//两个加号
+@property(nonatomic,strong)UIImageView *imageVPlus1;
+@property(nonatomic,strong)UIImageView *imageVPlus2;
+
+//显示组合结果
+@property(nonatomic,strong)UIView *viewResult;
+@property(nonatomic,strong)UILabel *lableResultCount;
+
+@property(nonatomic,strong)NSString *totalResult;
+
+@property(nonatomic,strong)NSTimer *timer;
 
 @end
 
@@ -70,6 +85,8 @@
     self.dataArrayTab = [NSMutableArray array];
     self.dataArrayColl = [NSMutableArray array];
     self.arraySelected = [NSMutableArray array];
+    self.arrayButtomSelected = [NSMutableArray array];
+    self.arrayCell = [NSMutableArray array];
     
     [self requestData];
     [self setCollectionView];
@@ -95,6 +112,7 @@
     self.mixFoodCollectionView.backgroundColor = [UIColor whiteColor];
     self.mixFoodCollectionView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.mixFoodCollectionView];
+    self.mixFoodCollectionView.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1];
     
     self.mixFoodCollectionView.dataSource = self;
     self.mixFoodCollectionView.delegate = self;
@@ -119,12 +137,18 @@
  
     [cell.imageV sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"等待占位图"]];
 
-    cell.imageSelect.backgroundColor = [UIColor clearColor];
+    cell.viewBack.backgroundColor = [UIColor clearColor];
+    cell.imageSelect.image = nil;
     
     //点击变成变成已点击的状态 --> 159行
     for (MixFoodModel *food in self.arraySelected) {
         if (food.text == foodModel.text) {
-            cell.imageSelect.backgroundColor = [UIColor yellowColor];
+            cell.viewBack.backgroundColor = [UIColor blackColor];
+            UIImage *image = [UIImage imageNamed:@"勾勾"];
+            image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            cell.imageSelect.image = image;
+            cell.viewBack.alpha = 0.7;
+            
         }
     }
     
@@ -160,121 +184,252 @@
             [self.arraySelected addObject:foodModel];
             //点击变成变成已点击的状态 --> 122行
             MixFoodCollectionViewCell *cell = (MixFoodCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
-            cell.imageSelect.backgroundColor = [UIColor yellowColor];
+            cell.viewBack.backgroundColor = [UIColor blackColor];
+            UIImage *image = [UIImage imageNamed:@"勾勾"];
+            image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            cell.imageSelect.image = image;
+            cell.viewBack.alpha = 0.7;
+            [self.arrayCell addObject:cell];
             //选择的菜的按钮
-            UIButton *bu = [UIButton buttonWithType:UIButtonTypeCustom];
-            [self.bottomView addSubview:bu];
-            bu.tag = self.arraySelected.count;
-            bu.backgroundColor = [UIColor orangeColor];
-            bu.layer.cornerRadius = (SCREEN_W/5*4-110)/3/2;
-            bu.layer.masksToBounds = YES;
-            bu.frame = CGRectMake(20+(30+(SCREEN_W/5*4-110)/3) * (self.arraySelected.count-1), (self.bottomView.frame.size.height-(SCREEN_W/5*4-110)/3)/2, (SCREEN_W/5*4-110)/3, (SCREEN_W/5*4-110)/3);
-            MixFoodModel *model = [self.arraySelected objectAtIndex:bu.tag-1];
-            [bu setTitle:model.text forState:UIControlStateNormal];
-            [bu setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [bu sd_setBackgroundImageWithURL:[NSURL URLWithString:model.image] forState:UIControlStateNormal];
-            [bu addTarget:self action:@selector(cancelChoose:) forControlEvents:UIControlEventTouchUpInside];
+            [self creatFoodButtom];
             
         }else
         {
-            for (MixFoodModel *model in self.arraySelected) {
+            NSArray *array = [NSArray arrayWithArray:self.arraySelected];
+            for (MixFoodModel *model in array) {
+                
                 if (foodModel.text == model.text) {
-            
                     self.isHave = YES;
+                   
+                    //删除菜
                     MixFoodCollectionViewCell *cell = (MixFoodCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
                     cell.imageSelect.backgroundColor = [UIColor clearColor];
                     NSArray *array = self.bottomView.subviews;
                     for (UIView *view in array) {
                         if ([view isKindOfClass:[UIButton class]]) {
-                            [self cancelChoose:(UIButton *)view];
-                            break;
+                            UIButton *bu = (UIButton*)view;
+                            if (bu.titleLabel.text == foodModel.text) {
+                                [self cancelChoose:bu];
+                            }
+
                         }
                     }
+                    NSLog(@"%ld",self.arraySelected.count);
+                    break;
+                    
                 }
                 else
                 {
-                   
                     self.isHave = NO;
+                    
                 }
-                break;
-       
+
             }
             
             if (self.isHave == NO) {
                 [self.arraySelected addObject:foodModel];
                 //点击变成变成已点击的状态 --> 122行
                 MixFoodCollectionViewCell *cell = (MixFoodCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
-                cell.imageSelect.backgroundColor = [UIColor yellowColor];
+                cell.viewBack.backgroundColor = [UIColor blackColor];
+                UIImage *image = [UIImage imageNamed:@"勾勾"];
+                image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+                cell.imageSelect.image = image;
+                cell.viewBack.alpha = 0.7;
+                [self.arrayCell addObject:cell];
                 //选择的菜的按钮
-                UIButton *bu = [UIButton buttonWithType:UIButtonTypeCustom];
-                [self.bottomView addSubview:bu];
-                bu.tag = self.arraySelected.count;
-                bu.backgroundColor = [UIColor orangeColor];
-                bu.layer.cornerRadius = (SCREEN_W/5*4-110)/3/2;
-                bu.layer.masksToBounds = YES;
-                bu.frame = CGRectMake(20+(30+(SCREEN_W/5*4-110)/3) * (self.arraySelected.count-1), (self.bottomView.frame.size.height-(SCREEN_W/5*4-110)/3)/2, (SCREEN_W/5*4-110)/3, (SCREEN_W/5*4-110)/3);
-                MixFoodModel *model = [self.arraySelected objectAtIndex:bu.tag-1];
-                [bu setTitle:model.text forState:UIControlStateNormal];
-                [bu setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                [bu sd_setBackgroundImageWithURL:[NSURL URLWithString:model.image] forState:UIControlStateNormal];
-                [bu addTarget:self action:@selector(cancelChoose:) forControlEvents:UIControlEventTouchUpInside];
+                [self creatFoodButtom];
+                NSLog(@"添加");
             }
-            
+          
         }
     }
-    else
+    else if (self.arraySelected.count == 3)
     {
-        //弹出提示动画
-        UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_W-200)/2, self.bottomView.frame.origin.y-38, 200, 38)];
+        MixFoodModel *foodModel = [self.dataArrayColl objectAtIndex:indexPath.row];
+        NSArray *array = [NSArray arrayWithArray:self.arraySelected];
+        for (MixFoodModel *model in array) {
+            if (foodModel.text == model.text) {
+                self.isHave = YES;
+                NSLog(@"11111");
+                //删除菜
+                MixFoodCollectionViewCell *cell = (MixFoodCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+                cell.viewBack.backgroundColor = [UIColor clearColor];
+                cell.imageSelect.image = nil;
+                
+                NSArray *array = self.bottomView.subviews;
+                for (UIView *view in array) {
+                    if ([view isKindOfClass:[UIButton class]]) {
+                        UIButton *bu = (UIButton*)view;
+                        if (bu.titleLabel.text == foodModel.text) {
+                            [self cancelChoose:bu];
+                        }
+                        
+                    }
+                }
+                break;
+            }
+            else
+            {
+                self.isHave = NO;
+                
+            }
+            
+            
+        }
+        if (self.isHave == NO) {
+            NSLog(@"22222");
+            //弹出提示动画
+            UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_W-200)/2, self.bottomView.frame.origin.y-38, 200, 38)];
             [self.view addSubview:lab];
-        lab.textAlignment = NSTextAlignmentCenter;
-        lab.alpha = 0;
-        [UIView animateWithDuration:0.5 animations:^{
-            lab.backgroundColor = [UIColor blackColor];
-            lab.text = @"最多只能选择3种食材哦~";
-            lab.textColor = [UIColor whiteColor];
-            lab.alpha = 0.8;
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.5 delay:1 options:UIViewAnimationOptionTransitionNone animations:^{
-                lab.alpha = 0;
+            lab.textAlignment = NSTextAlignmentCenter;
+            lab.alpha = 0;
+            [UIView animateWithDuration:0.5 animations:^{
+                lab.backgroundColor = [UIColor blackColor];
+                lab.text = @"最多只能选择3种食材哦~";
+                lab.textColor = [UIColor whiteColor];
+                lab.alpha = 0.8;
             } completion:^(BOOL finished) {
-                [lab removeFromSuperview];
+                [UIView animateWithDuration:0.5 delay:1 options:UIViewAnimationOptionTransitionNone animations:^{
+                    lab.alpha = 0;
+                } completion:^(BOOL finished) {
+                    [lab removeFromSuperview];
+                }];
             }];
-        }];
+        }
     }
    
+#pragma mark- 下方弹出加号以及进行网络请求
+    /*
+     下方弹出加号以及进行网络请求
+     */
+    if (!self.imageVPlus1) {
+        self.imageVPlus1 = [[UIImageView alloc] initWithFrame:CGRectMake((30+(SCREEN_W/5*4-110)/3)-10, (self.bottomView.frame.size.height-20)/2, 20, 20)];
+        [self.bottomView addSubview:self.imageVPlus1];
+        self.imageVPlus1.image = [UIImage imageNamed:@"加号红"];
+        self.imageVPlus1.alpha = 0;
+    }
+    if (!self.imageVPlus2) {
+        self.imageVPlus2 = [[UIImageView alloc] initWithFrame:CGRectMake((30+(SCREEN_W/5*4-110)/3)*2-10, (self.bottomView.frame.size.height-20)/2, 20, 20)];
+        [self.bottomView addSubview:self.imageVPlus2];
+        self.imageVPlus2.image = [UIImage imageNamed:@"加号红"];
+        self.imageVPlus2.alpha = 0;
+    }
     
+    if (!self.viewResult) {
+        self.viewResult = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_W/5*4+5, 5, SCREEN_W/5-10, SCREEN_W/5-10)];
+        self.viewResult.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1];
+        self.viewResult.layer.cornerRadius = SCREEN_W/5/2;
+        self.viewResult.layer.masksToBounds = YES;
+        [self.bottomView addSubview:self.viewResult];
+        self.viewResult.alpha = 0;
+        
+        self.lableResultCount = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_W/5/5, SCREEN_W/5-10, 20)];
+        self.lableResultCount.textAlignment = NSTextAlignmentCenter;
+        self.lableResultCount.textColor = [UIColor redColor];
+        [self.viewResult addSubview:self.lableResultCount];
+        
+        UILabel *labtext = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_W/5/5+20, SCREEN_W/5-10, 20)];
+        labtext.text = @"可做菜式";
+        labtext.textAlignment = NSTextAlignmentCenter;
+        labtext.font = [UIFont systemFontOfSize:13];
+        [self.viewResult addSubview:labtext];
+    }
+    
+    
+    if (self.arraySelected.count == 1 ) {
+        self.imageVPlus1.alpha = 1;
+    }else if (self.arraySelected.count == 2 )
+    {
+        self.imageVPlus2.alpha = 1;
+        self.viewResult.alpha = 1;
+        
+        [self getMixResult];
+    }else if (self.arraySelected.count == 3)
+    {
+        [self getMixResult];
+    }
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(pause) userInfo:nil repeats:NO];
+    self.mixFoodCollectionView.userInteractionEnabled = NO;
     
 }
 
-#pragma mark- 点击取消选择的菜
+-(void)pause
+{
+    self.mixFoodCollectionView.userInteractionEnabled = YES;
+    [_timer invalidate];
+    _timer = nil;
+}
+
+#pragma mark- 创建菜的按钮
+-(void)creatFoodButtom
+{
+    UIButton *bu = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.bottomView addSubview:bu];
+    bu.tag = self.arraySelected.count;
+    bu.backgroundColor = [UIColor orangeColor];
+    bu.layer.cornerRadius = (SCREEN_W/5*4-110)/3/2;
+    bu.layer.masksToBounds = YES;
+    bu.frame = CGRectMake(20+(30+(SCREEN_W/5*4-110)/3) * (self.arraySelected.count-1), (self.bottomView.frame.size.height-(SCREEN_W/5*4-110)/3)/2, (SCREEN_W/5*4-110)/3, (SCREEN_W/5*4-110)/3);
+    MixFoodModel *model = [self.arraySelected objectAtIndex:bu.tag-1];
+    [bu setTitle:model.text forState:UIControlStateNormal];
+    [bu setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [bu sd_setBackgroundImageWithURL:[NSURL URLWithString:model.image] forState:UIControlStateNormal];
+    [bu addTarget:self action:@selector(cancelChoose:) forControlEvents:UIControlEventTouchUpInside];
+    [self.arrayButtomSelected addObject:bu];
+    
+}
+
+#pragma mark- 点击删除选择的菜
 -(void)cancelChoose:(UIButton*)bu
 {
     [bu removeFromSuperview];
     
-    if (self.arraySelected.count == 1) {
-        [self.arraySelected removeLastObject];
-    }else if (self.arraySelected.count == 2)
-    {
-        if (bu.tag == 1) {
-            [self.arraySelected removeObjectAtIndex:0];
-        }else
-        {
-           [self.arraySelected removeLastObject];
+    NSArray *array = [NSArray arrayWithArray:self.arraySelected];
+    
+    for (MixFoodModel *model in array) {
+        if (bu.titleLabel.text == model.text) {
+            [self.arraySelected removeObject:model];
         }
-    }else
-    {
-        [self.arraySelected removeObjectAtIndex:bu.tag-1];
     }
     
-    
+    int i=0;
+    NSArray *array1 = self.bottomView.subviews;
+    for (UIView *view in array1) {
+        if ([view isKindOfClass:[UIButton class]]) {
+            UIButton *bu = (UIButton*)view;
+            bu.frame = CGRectMake(20+(30+(SCREEN_W/5*4-110)/3) * i, (self.bottomView.frame.size.height-(SCREEN_W/5*4-110)/3)/2, (SCREEN_W/5*4-110)/3, (SCREEN_W/5*4-110)/3);
+            i++;
+            
+        }
+    }
+  
+    for (MixFoodCollectionViewCell *cell in self.arrayCell) {
+        if (bu.titleLabel.text == cell.labelName.text) {
+            cell.viewBack.backgroundColor = [UIColor clearColor];
+            cell.imageSelect.image = nil;
+        }
+    }
+ 
     if (self.arraySelected.count == 0) {
         self.labelLine.hidden = YES;;
         self.labelPrompt.hidden = NO;
+        self.imageVPlus1.alpha = 0;
+
         
     }
-        
-    
+    else if (self.arraySelected.count == 1)
+    {
+
+        self.imageVPlus2.alpha = 0;
+        self.viewResult.alpha = 0;
+        self.lableResultCount.text = nil;
+    }
+    else if (self.arraySelected.count == 2)
+    {
+        [self getMixResult];
+    }
+  
     
 }
 
@@ -416,7 +571,7 @@
 }
 
 
-#pragma mark- 数据请求
+#pragma mark- 页面数据请求
 -(void)requestData
 {
    [NetworkRequestManager requestWithType:POST urlString:@"http://api.izhangchu.com/" parDic:[NSDictionary dictionaryWithObjectsAndKeys:@"MaterialSubtype",@"methodName", nil] header:nil finish:^(NSData *data) {
@@ -451,6 +606,43 @@
    } error:^(NSError *error) {
        
    }];
+}
+
+#pragma mark- 请求组合结果数据
+-(void)requestMixResult:(NSDictionary*)dic
+{
+    [NetworkRequestManager requestWithType:POST urlString:@"http://api.izhangchu.com/" parDic:dic header:nil finish:^(NSData *data) {
+        
+        NSError *error = nil;
+        
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+        
+        NSDictionary *dicData = [dic valueForKey:@"data"];
+        NSString *total = [dicData valueForKey:@"total"];
+        
+        self.totalResult = total;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.lableResultCount.text = self.totalResult;
+        });
+        
+    } error:^(NSError *error) {
+        
+    }];
+    
+}
+
+-(void)getMixResult
+{
+    NSMutableArray *arrayTemp = [NSMutableArray array];
+    for (MixFoodModel *model in self.arraySelected) {
+        [arrayTemp addObject:model.id];
+    }
+    NSString *strRequest = [arrayTemp componentsJoinedByString:@"%2C"];
+    strRequest = [strRequest stringByAppendingString:@"%2C"];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"SearchMix",@"methodName",strRequest,@"material_ids",@"4.40",@"version", nil];
+    
+    [self requestMixResult:dic];
 }
 
 #pragma mark- 页面出现的方法

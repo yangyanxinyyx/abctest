@@ -19,8 +19,13 @@
         self.labelName = [[UILabel alloc] init];
         [self.contentView addSubview:self.labelName];
         
+        self.viewBack = [[UIView alloc] init];
+        [self.contentView addSubview:self.viewBack];
+        
         self.imageSelect = [[UIImageView alloc] init];
         [self.contentView addSubview:self.imageSelect];
+        
+        
     }
     return self;
 }
@@ -34,10 +39,13 @@
     self.imageV.layer.cornerRadius = self.contentView.frame.size.width/2;
     self.imageV.layer.masksToBounds = YES;
 
-    self.imageSelect.frame = self.contentView.frame;
-    self.imageSelect.layer.cornerRadius = self.contentView.frame.size.width/2;
-    self.imageSelect.layer.masksToBounds = YES;
+ 
+    self.viewBack.frame = self.contentView.frame;
+    self.viewBack.layer.cornerRadius = self.contentView.frame.size.width/2;
+    self.viewBack.layer.masksToBounds = YES;
     
+    self.imageSelect.frame = CGRectMake(0, 0, self.contentView.frame.size.width*0.3, self.contentView.frame.size.height*0.3);
+    self.imageSelect.center = self.contentView.center;
 
  
     self.labelName.textAlignment = NSTextAlignmentCenter;
