@@ -10,17 +10,19 @@
 #import "FirstTableViewCell.h"
 #import "CombinationView.h"
 #import "NetworkRequestManager.h"
-#import "HomeFootModel.h"
+
 #import "UIImageView+WebCache.h"
 
 @interface FirstTableViewCell ()
 @property (nonatomic,strong)UIScrollView *scrollViewImageViewS;
+
 @end
 @implementation FirstTableViewCell
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         [self setLayout];
+        self.dicData = [NSMutableDictionary dictionary];
         //页面创建的时候对该时间进行判断是什么时候让它给我们推荐当前合适的选餐
         //获取系统时间
         NSDate *dateNow = [NSDate date];
@@ -58,7 +60,7 @@
         UIScrollView *scroll = [[UIScrollView alloc]initWithFrame:CGRectMake(i*KScreenWidth, 0, KScreenWidth, height)];
         CombinationView *combintionView = [[CombinationView alloc]initWithFrame:CGRectMake(10, 0, KScreenWidth-20,height)];
         combintionView.labelTitle.text = [titleArray objectAtIndex:i];
-        [self getDataWith:idFoodArray[i] Combination:combintionView];
+        [self getDataWith:idFoodArray[i] Combination:combintionView withID:i];
         [scroll addSubview:combintionView];
         scroll.delegate = self;
         [_scrollViewImageViewS addSubview:scroll];
@@ -91,50 +93,74 @@
     
 }
 #pragma mark- 获取数据
--(void)getDataWith:(NSString *)idFood Combination:(CombinationView *)combinationView{
-    NSMutableArray *dataArray = [NSMutableArray array];
+-(void)getDataWith:(NSString *)idFood Combination:(CombinationView *)combinationView withID:(NSInteger)pageID{
+    _dataArray = [NSMutableArray array];
     [NetworkRequestManager requestWithType:POST urlString:@"http://api.ecook.cn/public/getContentsBySubClassid.shtml" parDic:[NSDictionary dictionaryWithObjectsAndKeys:idFood,@"id",@"0",@"page", nil] header:[NSDictionary dictionaryWithObjectsAndKeys:@"application/x-www-form-urlencoded",@"Content-Type", nil] finish:^(NSData *data) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+        
         NSError *error = nil;
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
         NSArray *listArray = [dic objectForKey:@"list"];
         for (NSDictionary *dic1 in listArray) {
             HomeFootModel *hfModel = [[HomeFootModel alloc]init];
             [hfModel setValuesForKeysWithDictionary:dic1];
-            [dataArray addObject:hfModel];
+            [_dataArray addObject:hfModel];
         }
 #pragma mark 对三视图进行赋值    
         
-        NSMutableArray *arr = [NSMutableArray array];
+       _arr = [NSMutableArray array];
         for (int i = 0; i<1000; i++) {
             int a = arc4random()%19;
             NSString *b = [NSString stringWithFormat:@"%d",a];
-            if (![arr containsObject:b]) {
-                [arr addObject:b];
+            if (![_arr containsObject:b]) {
+                [_arr addObject:b];
                 }
-            if (arr.count>3) {
+            if (_arr.count>3) {
                 break;
             }
         }
-        HomeFootModel *hfm = [dataArray objectAtIndex:[arr[0] integerValue]];
+#pragma mark 第一张图片
+        HomeFootModel *hfm = [_dataArray objectAtIndex:[_arr[0] integerValue]];
         NSString *shapedImageURL = [NSString stringWithFormat:@"http://pic.ecook.cn/web/%@.jpg",hfm.imageid];
         [combinationView.shapedImageV sd_setImageWithURL:[NSURL URLWithString:shapedImageURL]];
         combinationView.shapedImageV.labelName.text = hfm.name;
         combinationView.shapedImageV.labelIntroduce.text = hfm.descriptionFood;
-   
+        UITapGestureRecognizer *tapG1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toucheShapedImage)];
+        [combinationView.shapedImageV addGestureRecognizer:tapG1];
        
-        
-        HomeFootModel *hfmMid = [dataArray objectAtIndex:[arr[1] integerValue]];
+#pragma mark 第2张图片
+        HomeFootModel *hfmMid = [_dataArray objectAtIndex:[_arr[1] integerValue]];
         NSString *midImageURL = [NSString stringWithFormat:@"http://pic.ecook.cn/web/%@.jpg",hfmMid.imageid];
         [combinationView.midImageV sd_setImageWithURL:[NSURL URLWithString:midImageURL]];
         combinationView.midImageV.labelName.text = hfmMid.name;
         combinationView.midImageV.labelIntroduce.text = hfmMid.descriptionFood;
-        
-        HomeFootModel *hfmEnd = [dataArray objectAtIndex:[arr[2] integerValue]];
+        UITapGestureRecognizer *tapG2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toucheMidImage)];
+
+        [combinationView.midImageV addGestureRecognizer:tapG2];
+ #pragma mark 第3张图片
+        HomeFootModel *hfmEnd = [_dataArray objectAtIndex:[_arr[2] integerValue]];
         NSString *endImageURL = [NSString stringWithFormat:@"http://pic.ecook.cn/web/%@.jpg",hfmEnd.imageid];
         [combinationView.endImageV sd_setImageWithURL:[NSURL URLWithString:endImageURL]];
         combinationView.endImageV.labelName.text = hfmEnd.name;
         combinationView.endImageV.labelIntroduce.text = hfmEnd.descriptionFood;
-        [dataArray removeAllObjects];
+        UITapGestureRecognizer *tapG3 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toucheEndimage)];
+        [combinationView.endImageV addGestureRecognizer:tapG3];
+        
+#pragma mark 存储数据
+        NSMutableArray *arrayImageData = [NSMutableArray array];
+        [arrayImageData addObject:hfm];
+        [arrayImageData addObject:hfmMid];
+        [arrayImageData addObject:hfmEnd];
+        
+        NSString *key = [NSString stringWithFormat:@"%ld",pageID];
+        [self.dicData setValue:arrayImageData forKey:key];
+        
+        if (_dataArray.count != 0) {
+             [_dataArray removeAllObjects];
+        }
+        });
+       
     } error:^(NSError *error) {
         
     }];
@@ -152,10 +178,42 @@
 -(void)toucheVideoButton{
     [self.delegate toucheVideoButtonOnCell];
 }
+
 #pragma mark 点击pageControl的方法
 -(void)TouchePageControl:(UIPageControl *)page{
     NSLog(@"%ld",page.currentPage);
     _scrollViewImageViewS.contentOffset = CGPointMake(page.currentPage*KScreenWidth, 0);
+}
+//点击第一个
+-(void)toucheShapedImage{
+    NSInteger pageID = self.scrollViewImageViewS.contentOffset.x/KScreenWidth;
+   
+    NSString *key = [NSString stringWithFormat:@"%ld",pageID];
+    NSArray *arr = [_dicData objectForKey:key];
+    HomeFootModel *homefm = [arr objectAtIndex:0];
+    [self.delegate toucheComtaionImageViewWith:homefm];
+    
+}
+//点第二个
+-(void)toucheMidImage{
+    
+    NSInteger pageID = self.scrollViewImageViewS.contentOffset.x/KScreenWidth;
+    NSString *key = [NSString stringWithFormat:@"%ld",pageID];
+    NSArray *arr = [_dicData objectForKey:key];
+    HomeFootModel *homefm = [arr objectAtIndex:1];
+    [self.delegate toucheComtaionImageViewWith:homefm];
   
 }
+//点击第三个
+-(void)toucheEndimage{
+    
+    NSInteger pageID = self.scrollViewImageViewS.contentOffset.x/KScreenWidth;
+ 
+    NSString *key = [NSString stringWithFormat:@"%ld",pageID];
+    NSArray *arr = [_dicData objectForKey:key];
+    HomeFootModel *homefm = [arr objectAtIndex:2];
+    [self.delegate toucheComtaionImageViewWith:homefm];
+}
+
+
 @end

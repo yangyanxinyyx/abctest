@@ -11,7 +11,11 @@
 #import "MyViewController.h"
 #import "MyModel.h"
 #import "MyProblemViewController.h"
-@interface MyViewController ()<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+#import "ClauseView.h"
+@interface MyViewController ()<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,ClauseViewDelegate>
+{
+    ClauseView *viewClause;
+}
 @property (nonatomic,strong)UITableView *tabMy;
 @property (nonatomic,strong)NSMutableArray *arrayMySection;
 @property (nonatomic,strong)NSArray *arrayNumber;
@@ -39,6 +43,10 @@
     _imageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapG = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toucheImageViewIcon)];
     [_imageView addGestureRecognizer:tapG];
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSData *data = [user objectForKey:@"image"];
+    UIImage *image =[UIImage imageWithData:data];
+    _imageView.image = image;
     [self.view addSubview:_imageView];
     
     
@@ -126,6 +134,62 @@
     if ([str isEqualToString:@"常见问题"]) {
         MyProblemViewController *myproblemV = [[MyProblemViewController alloc]init];
         [self.navigationController pushViewController:myproblemV animated:YES];
+    }else if ([str isEqualToString:@"联系客服"]){
+        UIAlertController *alertC = [UIAlertController  alertControllerWithTitle:@"如有遇到什么奇葩问题可以联系下面电话" message:@"110-13336525635" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        [alertC addAction:action];
+        [self presentViewController:alertC animated:YES completion:^{
+            
+        }];
+        
+    }else if ([str isEqualToString:@"检查更新"]){
+        UIAlertController *alertC = [UIAlertController  alertControllerWithTitle:@"该软件暂无法更新!!请期待" message:@"非常感谢您" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        [alertC addAction:action];
+        [self presentViewController:alertC animated:YES completion:^{
+            
+        }];
+    }else if ([str isEqualToString:@"清楚缓存"]){
+        UIAlertController *alertC = [UIAlertController  alertControllerWithTitle:@"是否要清楚缓存" message:@"现在缓存位M" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSString *cache = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)lastObject];
+            NSLog(@"%@",cache);
+            NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:cache error:NULL];
+            for (NSString *fileName in contents) {
+                [[NSFileManager defaultManager] removeItemAtPath:[cache stringByAppendingPathComponent:fileName] error:nil];
+                            }
+            
+            /*
+//            NSString *cache = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"XRCarousel"];
+//            NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:cache error:NULL];
+//            for (NSString *fileName in contents) {
+//                [[NSFileManager defaultManager] removeItemAtPath:[cache stringByAppendingPathComponent:fileName] error:nil];
+//            }
+             */
+            
+        }];
+        UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        [alertC addAction:action];
+        [alertC addAction:action1];
+        [self presentViewController:alertC animated:YES completion:^{
+            
+        }];
+    }else if ([str isEqualToString:@"使用条款与隐私政策"]){
+        
+        viewClause = [[ClauseView alloc]initWithFrame:CGRectMake(0, KScreenHeight, KScreenWidth, KScreenHeight)];
+        [self.view addSubview:viewClause];
+        viewClause.backgroundColor =[UIColor orangeColor];
+        viewClause.delegate = self;
+        [UIView animateWithDuration:0.5 animations:^{
+            viewClause.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight);
+        }];
+        
     }
     
     
@@ -155,11 +219,28 @@
     //从字典中取图片
     UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
     _imageView.image = image;
+    NSData *data ;
+    if (UIImagePNGRepresentation(image) == nil) {
+        
+        data = UIImageJPEGRepresentation(image, 1);
+        
+    } else {
+        
+        data = UIImagePNGRepresentation(image);
+    }
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    [user setValue:data forKey:@"image"];
+    
+    
     //消失
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];
     
 }
-
+-(void)toucheComeBackButton{
+    [UIView animateWithDuration:0.5 animations:^{
+        viewClause.frame = CGRectMake(0, KScreenHeight, KScreenWidth, KScreenHeight);
+    }];
+}
 @end

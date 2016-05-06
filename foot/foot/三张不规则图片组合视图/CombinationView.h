@@ -11,10 +11,17 @@
 #import "MidImageView.h"
 #import "EndImageView.h"
 
+@protocol CombinationViewDelegate <NSObject>
+
+-(void)toucheCombinationImge;
+
+@end
+
 @interface CombinationView : UIView
 @property (nonatomic,strong)ShapedImageView *shapedImageV;
 @property (nonatomic,strong)MidImageView *midImageV;
 @property (nonatomic,strong)EndImageView *endImageV;
 @property (nonatomic,strong)UILabel *labelTitle;
+@property (nonatomic)id<CombinationViewDelegate>delegate;
 -(instancetype)initWithFrame:(CGRect)frame;
 @end

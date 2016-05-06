@@ -14,7 +14,7 @@
 #import "SelectionTableViewCell.h"
 #import "UIImageView+WebCache.h"
 #import "MJRefresh.h"
-
+#import "CookDetailsViewController.h"
 
 @interface NewestViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -92,6 +92,13 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 300;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    CookDetailsViewController *cookD = [[CookDetailsViewController alloc]init];
+    [self.navigationController pushViewController:cookD animated:YES];
+    
+}
+
 #pragma mark 下拉刷新;
 -(void)footRefreshing{
     flag ++;

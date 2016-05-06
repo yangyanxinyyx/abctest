@@ -14,8 +14,8 @@
     self.frame = frame;
     if (self = [super initWithFrame:frame]) {
         self.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tapGest = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toucheImageView)];
-        [self addGestureRecognizer:tapGest];
+
+
         [self setup];
         self.labelName = [[UILabel alloc]init];
         [self addSubview:self.labelName];
@@ -72,7 +72,5 @@
     _contentLayer.contents = (id)image.CGImage;
     
 }
--(void)toucheImageView{
-    NSLog(@"q");
-}
+
 @end
