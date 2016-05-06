@@ -36,9 +36,29 @@
 		3F1782ED1CDA1D86001FD16D /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1782DD1CDA1D86001FD16D /* UIView+WebCacheOperation.m */; settings = {ASSET_TAGS = (); }; };
 		3F49E3551CDA3FB900E9028A /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F49E3541CDA3FB900E9028A /* VideoViewController.m */; settings = {ASSET_TAGS = (); }; };
 		3F49E3581CDA3FCC00E9028A /* NewestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F49E3571CDA3FCC00E9028A /* NewestViewController.m */; settings = {ASSET_TAGS = (); }; };
+
+		3F57D7501CDC413700CB366B /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F57D74F1CDC413700CB366B /* libsqlite3.0.tbd */; };
+		3F57D7531CDC417900CB366B /* DataBaseUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F57D7521CDC417900CB366B /* DataBaseUtil.m */; settings = {ASSET_TAGS = (); }; };
+		3F57D7561CDC94DF00CB366B /* MyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F57D7551CDC94DF00CB366B /* MyModel.m */; settings = {ASSET_TAGS = (); }; };
 		3F59E2361CD8DCA400749116 /* MixFoodCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F59E2351CD8DCA400749116 /* MixFoodCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		3F59E23A1CD8E4CA00749116 /* 后退.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F59E2381CD8E4CA00749116 /* 后退.png */; settings = {ASSET_TAGS = (); }; };
 		3F59E23B1CD8E4CA00749116 /* 前进.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F59E2391CD8E4CA00749116 /* 前进.png */; settings = {ASSET_TAGS = (); }; };
+		3FA44E481CDCA0C00055CDB3 /* ImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA44E471CDCA0C00055CDB3 /* ImageManager.m */; settings = {ASSET_TAGS = (); }; };
+		3FA44E4C1CDCC91A0055CDB3 /* MyProblemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA44E4B1CDCC91A0055CDB3 /* MyProblemViewController.m */; settings = {ASSET_TAGS = (); }; };
+
+		3F5710431CDC3B79005008DB /* MateriaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5710421CDC3B79005008DB /* MateriaModel.m */; settings = {ASSET_TAGS = (); }; };
+		3F5710491CDC3B9F005008DB /* StepModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5710481CDC3B9F005008DB /* StepModel.m */; settings = {ASSET_TAGS = (); }; };
+		3F57104C1CDC7634005008DB /* 收藏.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F57104A1CDC7634005008DB /* 收藏.png */; settings = {ASSET_TAGS = (); }; };
+		3F57104D1CDC7634005008DB /* 未收藏.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F57104B1CDC7634005008DB /* 未收藏.png */; settings = {ASSET_TAGS = (); }; };
+		3F5710501CDC7831005008DB /* CollectAndTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F57104F1CDC7831005008DB /* CollectAndTimeView.m */; settings = {ASSET_TAGS = (); }; };
+		3F5710531CDC8918005008DB /* MateriaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5710521CDC8918005008DB /* MateriaView.m */; settings = {ASSET_TAGS = (); }; };
+		3F5710561CDC932A005008DB /* StepView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5710551CDC932A005008DB /* StepView.m */; settings = {ASSET_TAGS = (); }; };
+		3F5710591CDCB46A005008DB /* TipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5710581CDCB46A005008DB /* TipView.m */; settings = {ASSET_TAGS = (); }; };
+		3F59E2361CD8DCA400749116 /* MixFoodCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F59E2351CD8DCA400749116 /* MixFoodCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		3F59E23A1CD8E4CA00749116 /* 后退.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F59E2381CD8E4CA00749116 /* 后退.png */; settings = {ASSET_TAGS = (); }; };
+		3F59E23B1CD8E4CA00749116 /* 前进.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F59E2391CD8E4CA00749116 /* 前进.png */; settings = {ASSET_TAGS = (); }; };
+		3F6520CE1CDCC906007CD97B /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6520CD1CDCC906007CD97B /* libsqlite3.0.tbd */; };
+
 		3FA8CE291CDAF03300EC7599 /* VideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA8CE281CDAF03300EC7599 /* VideoModel.m */; settings = {ASSET_TAGS = (); }; };
 		3FA8CE2C1CDAFCA800EC7599 /* VideoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA8CE2B1CDAFCA800EC7599 /* VideoTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		3FA8CE301CDB049400EC7599 /* 播放.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FA8CE2F1CDB049400EC7599 /* 播放.png */; settings = {ASSET_TAGS = (); }; };
@@ -60,7 +80,6 @@
 		3FAEB0AC1CDB1EB300F36ED1 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FAEB09F1CDB1EB300F36ED1 /* UIView+MJExtension.m */; settings = {ASSET_TAGS = (); }; };
 		3FB0DCA41CDB842D000D9C61 /* DetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB0DCA31CDB842D000D9C61 /* DetailsModel.m */; settings = {ASSET_TAGS = (); }; };
 		3FB0DCBC1CDB9416000D9C61 /* HistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB0DCBB1CDB9416000D9C61 /* HistoryModel.m */; settings = {ASSET_TAGS = (); }; };
-		3FB0DCBE1CDB95A2000D9C61 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB0DCBD1CDB95A2000D9C61 /* libsqlite3.0.tbd */; };
 		3FB88C131CDB49660085FE05 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB88C121CDB49660085FE05 /* SearchViewController.m */; settings = {ASSET_TAGS = (); }; };
 		3FB88C151CDB4ADD0085FE05 /* 返回.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB88C141CDB4ADD0085FE05 /* 返回.png */; settings = {ASSET_TAGS = (); }; };
 		3FB88C181CDB52780085FE05 /* 搜索.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB88C171CDB52780085FE05 /* 搜索.png */; settings = {ASSET_TAGS = (); }; };
@@ -94,9 +113,15 @@
 		3FF0027F1CDC387D00F85D4E /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF002771CDC387D00F85D4E /* FMDatabasePool.m */; settings = {ASSET_TAGS = (); }; };
 		3FF002801CDC387D00F85D4E /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF002791CDC387D00F85D4E /* FMDatabaseQueue.m */; settings = {ASSET_TAGS = (); }; };
 		3FF002811CDC387D00F85D4E /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF0027C1CDC387D00F85D4E /* FMResultSet.m */; settings = {ASSET_TAGS = (); }; };
+
 		3FF002821CDC38A000F85D4E /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB0DCBD1CDB95A2000D9C61 /* libsqlite3.0.tbd */; };
 		3FF0028C1CDC961D00F85D4E /* 勾勾.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FF0028B1CDC961D00F85D4E /* 勾勾.png */; settings = {ASSET_TAGS = (); }; };
 		3FF0028E1CDC9C0C00F85D4E /* 加号红.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FF0028D1CDC9C0C00F85D4E /* 加号红.png */; settings = {ASSET_TAGS = (); }; };
+
+
+		3FF002821CDC38A000F85D4E /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+
+
 		3FF9BD121CD9AA6300D11A51 /* CombinationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9BD0B1CD9AA6300D11A51 /* CombinationView.m */; settings = {ASSET_TAGS = (); }; };
 		3FF9BD131CD9AA6300D11A51 /* EndImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9BD0D1CD9AA6300D11A51 /* EndImageView.m */; settings = {ASSET_TAGS = (); }; };
 		3FF9BD141CD9AA6300D11A51 /* MidImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9BD0F1CD9AA6300D11A51 /* MidImageView.m */; settings = {ASSET_TAGS = (); }; };
@@ -188,10 +213,40 @@
 		3F49E3541CDA3FB900E9028A /* VideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoViewController.m; sourceTree = "<group>"; };
 		3F49E3561CDA3FCC00E9028A /* NewestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewestViewController.h; sourceTree = "<group>"; };
 		3F49E3571CDA3FCC00E9028A /* NewestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewestViewController.m; sourceTree = "<group>"; };
+
+		3F57D74F1CDC413700CB366B /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		3F57D7511CDC417900CB366B /* DataBaseUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBaseUtil.h; sourceTree = "<group>"; };
+		3F57D7521CDC417900CB366B /* DataBaseUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBaseUtil.m; sourceTree = "<group>"; };
+		3F57D7541CDC94DF00CB366B /* MyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyModel.h; sourceTree = "<group>"; };
+		3F57D7551CDC94DF00CB366B /* MyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyModel.m; sourceTree = "<group>"; };
+
+		3F5710411CDC3B79005008DB /* MateriaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MateriaModel.h; sourceTree = "<group>"; };
+		3F5710421CDC3B79005008DB /* MateriaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MateriaModel.m; sourceTree = "<group>"; };
+		3F5710471CDC3B9F005008DB /* StepModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepModel.h; sourceTree = "<group>"; };
+		3F5710481CDC3B9F005008DB /* StepModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepModel.m; sourceTree = "<group>"; };
+		3F57104A1CDC7634005008DB /* 收藏.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "收藏.png"; sourceTree = "<group>"; };
+		3F57104B1CDC7634005008DB /* 未收藏.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未收藏.png"; sourceTree = "<group>"; };
+		3F57104E1CDC7831005008DB /* CollectAndTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectAndTimeView.h; sourceTree = "<group>"; };
+		3F57104F1CDC7831005008DB /* CollectAndTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectAndTimeView.m; sourceTree = "<group>"; };
+		3F5710511CDC8918005008DB /* MateriaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MateriaView.h; sourceTree = "<group>"; };
+		3F5710521CDC8918005008DB /* MateriaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MateriaView.m; sourceTree = "<group>"; };
+		3F5710541CDC932A005008DB /* StepView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepView.h; sourceTree = "<group>"; };
+		3F5710551CDC932A005008DB /* StepView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepView.m; sourceTree = "<group>"; };
+		3F5710571CDCB46A005008DB /* TipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipView.h; sourceTree = "<group>"; };
+		3F5710581CDCB46A005008DB /* TipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipView.m; sourceTree = "<group>"; };
+
 		3F59E2341CD8DCA400749116 /* MixFoodCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixFoodCollectionViewCell.h; sourceTree = "<group>"; };
 		3F59E2351CD8DCA400749116 /* MixFoodCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixFoodCollectionViewCell.m; sourceTree = "<group>"; };
 		3F59E2381CD8E4CA00749116 /* 后退.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "后退.png"; sourceTree = "<group>"; };
 		3F59E2391CD8E4CA00749116 /* 前进.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "前进.png"; sourceTree = "<group>"; };
+
+		3FA44E461CDCA0C00055CDB3 /* ImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManager.h; sourceTree = "<group>"; };
+		3FA44E471CDCA0C00055CDB3 /* ImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageManager.m; sourceTree = "<group>"; };
+		3FA44E4A1CDCC91A0055CDB3 /* MyProblemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProblemViewController.h; sourceTree = "<group>"; };
+		3FA44E4B1CDCC91A0055CDB3 /* MyProblemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProblemViewController.m; sourceTree = "<group>"; };
+
+		3F6520CD1CDCC906007CD97B /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+
 		3FA8CE271CDAF03300EC7599 /* VideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoModel.h; sourceTree = "<group>"; };
 		3FA8CE281CDAF03300EC7599 /* VideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoModel.m; sourceTree = "<group>"; };
 		3FA8CE2A1CDAFCA800EC7599 /* VideoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoTableViewCell.h; sourceTree = "<group>"; };
@@ -232,7 +287,6 @@
 		3FB0DCA31CDB842D000D9C61 /* DetailsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsModel.m; sourceTree = "<group>"; };
 		3FB0DCBA1CDB9416000D9C61 /* HistoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryModel.h; sourceTree = "<group>"; };
 		3FB0DCBB1CDB9416000D9C61 /* HistoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryModel.m; sourceTree = "<group>"; };
-		3FB0DCBD1CDB95A2000D9C61 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		3FB88C111CDB49660085FE05 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		3FB88C121CDB49660085FE05 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		3FB88C141CDB4ADD0085FE05 /* 返回.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "返回.png"; sourceTree = "<group>"; };
@@ -321,7 +375,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FF002821CDC38A000F85D4E /* libsqlite3.0.tbd in Frameworks */,
+
+				3F57D7501CDC413700CB366B /* libsqlite3.0.tbd in Frameworks */,
+				3FF002821CDC38A000F85D4E /* (null) in Frameworks */,
+
+				3F6520CE1CDCC906007CD97B /* libsqlite3.0.tbd in Frameworks */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,7 +388,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FB0DCBE1CDB95A2000D9C61 /* libsqlite3.0.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +483,14 @@
 		3FABA3DD1CDB513200D35CEA /* view */ = {
 			isa = PBXGroup;
 			children = (
+				3F57104E1CDC7831005008DB /* CollectAndTimeView.h */,
+				3F57104F1CDC7831005008DB /* CollectAndTimeView.m */,
+				3F5710511CDC8918005008DB /* MateriaView.h */,
+				3F5710521CDC8918005008DB /* MateriaView.m */,
+				3F5710541CDC932A005008DB /* StepView.h */,
+				3F5710551CDC932A005008DB /* StepView.m */,
+				3F5710571CDCB46A005008DB /* TipView.h */,
+				3F5710581CDCB46A005008DB /* TipView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -432,6 +498,10 @@
 		3FABA3DE1CDB513700D35CEA /* model */ = {
 			isa = PBXGroup;
 			children = (
+				3F5710411CDC3B79005008DB /* MateriaModel.h */,
+				3F5710421CDC3B79005008DB /* MateriaModel.m */,
+				3F5710471CDC3B9F005008DB /* StepModel.h */,
+				3F5710481CDC3B9F005008DB /* StepModel.m */,
 				3FABA3E01CDB518100D35CEA /* FoodDetailsModel.h */,
 				3FABA3E11CDB518100D35CEA /* FoodDetailsModel.m */,
 			);
@@ -474,6 +544,8 @@
 		3FB0DCA51CDB9343000D9C61 /* 数据库 */ = {
 			isa = PBXGroup;
 			children = (
+				3F57D7511CDC417900CB366B /* DataBaseUtil.h */,
+				3F57D7521CDC417900CB366B /* DataBaseUtil.m */,
 			);
 			name = "数据库";
 			sourceTree = "<group>";
@@ -533,7 +605,11 @@
 		3FDDB1951CD8A94E009FA128 = {
 			isa = PBXGroup;
 			children = (
-				3FB0DCBD1CDB95A2000D9C61 /* libsqlite3.0.tbd */,
+
+				3F57D74F1CDC413700CB366B /* libsqlite3.0.tbd */,
+
+				3F6520CD1CDCC906007CD97B /* libsqlite3.0.tbd */,
+
 				3FDDB1A01CD8A94E009FA128 /* foot */,
 				3FDDB1BA1CD8A94E009FA128 /* footTests */,
 				3FDDB1C51CD8A94E009FA128 /* footUITests */,
@@ -618,6 +694,8 @@
 		3FDDB1D51CD8A9A9009FA128 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				3F57104A1CDC7634005008DB /* 收藏.png */,
+				3F57104B1CDC7634005008DB /* 未收藏.png */,
 				3FB88C161CDB4AE00085FE05 /* 搜素 */,
 				3FABA3D71CDB410000D35CEA /* navigation */,
 				3FF9BD211CD9D2D600D11A51 /* 首页 */,
@@ -641,6 +719,8 @@
 		3FDDB1D81CD8AC61009FA128 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				3FA44E461CDCA0C00055CDB3 /* ImageManager.h */,
+				3FA44E471CDCA0C00055CDB3 /* ImageManager.m */,
 				3FDDB20F1CD8D60B009FA128 /* NetworkRequestManager.h */,
 				3FDDB2101CD8D60B009FA128 /* NetworkRequestManager.m */,
 				3FAEB0851CDB1EB300F36ED1 /* MJRefresh */,
@@ -793,6 +873,8 @@
 			children = (
 				3FDDB1FA1CD8BF76009FA128 /* MyViewController.h */,
 				3FDDB1FB1CD8BF76009FA128 /* MyViewController.m */,
+				3FA44E4A1CDCC91A0055CDB3 /* MyProblemViewController.h */,
+				3FA44E4B1CDCC91A0055CDB3 /* MyProblemViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -807,6 +889,8 @@
 		3FDDB1F01CD8BE7E009FA128 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				3F57D7541CDC94DF00CB366B /* MyModel.h */,
+				3F57D7551CDC94DF00CB366B /* MyModel.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -973,7 +1057,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+
 				3FF0028C1CDC961D00F85D4E /* 勾勾.png in Resources */,
+
+				3F57104D1CDC7634005008DB /* 未收藏.png in Resources */,
+
 				3FF9BD2B1CD9DDE800D11A51 /* 最新.png in Resources */,
 				3FDDB20C1CD8C53F009FA128 /* 食材.png in Resources */,
 				3F59E23B1CD8E4CA00749116 /* 前进.png in Resources */,
@@ -993,6 +1081,7 @@
 				3FDDB20D1CD8C53F009FA128 /* 首页1.png in Resources */,
 				3FDDB1AE1CD8A94E009FA128 /* Assets.xcassets in Resources */,
 				3FB88C181CDB52780085FE05 /* 搜索.png in Resources */,
+				3F57104C1CDC7634005008DB /* 收藏.png in Resources */,
 				3FA8CE301CDB049400EC7599 /* 播放.png in Resources */,
 				3FB88C151CDB4ADD0085FE05 /* 返回.png in Resources */,
 				3FA8CE301CDB049400EC7599 /* 播放.png in Resources */,
@@ -1034,6 +1123,7 @@
 				3FDDB1E11CD8ADCA009FA128 /* FoodViewController.m in Sources */,
 				3FAEB0A61CDB1EB300F36ED1 /* MJRefreshHeader.m in Sources */,
 				3FAEB0A11CDB1EB300F36ED1 /* MJRefreshComponent.m in Sources */,
+				3F57D7561CDC94DF00CB366B /* MyModel.m in Sources */,
 				3F050F2C1CD9DF310050FE22 /* MenuListViewController.m in Sources */,
 				3FF9BD2E1CD9F57100D11A51 /* SelectionFoodModel.m in Sources */,
 				3FF0027F1CDC387D00F85D4E /* FMDatabasePool.m in Sources */,
@@ -1044,12 +1134,16 @@
 				3FDDB2111CD8D60B009FA128 /* NetworkRequestManager.m in Sources */,
 				3F1782E91CDA1D86001FD16D /* UIImage+MultiFormat.m in Sources */,
 				3FB0DCA41CDB842D000D9C61 /* DetailsModel.m in Sources */,
+				3FA44E481CDCA0C00055CDB3 /* ImageManager.m in Sources */,
 				3FAEB0AC1CDB1EB300F36ED1 /* UIView+MJExtension.m in Sources */,
 				3FDDB1DE1CD8AD90009FA128 /* FoodNavigationController.m in Sources */,
+				3F5710591CDCB46A005008DB /* TipView.m in Sources */,
 				3F1782E21CDA1D86001FD16D /* SDWebImageDecoder.m in Sources */,
 				3F050F261CD9A68B0050FE22 /* MenuViewController.m in Sources */,
 				3F1782EC1CDA1D86001FD16D /* UIImageView+WebCache.m in Sources */,
 				3F050F201CD9A64C0050FE22 /* MenuModel.m in Sources */,
+				3F5710491CDC3B9F005008DB /* StepModel.m in Sources */,
+				3F5710431CDC3B79005008DB /* MateriaModel.m in Sources */,
 				3FF9BD141CD9AA6300D11A51 /* MidImageView.m in Sources */,
 				3F1782DF1CDA1D86001FD16D /* NSData+ImageContentType.m in Sources */,
 				3F1782E31CDA1D86001FD16D /* SDWebImageDownloader.m in Sources */,
@@ -1061,6 +1155,7 @@
 				3FAEB0A41CDB1EB300F36ED1 /* MJRefreshGifFooter.m in Sources */,
 				3F1782EB1CDA1D86001FD16D /* UIImageView+HighlightedWebCache.m in Sources */,
 				3FC3BA681CDB226E00450B87 /* PlayVideoViewController.m in Sources */,
+				3F5710531CDC8918005008DB /* MateriaView.m in Sources */,
 				3FF9BD311CD9FCE600D11A51 /* SelectionTableViewCell.m in Sources */,
 				3FF9BD341CDA2ACD00D11A51 /* FirstTableViewCell.m in Sources */,
 				3FF9BD1B1CD9AAB200D11A51 /* HomeFootModel.m in Sources */,
@@ -1074,15 +1169,18 @@
 				3FF9BD181CD9AAA200D11A51 /* HomeViewController.m in Sources */,
 				3FB88C261CDB6CD00085FE05 /* DetailsSearchViewController.m in Sources */,
 				3F1782DE1CDA1D86001FD16D /* MKAnnotationView+WebCache.m in Sources */,
+				3F5710501CDC7831005008DB /* CollectAndTimeView.m in Sources */,
 				3FF9BD131CD9AA6300D11A51 /* EndImageView.m in Sources */,
 				3FF9BD121CD9AA6300D11A51 /* CombinationView.m in Sources */,
 				3F1782E61CDA1D86001FD16D /* SDWebImagePrefetcher.m in Sources */,
 				3FF002811CDC387D00F85D4E /* FMResultSet.m in Sources */,
 				3FF002801CDC387D00F85D4E /* FMDatabaseQueue.m in Sources */,
+				3FA44E4C1CDCC91A0055CDB3 /* MyProblemViewController.m in Sources */,
 				3FA8CE291CDAF03300EC7599 /* VideoModel.m in Sources */,
 				3FDDB1F61CD8BF57009FA128 /* MakeUpViewController.m in Sources */,
 				3F177C491CDAE20B00936877 /* MenuListTableViewCell.m in Sources */,
 				3FAEB0A91CDB1EB300F36ED1 /* UIScrollView+CRScrollIndicator.m in Sources */,
+				3F57D7531CDC417900CB366B /* DataBaseUtil.m in Sources */,
 				3F1782E41CDA1D86001FD16D /* SDWebImageDownloaderOperation.m in Sources */,
 				3FA8CE2C1CDAFCA800EC7599 /* VideoTableViewCell.m in Sources */,
 				3FAEB0A71CDB1EB300F36ED1 /* MJRefreshLegendFooter.m in Sources */,
@@ -1090,6 +1188,7 @@
 				3FAEB0AB1CDB1EB300F36ED1 /* UIScrollView+MJRefresh.m in Sources */,
 				3F1782B61CD9EE6F001FD16D /* MixFoodTableViewCell.m in Sources */,
 				3FABA3E21CDB518100D35CEA /* FoodDetailsModel.m in Sources */,
+				3F5710561CDC932A005008DB /* StepView.m in Sources */,
 				3F1782E51CDA1D86001FD16D /* SDWebImageManager.m in Sources */,
 				3F1782EA1CDA1D86001FD16D /* UIImage+WebP.m in Sources */,
 				3FF9BD151CD9AA6300D11A51 /* ShapedImageView.m in Sources */,

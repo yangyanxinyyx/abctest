@@ -55,12 +55,12 @@
 }
 -(void)layoutSubviews{
     [super layoutSubviews];
-    self.labelName.frame = CGRectMake(200, 100, 150, 20);
+    self.labelName.frame = CGRectMake(self.frame.size.width -150, self.frame.size.height-60, 150, 20);
     self.labelName.textAlignment = NSTextAlignmentRight;
     self.labelName.textColor = [UIColor whiteColor];
     self.labelName.font = [UIFont fontWithName:@"Helvetica-Bold" size:15];
 
-    self.labelIntroduce.frame = CGRectMake(10, 120, 340, 15);
+    self.labelIntroduce.frame = CGRectMake(10, self.frame.size.height-40, self.frame.size.width-20, 15);
     self.labelIntroduce.textAlignment = NSTextAlignmentRight;
     self.labelIntroduce.textColor = [UIColor whiteColor];
     self.labelIntroduce.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];

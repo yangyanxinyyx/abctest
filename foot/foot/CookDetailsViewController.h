@@ -13,5 +13,6 @@
 @property(nonatomic,strong)NSString *url;
 @property(nonatomic,strong)NSDictionary *parDic;
 @property(nonatomic,strong)NSDictionary *header;
+@property(nonatomic,assign)NSInteger urlId;
 
 @end
