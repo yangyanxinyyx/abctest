@@ -33,6 +33,8 @@
 -(UIImageView *)selectImageView{
     if (!_selectImageView) {
         self.selectImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10,KScreenWidth-20, 220)];
+        _selectImageView.contentMode = UIViewContentModeScaleAspectFill;
+        _selectImageView.clipsToBounds = NO;
         self.selectImageView.layer.cornerRadius = 10;
         self.selectImageView.layer.masksToBounds = YES;
     }
