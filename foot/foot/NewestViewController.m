@@ -101,7 +101,7 @@
     cookD.url = strUrl;
     cookD.parDic = dicPar;
     cookD.header = dicHeader;
-    cookD.urlId = 13;
+    cookD.urlId = 11;
     [self.navigationController pushViewController:cookD animated:YES];
     
 }
