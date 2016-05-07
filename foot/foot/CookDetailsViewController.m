@@ -116,7 +116,7 @@
     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
     
     //判断数据来源
-    if (self.urlId == 3) {
+    if (self.urlId == 3 || self.urlId == 12) {
         NSArray *array = dictionary[@"list"];
         NSDictionary *dic = array[0];
         self.detailsModel.topImage = [NSString stringWithFormat:@"http://pic.ecook.cn/web/%@.jpg",dic[@"imageid"]];
@@ -152,6 +152,52 @@
             [tipArray addObject:tip];
         }
         self.detailsModel.tipArray = tipArray;
+    }
+    
+    if (self.urlId == 11) {
+        
+        NSDictionary *dic1 = dictionary[@"result"];
+        NSDictionary *dic = dic1[@"recipe"];
+        if ([dic[@"cook_difficulty"] length] > 0) {
+            self.detailsModel.level = dic[@"cook_difficulty"];
+        }
+        if ([dic[@"cook_time"] length] > 0) {
+            self.detailsModel.cookTime = dic[@"cook_time"];
+        }
+        self.detailsModel.name = dic[@"title"];
+        self.detailsModel.topImage = dic[@"image"];
+        self.detailsModel.introduce = dic[@"cookstory"];
+        
+        //材料
+        NSMutableArray *materaArray = [NSMutableArray array];
+        for (NSDictionary *dict in dic[@"major"]) {
+            
+            MateriaModel *model = [[MateriaModel alloc] init];
+            model.materia = dict[@"title"];
+            model.dosage = dict[@"羊排"];
+            [materaArray addObject:model];
+            
+        }
+        self.detailsModel.materiaArray = materaArray;
+        
+        //步骤
+        NSMutableArray *stepArray = [NSMutableArray array];
+        for (NSDictionary *dict in dic[@"cookstep"]) {
+            
+            StepModel *step = [[StepModel alloc] init];
+            step.stepImage = dict[@"image"];
+            step.stepDetails = dict[@"content"];
+            NSNumber *num = dict[@"position"];
+            step.ordernum = [num integerValue];
+            [stepArray addObject:step];
+        }
+        self.detailsModel.stepArray = stepArray;
+        
+        //小提示
+        if ([dic[@"tips"] length] > 0) {
+            self.detailsModel.tipArray = @[dic[@"tips"]];
+        }
+        
     }
     
     [self performSelectorOnMainThread:@selector(doMain) withObject:nil waitUntilDone:YES];
@@ -195,7 +241,7 @@
     }
     
     //过渡性
-    UIView *lineView2 = [[UIView alloc] initWithFrame:CGRectMake(0, _height + 7.5, SCREEN_W, 1)];
+    UIView *lineView2 = [[UIView alloc] initWithFrame:CGRectMake(0, _height + 3, SCREEN_W, 1)];
     [self.scrollView addSubview:lineView2];
     lineView2.backgroundColor = Color(230, 230, 230, 1);
     
@@ -311,6 +357,10 @@
 
     [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:0];
     self.navigationController.navigationBar.translucent = YES;
+    
+    if (self.urlId == 11 || self.urlId == 12) {
+        self.tabBarController.hidesBottomBarWhenPushed = YES;
+    }
    
 }
 
@@ -318,6 +368,10 @@
 {
     [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1];
     self.navigationController.navigationBar.translucent = NO;
+    
+    if (self.urlId == 11 || self.urlId == 12) {
+        self.tabBarController.hidesBottomBarWhenPushed = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

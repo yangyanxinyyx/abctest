@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "FoodTabBarController.h"
+#import "DataBaseUtil.h"
 @interface AppDelegate ()
 
 @end
@@ -21,7 +22,8 @@
     self.window.rootViewController = [[FoodTabBarController alloc] init];
     [self.window makeKeyAndVisible];
     
-    
+#pragma mark- 创建数据库
+    [[DataBaseUtil shareDataBase]createTable];
     
     return YES;
 }

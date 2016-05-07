@@ -22,12 +22,14 @@
 #import "VideoViewController.h"
 #import "MJRefresh.h"
 #import "SearchViewController.h"
+#import "ImageManager.h"
+
+#import "CookDetailsViewController.h"
 @interface HomeViewController ()<UIScrollViewDelegate,FirstTableViewCellDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 {
     NSInteger flag;
 }
 @property (nonatomic,strong)CombinationView *combinationV;
-@property (nonatomic,strong)UIPageControl *pageControl;
 @property (nonatomic,strong)UITableView *tab;
 @property (nonatomic,strong)NSMutableArray *selectDataArray;
 @end
@@ -46,7 +48,7 @@
     buttonSearch.frame = CGRectMake(0, 30, 250, 30);
     buttonSearch.backgroundColor = [UIColor lightGrayColor];
     [buttonSearch setTitle:@"🔍 搜素菜谱" forState:UIControlStateNormal];
-    [buttonSearch setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [buttonSearch setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     buttonSearch.titleLabel.textAlignment = NSTextAlignmentLeft;
     self.navigationItem.titleView = buttonSearch;
     [buttonSearch addTarget:self action:@selector(touchButtonSearch) forControlEvents:UIControlEventTouchDown];
@@ -94,6 +96,7 @@
         cell = [[SelectionTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
     }
         [cell.selectImageView sd_setImageWithURL:[NSURL URLWithString:model.img]];
+
         cell.labelName.text = model.n;
         cell.labelBrowse.text = [NSString stringWithFormat:@"%@浏览",model.vc];
         cell.labelCollect.text = [NSString stringWithFormat:@"·  %@收藏",model.fc];
@@ -102,6 +105,7 @@
     }
 
 }
+#pragma 高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         return  KScreenWidth/375*500+80;
@@ -134,7 +138,7 @@
     }else
     return 40;
 }
-#pragma mark 获取tab数据
+#pragma mark 获取tab数据 豆果数据
 -(void)getDataWith:(NSString *)pageId{
     NSString *url = [NSString stringWithFormat:@"http://api.douguo.net/recipe/home/%@/20",pageId];
     [NetworkRequestManager requestWithType:POST urlString:url parDic:[NSDictionary dictionaryWithObjectsAndKeys:@"4",@"client", nil] header:[NSDictionary dictionaryWithObjectsAndKeys:@"application/x-www-form-urlencoded; charset=utf-8",@"Content-Type",@"611.2",@"version", nil] finish:^(NSData *data) {
@@ -162,6 +166,7 @@
     }];
 }
 #pragma firstCell的代理方法
+#pragma mark- 点击视频和今日最新的按钮方法
 -(void)toucheVideoButtonOnCell{
     VideoViewController *videoV = [[VideoViewController alloc]init];
     [self.navigationController pushViewController:videoV animated:YES];
@@ -172,6 +177,11 @@
     [self.navigationController pushViewController:newestV animated:YES];
     NSLog(@"点击今日");
 }
+-(void)toucheComtaionImageViewWith:(HomeFootModel *)model{
+    CookDetailsViewController *cookD =[[CookDetailsViewController alloc]init];
+    [self.navigationController pushViewController:cookD animated:YES];
+    NSLog(@"%@",model.name);
+}
 #pragma mark点击cell
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -179,6 +189,17 @@
         
     }else{
         
+        CookDetailsViewController *cookD = [[CookDetailsViewController alloc]init];
+        SelectionFoodModel *model = [self.selectDataArray objectAtIndex:indexPath.row];
+        NSString *urlStr = [NSString stringWithFormat:@"http://api.douguo.net/recipe/detail/%@",model.aid];
+        NSDictionary *dicPar = [NSDictionary dictionaryWithObjectsAndKeys:@"4",@"client",@"0",@"author_id", nil];
+        NSDictionary *dicHeader = [NSDictionary dictionaryWithObjectsAndKeys:@"application/x-www-form-urlencoded; charset=utf-8",@"Content-Type",@"611.2",@"version", nil];
+        cookD.url = urlStr;
+        cookD.parDic = dicPar;
+        cookD.header = dicHeader;
+        cookD.urlId = 11;
+        [self.navigationController pushViewController:cookD animated:YES];
+    
     }
 }
 #pragma mark 上拉加载

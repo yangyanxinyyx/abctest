@@ -37,7 +37,7 @@
 }
 -(void)layoutSubviews{
     [super layoutSubviews];
-    self.labelName.frame = CGRectMake(10, 100, 100, 20);
+    self.labelName.frame = CGRectMake(10, self.frame.size.height -60, 100, 20);
 //    self.labelName.backgroundColor = [UIColor blackColor];
     self.labelName.textAlignment = NSTextAlignmentLeft;
     self.labelIntroduce.textAlignment = NSTextAlignmentLeft;

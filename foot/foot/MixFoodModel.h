@@ -10,9 +10,10 @@
 
 @interface MixFoodModel : FoodModel
 
+@property(nonatomic,strong)NSString *id;
 @property(nonatomic,strong)NSString *image;
 @property(nonatomic,strong)NSString *text;
-@property(nonatomic,strong)NSArray *data;
+
 
 @property(nonatomic,assign)BOOL isSelect;
 @end

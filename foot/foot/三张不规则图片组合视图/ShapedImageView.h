@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+
+
 @interface ShapedImageView : UIImageView
 {
     CALayer *_contentLayer;
@@ -15,6 +17,7 @@
 }
 @property (nonatomic,strong)UILabel *labelName;
 @property (nonatomic,strong)UILabel *labelIntroduce;
+
 -(void)setup;
 -(void)toucheImageView;
 @end
