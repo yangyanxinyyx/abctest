@@ -167,7 +167,9 @@
 
 #pragma mark-点击返回和搜素按钮的方法
 -(void)comeBackValue{
+    self.tabBarController.hidesBottomBarWhenPushed = NO;
     [self.navigationController popViewControllerAnimated:YES];
+    
 }
 -(void)toucheSearch{
     if (self.textF.text.length == 0) {
@@ -199,7 +201,7 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [self.textF endEditing:YES];
-    self.tabBarController.hidesBottomBarWhenPushed = NO;
+    
 }
 
 @end

@@ -84,7 +84,7 @@
     
     self.navigationItem.title = @"食材组合";
     
-    self.view.backgroundColor = [UIColor redColor];
+
     self.dataArrayTab = [NSMutableArray array];
     self.dataArrayColl = [NSMutableArray array];
     self.arraySelected = [NSMutableArray array];

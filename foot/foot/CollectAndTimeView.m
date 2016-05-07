@@ -24,14 +24,16 @@
             UILabel *levelLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 5, 0, 0)];
             [self addSubview:levelLabel];
             levelLabel.text = [NSString stringWithFormat:@"难度: %@",level];
-            levelLabel.textColor = Color(220, 220, 220, 1);
+            levelLabel.textColor = Color(150, 150, 150, 1);
+            levelLabel.font = [UIFont systemFontOfSize:15];
             [levelLabel sizeToFit];
         }
         
         if (time.length>0) {
             UILabel *timeLabel = [[UILabel alloc] init];
             timeLabel.text = [NSString stringWithFormat:@"时间: %@",time];
-            timeLabel.textColor = Color(220, 220, 220, 1);
+            timeLabel.textColor = Color(150, 150, 150, 1);
+            timeLabel.font = [UIFont systemFontOfSize:15];
             [timeLabel sizeToFit];
             CGRect frame = timeLabel.frame;
             frame.origin.x = SCREEN_W - 30 - frame.size.width;

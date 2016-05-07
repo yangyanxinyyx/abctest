@@ -39,6 +39,8 @@
     
     _page = 0;
     _isDownRefresh = NO;
+    
+
     [self loadData];
     
     [self createTableView];

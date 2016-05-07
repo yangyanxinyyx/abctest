@@ -37,6 +37,8 @@
 -(void)layoutSubviews
 {
     self.imageV.frame = CGRectMake(10, 10, 100, 90);
+    self.imageV.contentMode = UIViewContentModeScaleAspectFill;
+    self.imageV.clipsToBounds = YES;
     
     self.nameLabel.frame = CGRectMake(120, 12, SCREEN_W - 120 -10, 25);
     self.nameLabel.font = [UIFont systemFontOfSize:18];

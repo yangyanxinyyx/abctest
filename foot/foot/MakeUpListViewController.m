@@ -84,7 +84,13 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CookDetailsViewController *cook = [[CookDetailsViewController alloc] init];
+    MixResultModel *model = [self.dataArray objectAtIndex:indexPath.row];
     
+    cook.url = @"http://api.izhangchu.com/";
+    cook.urlId = 2;
+    cook.content = model.content;
+    cook.foodName = model.title;
+    cook.foodId = model.dishes_id;
     
     
     [self.navigationController pushViewController:cook animated:YES];

@@ -37,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    self.navigationItem.title = @"菜谱";
     [self createCollectionView];
     [self loadData];
 }
