@@ -70,13 +70,7 @@
 
 @implementation MakeUpViewController
 
--(UICollectionView*)mixFoodCollectionView
-{
-    if (!_mixFoodCollectionView) {
-        
-    }
-    return _mixFoodCollectionView;
-}
+
 
 
 - (void)viewDidLoad {
@@ -331,16 +325,16 @@
         [self.viewResult addGestureRecognizer:tap];
         
         
-        self.lableResultCount = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_W/5/5, SCREEN_W/5-10, 20)];
+        self.lableResultCount = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_W/5/5, SCREEN_W/5-10, [UIScreen mainScreen].bounds.size.width*20/414)];
         self.lableResultCount.textAlignment = NSTextAlignmentCenter;
         self.lableResultCount.textColor = [UIColor redColor];
         [self.viewResult addSubview:self.lableResultCount];
         
         
-        UILabel *labtext = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_W/5/5+20, SCREEN_W/5-10, 20)];
+        UILabel *labtext = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_W/5/5+[UIScreen mainScreen].bounds.size.width*20/414, SCREEN_W/5-10, 20)];
         labtext.text = @"可做菜式";
         labtext.textAlignment = NSTextAlignmentCenter;
-        labtext.font = [UIFont systemFontOfSize:13];
+        labtext.font = [UIFont systemFontOfSize:[UIScreen mainScreen].bounds.size.width*13/414];
         [self.viewResult addSubview:labtext];
     }
     
@@ -358,7 +352,7 @@
         [self getMixResult];
     }
     
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(pause) userInfo:nil repeats:NO];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(pause) userInfo:nil repeats:NO];
     self.mixFoodCollectionView.userInteractionEnabled = NO;
     
 }
@@ -385,14 +379,12 @@
             [array addObject:model.id];
         }
         list.dataArrayid = array;
+        list.foodtotal = self.lableResultCount.text;
         
         [self.navigationController pushViewController:list animated:YES];
         
         
         
-    }else
-    {
-        NSLog(@"222");
     }
     
 }
@@ -409,7 +401,7 @@
     bu.frame = CGRectMake(20+(30+(SCREEN_W/5*4-110)/3) * (self.arraySelected.count-1), (self.bottomView.frame.size.height-(SCREEN_W/5*4-110)/3)/2, (SCREEN_W/5*4-110)/3, (SCREEN_W/5*4-110)/3);
     MixFoodModel *model = [self.arraySelected objectAtIndex:bu.tag-1];
     [bu setTitle:model.text forState:UIControlStateNormal];
-    [bu setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [bu setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
     [bu sd_setBackgroundImageWithURL:[NSURL URLWithString:model.image] forState:UIControlStateNormal];
     [bu addTarget:self action:@selector(cancelChoose:) forControlEvents:UIControlEventTouchUpInside];
     [self.arrayButtomSelected addObject:bu];
@@ -467,8 +459,8 @@
     {
         [self getMixResult];
     }
-  
-    
+  //刷新一下
+    [self.mixFoodCollectionView reloadData];
 }
 
 

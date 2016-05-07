@@ -449,7 +449,7 @@
     [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:0];
     self.navigationController.navigationBar.translucent = YES;
     
-    if (self.urlId == 11 || self.urlId == 12 || self.urlId == 2) {
+    if (self.urlId == 11 || self.urlId == 12) {
         self.tabBarController.hidesBottomBarWhenPushed = YES;
     }
    
@@ -460,7 +460,7 @@
     [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1];
     self.navigationController.navigationBar.translucent = NO;
     
-    if (self.urlId == 11 || self.urlId == 12 || self.urlId == 2) {
+    if (self.urlId == 11 || self.urlId == 12) {
         self.tabBarController.hidesBottomBarWhenPushed = NO;
     }
 }
