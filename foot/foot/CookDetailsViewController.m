@@ -89,6 +89,7 @@
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_H)];
     [self.view addSubview:self.scrollView];
     self.scrollView.delegate = self;
+    self.scrollView.bounces = NO;
     
     self.topImageView.frame = CGRectMake(0, _height, SCREEN_W, SCREEN_W/1.5);
     
@@ -173,6 +174,12 @@
     [self.scrollView addSubview:self.collectView];
     
     _height += 35;
+    
+    //过渡性
+    UIView *lineView1 = [[UIView alloc] initWithFrame:CGRectMake(0, _height + 3, SCREEN_W, 1)];
+    [self.scrollView addSubview:lineView1];
+    lineView1.backgroundColor = Color(230, 230, 230, 1);
+    
     //描述
     if (self.detailsModel.introduce.length > 0) {
         UILabel *detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, _height + 10, SCREEN_W - 30, 0)];
@@ -187,8 +194,13 @@
         _height += frame.size.height + 10;
     }
     
+    //过渡性
+    UIView *lineView2 = [[UIView alloc] initWithFrame:CGRectMake(0, _height + 7.5, SCREEN_W, 1)];
+    [self.scrollView addSubview:lineView2];
+    lineView2.backgroundColor = Color(230, 230, 230, 1);
+    
     //食材
-    UIView *redView = [[UIView alloc] initWithFrame:CGRectMake(10, _height + 20 , 3, 20)];
+    UIView *redView = [[UIView alloc] initWithFrame:CGRectMake(10, _height + 30 , 3, 20)];
     [self.scrollView addSubview:redView];
     redView.backgroundColor = Color(228, 53, 42, 1);
     
@@ -213,6 +225,12 @@
         
     }
    
+    //过渡性
+    UIView *lineView3 = [[UIView alloc] initWithFrame:CGRectMake(0, _height + 15, SCREEN_W, 1)];
+    [self.scrollView addSubview:lineView3];
+    lineView3.backgroundColor = Color(230, 230, 230, 1);
+    
+    
     //烹饪步骤
     UIView *redView1 = [[UIView alloc] initWithFrame:CGRectMake(10, _height + 30 , 3, 20)];
     [self.scrollView addSubview:redView1];
@@ -236,6 +254,10 @@
         NSLog(@"%f",stepView.frame.size.height);
     }
     
+    //过渡性
+    UIView *lineView4 = [[UIView alloc] initWithFrame:CGRectMake(0, _height + 10, SCREEN_W, 1)];
+    [self.scrollView addSubview:lineView4];
+    lineView4.backgroundColor = Color(230, 230, 230, 1);
     
     //小贴士
     UIView *redView2 = [[UIView alloc] initWithFrame:CGRectMake(10, _height + 30 , 3, 20)];
@@ -267,12 +289,17 @@
     if (scrollView.contentOffset.y < _navScaleHeight) {
         [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:scrollView.contentOffset.y / _navScaleHeight];
         self.navigationItem.title = @"";
+        self.navigationItem.rightBarButtonItem = nil;
     }
     else
     {
         [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1];
         
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setImage:[UIImage imageNamed:@"未收藏"] forState:UIControlStateNormal];
+        button.frame = CGRectMake(0, 0, 25, 25);
         self.navigationItem.title = self.detailsModel.name;
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     }
 }
 
