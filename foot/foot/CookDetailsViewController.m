@@ -175,7 +175,7 @@
             self.detailsModel.cookTime = dic[@"cook_time"];
         }
         self.detailsModel.name = dic[@"title"];
-        self.detailsModel.topImage = dic[@"image"];
+        self.detailsModel.topImage = dic[@"photo_path"];
         self.detailsModel.introduce = dic[@"cookstory"];
         
         //材料
@@ -378,9 +378,10 @@
         
         NSError *errer;
         NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&errer];
-        self.detailsModel.topImage = dictionary[@"image"];
-        self.detailsModel.level = dictionary[@"hard_level"];
-        self.detailsModel.cookTime = dictionary[@"cooking_time"];
+        NSDictionary *dict = dictionary[@"data"];
+        self.detailsModel.topImage = dict[@"image"];
+        self.detailsModel.level = dict[@"hard_level"];
+        self.detailsModel.cookTime = dict[@"cooking_time"];
         NSMutableArray *stepArray = [NSMutableArray array];
         for (NSDictionary *dic in dictionary[@"data"][@"step"]) {
             

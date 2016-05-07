@@ -28,6 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
+    self.navigationItem.title = @"可做菜式";
     
     self.dataArray = [NSMutableArray array];
     
@@ -58,7 +59,10 @@
     
     [self.MixListColl registerClass:[MixResultCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
     
-    [self.MixListColl addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(footerRefershing)];
+    if ([self.foodtotal intValue]>10) {
+        [self.MixListColl addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(footerRefershing)];
+    }
+    
     
     
 }
@@ -112,7 +116,6 @@
     NSString *strRequest = [arrayTemp componentsJoinedByString:@"%2C"];
     strRequest = [strRequest stringByAppendingString:@"%2C"];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"SearchMix",@"methodName",strRequest,@"material_ids",@"4.40",@"version", nil];
-    NSLog(@"%ld",self.dataArrayid.count);
     [self requestData:dic];
 }
 -(void)requestData:(NSDictionary *)dic
@@ -156,9 +159,15 @@
     strRequest = [strRequest stringByAppendingString:@"%2C"];
     NSString *strPage = [NSString stringWithFormat:@"%d",lastCount];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:strPage,@"page",@"SearchMix",@"methodName",strRequest,@"material_ids",@"4.40",@"version", nil];
-    NSLog(@"%ld",self.dataArrayid.count);
     
-    [self requestData:dic];
+    int k = [self.foodtotal intValue]/10;
+    
+    NSLog(@"%d",k);
+    NSLog(@"--%d",[strPage intValue]);
+    if ([strPage intValue]<=k+1) {
+        [self requestData:dic];
+    }
+ 
     i++;
     lastCount = i+1;
     

@@ -44,7 +44,8 @@
     [super layoutSubviews];
     
     self.imageV.frame = CGRectMake(0, 0, Cell_W, Cell_W);
-
+    self.imageV.contentMode = UIViewContentModeScaleAspectFill;
+    self.imageV.clipsToBounds = YES;
     
     self.labelText.frame = CGRectMake(0, Cell_W, Cell_W, (Cell_H-Cell_W)/2);
     self.labelText.font = [UIFont systemFontOfSize:[UIScreen mainScreen].bounds.size.width*19/414];
