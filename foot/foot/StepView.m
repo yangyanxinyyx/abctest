@@ -29,6 +29,8 @@
         
         if (image.length>0) {
             self.imageV = [[UIImageView alloc] init];
+            self.imageV.contentMode = UIViewContentModeScaleAspectFill;
+            self.imageV.clipsToBounds = YES;
             [self.imageV sd_setImageWithURL:[NSURL URLWithString:image]];
             [self addSubview:self.imageV];
         }
