@@ -175,7 +175,7 @@
             self.detailsModel.cookTime = dic[@"cook_time"];
         }
         self.detailsModel.name = dic[@"title"];
-        self.detailsModel.topImage = dic[@"image"];
+        self.detailsModel.topImage = dic[@"photo_path"];
         self.detailsModel.introduce = dic[@"cookstory"];
         
         //材料
@@ -378,9 +378,10 @@
         
         NSError *errer;
         NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&errer];
-        self.detailsModel.topImage = dictionary[@"image"];
-        self.detailsModel.level = dictionary[@"hard_level"];
-        self.detailsModel.cookTime = dictionary[@"cooking_time"];
+        NSDictionary *dict = dictionary[@"data"];
+        self.detailsModel.topImage = dict[@"image"];
+        self.detailsModel.level = dict[@"hard_level"];
+        self.detailsModel.cookTime = dict[@"cooking_time"];
         NSMutableArray *stepArray = [NSMutableArray array];
         for (NSDictionary *dic in dictionary[@"data"][@"step"]) {
             
@@ -448,7 +449,7 @@
     [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:0];
     self.navigationController.navigationBar.translucent = YES;
     
-    if (self.urlId == 11 || self.urlId == 12) {
+    if (self.urlId == 11 || self.urlId == 12 || self.urlId == 2) {
         self.tabBarController.hidesBottomBarWhenPushed = YES;
     }
    
@@ -459,7 +460,7 @@
     [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1];
     self.navigationController.navigationBar.translucent = NO;
     
-    if (self.urlId == 11 || self.urlId == 12) {
+    if (self.urlId == 11 || self.urlId == 12 || self.urlId == 2) {
         self.tabBarController.hidesBottomBarWhenPushed = NO;
     }
 }
