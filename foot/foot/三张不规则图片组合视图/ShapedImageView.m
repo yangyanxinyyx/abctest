@@ -44,8 +44,9 @@
     _maskLayer.strokeColor = [UIColor redColor].CGColor;
     _maskLayer.frame = self.bounds;
     _maskLayer.contentsCenter = CGRectMake(0.5, 0.5, 0.1, 0.1);
-    _maskLayer.contentsScale = [UIScreen mainScreen].scale;//非常关键设置自动拉伸的效果且不变形
-
+    
+  _maskLayer.contentsScale = [UIScreen mainScreen].scale;//非常关键设置自动拉伸的效果且不变形
+//    self.contentMode =  UIViewContentModeScaleAspectFill;
     
     _contentLayer = [CALayer layer];
     _contentLayer.mask = _maskLayer;
