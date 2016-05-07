@@ -79,7 +79,15 @@
     _height = -64;
     
     [self createScrollView];
-    [self loadData];
+    
+    if (self.urlId != 2) {
+        [self loadData];
+    }
+    else
+    {
+        [self loadDataFromKMakeDoodMateria];
+    }
+    
 }
 
 #pragma -mark 创建底部scrollView
@@ -92,6 +100,8 @@
     self.scrollView.bounces = NO;
     
     self.topImageView.frame = CGRectMake(0, _height, SCREEN_W, SCREEN_W/1.5);
+    self.topImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.topImageView.clipsToBounds = YES;
     
     _height += SCREEN_W/1.5;
     self.nameLabel.frame = CGRectMake(0, _height, SCREEN_W, 50);
@@ -154,7 +164,7 @@
         self.detailsModel.tipArray = tipArray;
     }
     
-    if (self.urlId == 11) {
+    if (self.urlId == 11 || self.urlId == 13) {
         
         NSDictionary *dic1 = dictionary[@"result"];
         NSDictionary *dic = dic1[@"recipe"];
@@ -328,7 +338,87 @@
     
     self.scrollView.contentSize = CGSizeMake(SCREEN_W, _height + 10);
 }
+
+
+#pragma -mark  加载来自食材组合的数据
+//食材
+-(void)loadDataFromKMakeDoodMateria
+{
+    NSDictionary *parDic = [NSDictionary dictionaryWithObjectsAndKeys:@"DishesMaterial",@"methodName",self.foodId,@"dishes_id",@"4.40",@"version" ,nil];
+    [NetworkRequestManager requestWithType:POST urlString:self.url parDic:parDic header:nil finish:^(NSData *data) {
+        
+        self.detailsModel.name = self.foodName;
+        self.detailsModel.introduce = self.content;
+        
+        NSError *errer;
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&errer];
+        NSMutableArray *materialArray = [NSMutableArray array];
+        for (NSDictionary *dic in dictionary[@"data"][@"material"]) {
+            
+            MateriaModel *materia = [[MateriaModel alloc] init];
+            materia.materia = dic[@"material_name"];
+            materia.dosage = dic[@"material_weight"];
+            [materialArray addObject:materia];
+            
+        }
+        self.detailsModel.materiaArray = materialArray;
+        
+        [self performSelectorOnMainThread:@selector(loadCookStep) withObject:nil waitUntilDone:YES];
+        
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
+
+//加载步骤
+-(void)loadCookStep
+{
+     NSDictionary *parDic = [NSDictionary dictionaryWithObjectsAndKeys:@"DishesView",@"methodName",self.foodId,@"dishes_id",@"4.40",@"version" ,nil];
+    [NetworkRequestManager requestWithType:POST urlString:self.url parDic:parDic header:nil finish:^(NSData *data) {
+        
+        NSError *errer;
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&errer];
+        self.detailsModel.topImage = dictionary[@"image"];
+        self.detailsModel.level = dictionary[@"hard_level"];
+        self.detailsModel.cookTime = dictionary[@"cooking_time"];
+        NSMutableArray *stepArray = [NSMutableArray array];
+        for (NSDictionary *dic in dictionary[@"data"][@"step"]) {
+            
+            StepModel *step = [[StepModel alloc] init];
+            step.stepDetails = dic[@"dishes_step_desc"];
+            step.stepImage = dic[@"dishes_step_image"];
+            step.ordernum = [dic[@"dishes_step_order"] integerValue];
+            [stepArray addObject:step];
+            
+        }
+        self.detailsModel.stepArray = stepArray;
+        
+        [self performSelectorOnMainThread:@selector(loadCookTip) withObject:nil waitUntilDone:YES];
+        
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
+
+//加载小提示
+-(void)loadCookTip
+{
+    NSDictionary *parDic = [NSDictionary dictionaryWithObjectsAndKeys:@"DishesCommensense",@"methodName",self.foodId,@"dishes_id",@"4.40",@"version" ,nil];
+    [NetworkRequestManager requestWithType:POST urlString:self.url parDic:parDic header:nil finish:^(NSData *data) {
+        
+        NSError *errer;
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&errer];
+        
+        self.detailsModel.tipArray = @[dictionary[@"data"][@"production_direction"]];
+        
+        [self performSelectorOnMainThread:@selector(doMain) withObject:nil waitUntilDone:YES];
+        
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
     
+}
+
 #pragma -mark  scrollView 滑动
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -373,6 +463,9 @@
         self.tabBarController.hidesBottomBarWhenPushed = NO;
     }
 }
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
