@@ -179,6 +179,13 @@
 }
 -(void)toucheComtaionImageViewWith:(HomeFootModel *)model{
     CookDetailsViewController *cookD =[[CookDetailsViewController alloc]init];
+    NSString *strUrl = @"http://api.ecook.cn/public/getRecipeListByIds.shtml";
+    NSDictionary *dicPar = [NSDictionary dictionaryWithObjectsAndKeys:model.idFood,@"ids", nil];
+    NSDictionary *dicHeader = [NSDictionary dictionaryWithObjectsAndKeys:@"Content-Type: application/x-www-form-urlencoded",@"header", nil];
+    cookD.url = strUrl;
+    cookD.urlId = 12;
+    cookD.parDic = dicPar;
+    cookD.header = dicHeader;
     [self.navigationController pushViewController:cookD animated:YES];
     NSLog(@"%@",model.name);
 }
@@ -197,7 +204,7 @@
         cookD.url = urlStr;
         cookD.parDic = dicPar;
         cookD.header = dicHeader;
-        cookD.urlId = 1;
+        cookD.urlId = 11;
         [self.navigationController pushViewController:cookD animated:YES];
     
     }

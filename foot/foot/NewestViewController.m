@@ -93,8 +93,15 @@
     return 300;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    SelectionFoodModel *model = [self.newestArray objectAtIndex:indexPath.row];
     CookDetailsViewController *cookD = [[CookDetailsViewController alloc]init];
+    NSString *strUrl = [NSString stringWithFormat:@"http://api.douguo.net/recipe/detail/%@",model.aid];
+    NSDictionary *dicPar = [NSDictionary dictionaryWithObjectsAndKeys:@"0",@"author_id",@"4",@"client", nil];
+    NSDictionary *dicHeader = [NSDictionary dictionaryWithObjectsAndKeys:@"611.2",@"version", nil];
+    cookD.url = strUrl;
+    cookD.parDic = dicPar;
+    cookD.header = dicHeader;
+    cookD.urlId = 13;
     [self.navigationController pushViewController:cookD animated:YES];
     
 }
