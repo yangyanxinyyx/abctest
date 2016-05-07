@@ -33,6 +33,10 @@
     
     [self getMixResult];
     [self createCollection];
+    
+    //设置nav左返回按钮
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+    
 }
 
 -(void)createCollection
@@ -169,9 +173,10 @@
     self.tabBarController.hidesBottomBarWhenPushed = YES;
 }
 
--(void)viewWillDisappear:(BOOL)animated
+-(void)back
 {
     self.tabBarController.hidesBottomBarWhenPushed = NO;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
