@@ -9,7 +9,9 @@
 #define SCREEN_W [UIScreen mainScreen].bounds.size.width
 #define SCREEN_H [UIScreen mainScreen].bounds.size.height
 
+
 #import "MakeUpViewController.h"
+#import "MakeUpListViewController.h"
 #import "MixFoodCollectionViewCell.h"
 #import "NetworkRequestManager.h"
 #import "MixKindModel.h"
@@ -58,8 +60,9 @@
 //显示组合结果
 @property(nonatomic,strong)UIView *viewResult;
 @property(nonatomic,strong)UILabel *lableResultCount;
-
+//显示可做的菜的数量
 @property(nonatomic,strong)NSString *totalResult;
+
 
 @property(nonatomic,strong)NSTimer *timer;
 
@@ -87,6 +90,7 @@
     self.arraySelected = [NSMutableArray array];
     self.arrayButtomSelected = [NSMutableArray array];
     self.arrayCell = [NSMutableArray array];
+  
     
     [self requestData];
     [self setCollectionView];
@@ -277,7 +281,7 @@
             
         }
         if (self.isHave == NO) {
-            NSLog(@"22222");
+ 
             //弹出提示动画
             UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_W-200)/2, self.bottomView.frame.origin.y-38, 200, 38)];
             [self.view addSubview:lab];
@@ -322,11 +326,16 @@
         self.viewResult.layer.masksToBounds = YES;
         [self.bottomView addSubview:self.viewResult];
         self.viewResult.alpha = 0;
+        self.viewResult.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchResult)];
+        [self.viewResult addGestureRecognizer:tap];
+        
         
         self.lableResultCount = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_W/5/5, SCREEN_W/5-10, 20)];
         self.lableResultCount.textAlignment = NSTextAlignmentCenter;
         self.lableResultCount.textColor = [UIColor redColor];
         [self.viewResult addSubview:self.lableResultCount];
+        
         
         UILabel *labtext = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_W/5/5+20, SCREEN_W/5-10, 20)];
         labtext.text = @"可做菜式";
@@ -361,6 +370,33 @@
     _timer = nil;
 }
 
+#pragma mark- 点击菜的结果的执行的方法
+-(void)touchResult
+{
+    
+    if (self.lableResultCount.text.length>0 && ![self.lableResultCount.text  isEqualToString:@"0"]) {
+        
+        
+        
+        MakeUpListViewController *list = [[MakeUpListViewController alloc] init];
+        
+        NSMutableArray *array = [NSMutableArray array];
+        for (MixFoodModel *model in self.arraySelected) {
+            [array addObject:model.id];
+        }
+        list.dataArrayid = array;
+        
+        [self.navigationController pushViewController:list animated:YES];
+        
+        
+        
+    }else
+    {
+        NSLog(@"222");
+    }
+    
+}
+
 #pragma mark- 创建菜的按钮
 -(void)creatFoodButtom
 {
@@ -378,6 +414,8 @@
     [bu addTarget:self action:@selector(cancelChoose:) forControlEvents:UIControlEventTouchUpInside];
     [self.arrayButtomSelected addObject:bu];
     
+    
+    NSLog(@"%@",model.id);
 }
 
 #pragma mark- 点击删除选择的菜
@@ -611,6 +649,7 @@
 #pragma mark- 请求组合结果数据
 -(void)requestMixResult:(NSDictionary*)dic
 {
+
     [NetworkRequestManager requestWithType:POST urlString:@"http://api.izhangchu.com/" parDic:dic header:nil finish:^(NSData *data) {
         
         NSError *error = nil;
@@ -618,8 +657,10 @@
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
         
         NSDictionary *dicData = [dic valueForKey:@"data"];
-        NSString *total = [dicData valueForKey:@"total"];
+
+     
         
+        NSString *total = [dicData valueForKey:@"total"];
         self.totalResult = total;
         
         dispatch_async(dispatch_get_main_queue(), ^{
