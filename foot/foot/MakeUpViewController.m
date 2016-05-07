@@ -435,7 +435,9 @@
     }
   
     for (MixFoodCollectionViewCell *cell in self.arrayCell) {
-        if (bu.titleLabel.text == cell.labelName.text) {
+        NSLog(@"%@",cell.labelName.text);
+        NSLog(@"%@",bu.titleLabel.text);
+        if ([bu.titleLabel.text isEqualToString:cell.labelName.text]) {
             cell.viewBack.backgroundColor = [UIColor clearColor];
             cell.imageSelect.image = nil;
         }
@@ -459,8 +461,7 @@
     {
         [self getMixResult];
     }
-  //刷新一下
-    [self.mixFoodCollectionView reloadData];
+
 }
 
 
