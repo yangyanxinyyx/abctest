@@ -79,7 +79,15 @@
     _height = -64;
     
     [self createScrollView];
-    [self loadData];
+    
+    if (self.urlId != 2) {
+        [self loadData];
+    }
+    else
+    {
+        [self loadDataFromKMakeDoodMateria];
+    }
+    
 }
 
 #pragma -mark 创建底部scrollView
@@ -89,8 +97,11 @@
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_H)];
     [self.view addSubview:self.scrollView];
     self.scrollView.delegate = self;
+    self.scrollView.bounces = NO;
     
     self.topImageView.frame = CGRectMake(0, _height, SCREEN_W, SCREEN_W/1.5);
+    self.topImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.topImageView.clipsToBounds = YES;
     
     _height += SCREEN_W/1.5;
     self.nameLabel.frame = CGRectMake(0, _height, SCREEN_W, 50);
@@ -115,7 +126,7 @@
     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
     
     //判断数据来源
-    if (self.urlId == 3) {
+    if (self.urlId == 3 || self.urlId == 12) {
         NSArray *array = dictionary[@"list"];
         NSDictionary *dic = array[0];
         self.detailsModel.topImage = [NSString stringWithFormat:@"http://pic.ecook.cn/web/%@.jpg",dic[@"imageid"]];
@@ -153,6 +164,52 @@
         self.detailsModel.tipArray = tipArray;
     }
     
+    if (self.urlId == 11 || self.urlId == 13) {
+        
+        NSDictionary *dic1 = dictionary[@"result"];
+        NSDictionary *dic = dic1[@"recipe"];
+        if ([dic[@"cook_difficulty"] length] > 0) {
+            self.detailsModel.level = dic[@"cook_difficulty"];
+        }
+        if ([dic[@"cook_time"] length] > 0) {
+            self.detailsModel.cookTime = dic[@"cook_time"];
+        }
+        self.detailsModel.name = dic[@"title"];
+        self.detailsModel.topImage = dic[@"image"];
+        self.detailsModel.introduce = dic[@"cookstory"];
+        
+        //材料
+        NSMutableArray *materaArray = [NSMutableArray array];
+        for (NSDictionary *dict in dic[@"major"]) {
+            
+            MateriaModel *model = [[MateriaModel alloc] init];
+            model.materia = dict[@"title"];
+            model.dosage = dict[@"羊排"];
+            [materaArray addObject:model];
+            
+        }
+        self.detailsModel.materiaArray = materaArray;
+        
+        //步骤
+        NSMutableArray *stepArray = [NSMutableArray array];
+        for (NSDictionary *dict in dic[@"cookstep"]) {
+            
+            StepModel *step = [[StepModel alloc] init];
+            step.stepImage = dict[@"image"];
+            step.stepDetails = dict[@"content"];
+            NSNumber *num = dict[@"position"];
+            step.ordernum = [num integerValue];
+            [stepArray addObject:step];
+        }
+        self.detailsModel.stepArray = stepArray;
+        
+        //小提示
+        if ([dic[@"tips"] length] > 0) {
+            self.detailsModel.tipArray = @[dic[@"tips"]];
+        }
+        
+    }
+    
     [self performSelectorOnMainThread:@selector(doMain) withObject:nil waitUntilDone:YES];
     
 } error:^(NSError *error) {
@@ -173,6 +230,12 @@
     [self.scrollView addSubview:self.collectView];
     
     _height += 35;
+    
+    //过渡性
+    UIView *lineView1 = [[UIView alloc] initWithFrame:CGRectMake(0, _height + 3, SCREEN_W, 1)];
+    [self.scrollView addSubview:lineView1];
+    lineView1.backgroundColor = Color(230, 230, 230, 1);
+    
     //描述
     if (self.detailsModel.introduce.length > 0) {
         UILabel *detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, _height + 10, SCREEN_W - 30, 0)];
@@ -187,8 +250,13 @@
         _height += frame.size.height + 10;
     }
     
+    //过渡性
+    UIView *lineView2 = [[UIView alloc] initWithFrame:CGRectMake(0, _height + 3, SCREEN_W, 1)];
+    [self.scrollView addSubview:lineView2];
+    lineView2.backgroundColor = Color(230, 230, 230, 1);
+    
     //食材
-    UIView *redView = [[UIView alloc] initWithFrame:CGRectMake(10, _height + 20 , 3, 20)];
+    UIView *redView = [[UIView alloc] initWithFrame:CGRectMake(10, _height + 30 , 3, 20)];
     [self.scrollView addSubview:redView];
     redView.backgroundColor = Color(228, 53, 42, 1);
     
@@ -213,6 +281,12 @@
         
     }
    
+    //过渡性
+    UIView *lineView3 = [[UIView alloc] initWithFrame:CGRectMake(0, _height + 15, SCREEN_W, 1)];
+    [self.scrollView addSubview:lineView3];
+    lineView3.backgroundColor = Color(230, 230, 230, 1);
+    
+    
     //烹饪步骤
     UIView *redView1 = [[UIView alloc] initWithFrame:CGRectMake(10, _height + 30 , 3, 20)];
     [self.scrollView addSubview:redView1];
@@ -236,6 +310,10 @@
         NSLog(@"%f",stepView.frame.size.height);
     }
     
+    //过渡性
+    UIView *lineView4 = [[UIView alloc] initWithFrame:CGRectMake(0, _height + 10, SCREEN_W, 1)];
+    [self.scrollView addSubview:lineView4];
+    lineView4.backgroundColor = Color(230, 230, 230, 1);
     
     //小贴士
     UIView *redView2 = [[UIView alloc] initWithFrame:CGRectMake(10, _height + 30 , 3, 20)];
@@ -260,19 +338,104 @@
     
     self.scrollView.contentSize = CGSizeMake(SCREEN_W, _height + 10);
 }
+
+
+#pragma -mark  加载来自食材组合的数据
+//食材
+-(void)loadDataFromKMakeDoodMateria
+{
+    NSDictionary *parDic = [NSDictionary dictionaryWithObjectsAndKeys:@"DishesMaterial",@"methodName",self.foodId,@"dishes_id",@"4.40",@"version" ,nil];
+    [NetworkRequestManager requestWithType:POST urlString:self.url parDic:parDic header:nil finish:^(NSData *data) {
+        
+        self.detailsModel.name = self.foodName;
+        self.detailsModel.introduce = self.content;
+        
+        NSError *errer;
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&errer];
+        NSMutableArray *materialArray = [NSMutableArray array];
+        for (NSDictionary *dic in dictionary[@"data"][@"material"]) {
+            
+            MateriaModel *materia = [[MateriaModel alloc] init];
+            materia.materia = dic[@"material_name"];
+            materia.dosage = dic[@"material_weight"];
+            [materialArray addObject:materia];
+            
+        }
+        self.detailsModel.materiaArray = materialArray;
+        
+        [self performSelectorOnMainThread:@selector(loadCookStep) withObject:nil waitUntilDone:YES];
+        
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
+
+//加载步骤
+-(void)loadCookStep
+{
+     NSDictionary *parDic = [NSDictionary dictionaryWithObjectsAndKeys:@"DishesView",@"methodName",self.foodId,@"dishes_id",@"4.40",@"version" ,nil];
+    [NetworkRequestManager requestWithType:POST urlString:self.url parDic:parDic header:nil finish:^(NSData *data) {
+        
+        NSError *errer;
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&errer];
+        self.detailsModel.topImage = dictionary[@"image"];
+        self.detailsModel.level = dictionary[@"hard_level"];
+        self.detailsModel.cookTime = dictionary[@"cooking_time"];
+        NSMutableArray *stepArray = [NSMutableArray array];
+        for (NSDictionary *dic in dictionary[@"data"][@"step"]) {
+            
+            StepModel *step = [[StepModel alloc] init];
+            step.stepDetails = dic[@"dishes_step_desc"];
+            step.stepImage = dic[@"dishes_step_image"];
+            step.ordernum = [dic[@"dishes_step_order"] integerValue];
+            [stepArray addObject:step];
+            
+        }
+        self.detailsModel.stepArray = stepArray;
+        
+        [self performSelectorOnMainThread:@selector(loadCookTip) withObject:nil waitUntilDone:YES];
+        
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
+
+//加载小提示
+-(void)loadCookTip
+{
+    NSDictionary *parDic = [NSDictionary dictionaryWithObjectsAndKeys:@"DishesCommensense",@"methodName",self.foodId,@"dishes_id",@"4.40",@"version" ,nil];
+    [NetworkRequestManager requestWithType:POST urlString:self.url parDic:parDic header:nil finish:^(NSData *data) {
+        
+        NSError *errer;
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&errer];
+        
+        self.detailsModel.tipArray = @[dictionary[@"data"][@"production_direction"]];
+        
+        [self performSelectorOnMainThread:@selector(doMain) withObject:nil waitUntilDone:YES];
+        
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
     
+}
+
 #pragma -mark  scrollView 滑动
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     if (scrollView.contentOffset.y < _navScaleHeight) {
         [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:scrollView.contentOffset.y / _navScaleHeight];
         self.navigationItem.title = @"";
+        self.navigationItem.rightBarButtonItem = nil;
     }
     else
     {
         [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1];
         
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setImage:[UIImage imageNamed:@"未收藏"] forState:UIControlStateNormal];
+        button.frame = CGRectMake(0, 0, 25, 25);
         self.navigationItem.title = self.detailsModel.name;
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     }
 }
 
@@ -284,6 +447,10 @@
 
     [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:0];
     self.navigationController.navigationBar.translucent = YES;
+    
+    if (self.urlId == 11 || self.urlId == 12) {
+        self.tabBarController.hidesBottomBarWhenPushed = YES;
+    }
    
 }
 
@@ -291,7 +458,14 @@
 {
     [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1];
     self.navigationController.navigationBar.translucent = NO;
+    
+    if (self.urlId == 11 || self.urlId == 12) {
+        self.tabBarController.hidesBottomBarWhenPushed = NO;
+    }
 }
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

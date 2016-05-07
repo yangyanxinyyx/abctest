@@ -15,4 +15,8 @@
 @property(nonatomic,strong)NSDictionary *header;
 @property(nonatomic,assign)NSInteger urlId;
 
+@property(nonatomic,strong)NSString *content; //食材组合 需要传的菜品描述
+@property(nonatomic,strong)NSString *foodName; //食材组合 传菜名
+@property(nonatomic,strong)NSString *foodId;   //食材组合 传菜id
+
 @end

@@ -28,7 +28,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"今日最新";
+    self.navigationItem.title = @"今日最新";    
+    //设置nav左返回按钮
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
     flag = 0;
     self.newestArray = [NSMutableArray array];
     self.newestTab = [[UITableView alloc]initWithFrame:CGRectMake(0,0, KScreenWidth, KScreenHeight-64+10) style:UITableViewStylePlain];
@@ -101,7 +103,7 @@
     cookD.url = strUrl;
     cookD.parDic = dicPar;
     cookD.header = dicHeader;
-    cookD.urlId = 11;
+    cookD.urlId = 13;
     [self.navigationController pushViewController:cookD animated:YES];
     
 }
@@ -114,6 +116,13 @@
     [self.newestTab.footer endRefreshing];
     
 }
+
+-(void)back
+{
+    self.tabBarController.hidesBottomBarWhenPushed = NO;
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma -mark  tabBar的隐藏和显示
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -122,7 +131,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    self.tabBarController.hidesBottomBarWhenPushed = NO;
+    
 }
 
 
