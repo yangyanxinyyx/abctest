@@ -65,7 +65,7 @@
     [self.view addSubview:self.tab];
     
     [self getDataWith:@"0"];
-    [self.tab addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(footRefreshing)];
+    
 
   }
 
@@ -96,7 +96,6 @@
         cell = [[SelectionTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
     }
         [cell.selectImageView sd_setImageWithURL:[NSURL URLWithString:model.img]];
-
         cell.labelName.text = model.n;
         cell.labelBrowse.text = [NSString stringWithFormat:@"%@浏览",model.vc];
         cell.labelCollect.text = [NSString stringWithFormat:@"·  %@收藏",model.fc];
@@ -155,7 +154,9 @@
                 }
 
             }
-            [self.tab reloadData];
+       
+            [self performSelectorOnMainThread:@selector(doMainThread) withObject:nil waitUntilDone:YES];
+     
         }
         else {
             NSLog(@"失败");
@@ -164,6 +165,11 @@
     } error:^(NSError *error) {
         
     }];
+}
+#pragma mark 回主线程更新UI
+-(void)doMainThread{
+        [self.tab reloadData];
+        [self.tab addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(footRefreshing)];
 }
 #pragma firstCell的代理方法
 #pragma mark- 点击视频和今日最新的按钮方法
@@ -216,12 +222,39 @@
     [self getDataWith:number];
     [self.tab.footer endRefreshing];
 }
+#pragma mark uitextField的代理方法
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
     [self.view endEditing:YES];
 
 }
+#pragma mark- 点击搜索按钮的方法
 -(void)touchButtonSearch{
     SearchViewController *searchVC  = [[SearchViewController alloc]init];
     [self.navigationController pushViewController:searchVC animated:YES];
 }
+#pragma mark scrollView的方法
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+  
+//    if (scrollView.y == 636) {
+//        scrollView.contentOffset.y = 636;
+//    }
+    
+//  CGPoint offset = scrollView.contentOffset;
+//   
+//    NSInteger offsetY = offset.y;
+//     NSLog(@"%ld",offsetY);
+//    if (offsetY>630 && offsetY<650) {
+//   
+//        self.tab.scrollEnabled = !self.tab.scrollEnabled;
+//        self.tab.contentOffset = CGPointMake(0, 635);
+//   
+//    }
+//    
+    
+}
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    self.tab.scrollEnabled = YES;
+}
+
+
 @end

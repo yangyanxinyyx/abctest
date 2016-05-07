@@ -459,8 +459,8 @@
     {
         [self getMixResult];
     }
-  
-    
+  //刷新一下
+    [self.mixFoodCollectionView reloadData];
 }
 
 

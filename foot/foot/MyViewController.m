@@ -50,7 +50,7 @@
     [self.view addSubview:_imageView];
     
     
-    self.tabMy = [[UITableView alloc]initWithFrame:CGRectMake(0, 100, KScreenWidth, KScreenHeight -64 -49) style:UITableViewStyleGrouped];
+    self.tabMy = [[UITableView alloc]initWithFrame:CGRectMake(0, 100, KScreenWidth, KScreenHeight -64 -49-100) style:UITableViewStyleGrouped];
     self.tabMy.delegate = self;
     self.tabMy.dataSource = self;
     [self.view addSubview:self.tabMy];
@@ -135,7 +135,7 @@
         MyProblemViewController *myproblemV = [[MyProblemViewController alloc]init];
         [self.navigationController pushViewController:myproblemV animated:YES];
     }else if ([str isEqualToString:@"联系客服"]){
-        UIAlertController *alertC = [UIAlertController  alertControllerWithTitle:@"如有遇到什么奇葩问题可以联系下面电话" message:@"110-13336525635" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alertC = [UIAlertController  alertControllerWithTitle:@"如有遇到什么奇葩问题可以联系下面电话" message:@"13336525635" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
         }];
@@ -145,7 +145,7 @@
         }];
         
     }else if ([str isEqualToString:@"检查更新"]){
-        UIAlertController *alertC = [UIAlertController  alertControllerWithTitle:@"该软件暂无法更新!!请期待" message:@"非常感谢您" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alertC = [UIAlertController  alertControllerWithTitle:@"当前已是最新版本!!" message:@"版本为：1.0.1" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
         }];
@@ -156,20 +156,14 @@
     }else if ([str isEqualToString:@"清楚缓存"]){
         UIAlertController *alertC = [UIAlertController  alertControllerWithTitle:@"是否要清楚缓存" message:@"现在缓存位M" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            //清楚缓冲中的数据
             NSString *cache = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)lastObject];
             NSLog(@"%@",cache);
             NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:cache error:NULL];
             for (NSString *fileName in contents) {
                 [[NSFileManager defaultManager] removeItemAtPath:[cache stringByAppendingPathComponent:fileName] error:nil];
                             }
-            
-            /*
-//            NSString *cache = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"XRCarousel"];
-//            NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:cache error:NULL];
-//            for (NSString *fileName in contents) {
-//                [[NSFileManager defaultManager] removeItemAtPath:[cache stringByAppendingPathComponent:fileName] error:nil];
-//            }
-             */
+        
             
         }];
         UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
