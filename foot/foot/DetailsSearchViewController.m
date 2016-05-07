@@ -14,6 +14,7 @@
 #import "UIImageView+WebCache.h"
 #import "DataBaseUtil.h"
 #import "HistoryModel.h"
+#import "CookDetailsViewController.h"
 @interface DetailsSearchViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong)UITextField *textF;
 @property (nonatomic,strong)UITableView *tabDetails;
@@ -90,6 +91,22 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 300;
+}
+#pragma mark 点击cell
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    CookDetailsViewController *cookD = [[CookDetailsViewController alloc]init];
+    DetailsModel *model = [self.detailsArray objectAtIndex:indexPath.row];
+    NSString *urlStr = [NSString stringWithFormat:@"http://api.douguo.net/recipe/detail/%@",model.id];
+    NSDictionary *dicPar = [NSDictionary dictionaryWithObjectsAndKeys:@"4",@"client",@"0",@"author_id", nil];
+    NSDictionary *dicHeader = [NSDictionary dictionaryWithObjectsAndKeys:@"application/x-www-form-urlencoded; charset=utf-8",@"Content-Type",@"611.2",@"version", nil];
+    cookD.url = urlStr;
+    cookD.parDic = dicPar;
+    cookD.header = dicHeader;
+    cookD.urlId = 14;
+    [self.navigationController pushViewController:cookD animated:YES];
+    
+    
 }
 #pragma mark 获取数据
 -(void)getDataWith:(NSString *)content{
