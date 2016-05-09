@@ -24,7 +24,7 @@
     
 #pragma mark- 创建数据库
     [[DataBaseUtil shareDataBase]createTable];
-    
+    [[DataBaseUtil shareDataBase] createCollectTable];
     return YES;
 }
 

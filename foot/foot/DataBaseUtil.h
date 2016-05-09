@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "HistoryModel.h"
+#import "CollectModel.h"
 @interface DataBaseUtil : NSObject
 //单列
 +(instancetype)shareDataBase;
@@ -23,4 +24,16 @@
 -(NSArray *)selectModel;
 //查询单个对象
 -(HistoryModel *)selectModelWithContent:(NSString *)content;
+
+
+//收藏
+-(BOOL)createCollectTable;
+
+-(BOOL)insertCollectModel:(CollectModel *)model;
+
+-(BOOL)deleteCollectWithFoodName:(NSString *)name urlId:(NSString *)urlId;
+
+-(CollectModel *)selectCollectWithFoodName:(NSString *)name urlId:(NSString *)urlId;
+
+-(NSArray*)selectCollectModel;
 @end

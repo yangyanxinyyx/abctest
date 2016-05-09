@@ -17,6 +17,10 @@
 #import "MateriaView.h"
 #import "StepView.h"
 #import "TipView.h"
+
+#import "CollectModel.h"
+#import "DataBaseUtil.h"
+
 #define SCREEN_W [UIScreen mainScreen].bounds.size.width
 #define SCREEN_H [UIScreen mainScreen].bounds.size.height
 #define Color(x,y,z,a) [UIColor colorWithRed:x/255.0 green:y/255.0 blue:z/255.0 alpha:a]
@@ -32,6 +36,7 @@
 @property(nonatomic,strong)UILabel *nameLabel; //菜名label
 @property(nonatomic,strong)CollectAndTimeView *collectView; //收藏,难度,时间 view
 @property(nonatomic,strong)FoodDetailsModel *detailsModel;
+@property(nonatomic,strong)UIButton *navCollectButton;
 
 @end
 
@@ -226,7 +231,21 @@
     self.nameLabel.text = self.detailsModel.name;
     
     _height += 50;
-    self.collectView = [[CollectAndTimeView alloc] initWithFrame:CGRectMake(0, _height, SCREEN_W, 35) level:self.detailsModel.level collectIcom:[UIImage imageNamed:@"未收藏"] time:self.detailsModel.cookTime];
+    
+    UIImage *collectImage;
+    CollectModel *oneCollect = [[DataBaseUtil shareDataBase] selectCollectWithFoodName:self.detailsModel.name urlId:[NSString stringWithFormat:@"%ld",self.urlId]];
+    if ([oneCollect.foodName isEqualToString:self.detailsModel.name] && [oneCollect.urlId isEqualToString:[NSString stringWithFormat:@"%ld",self.urlId]]) {
+        
+        collectImage = [UIImage imageNamed:@"收藏"];
+    }
+    else
+    {
+        collectImage = [UIImage imageNamed:@"未收藏"];
+    }
+    
+    self.collectView = [[CollectAndTimeView alloc] initWithFrame:CGRectMake(0, _height, SCREEN_W, 35) level:self.detailsModel.level collectIcom:collectImage time:self.detailsModel.cookTime];
+    
+    [self.collectView.collectButton addTarget:self action:@selector(touchCollectButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollView addSubview:self.collectView];
     
     _height += 35;
@@ -307,7 +326,6 @@
         
         _height += stepView.frame.size.height + 15;
         
-        NSLog(@"%f",stepView.frame.size.height);
     }
     
     //过渡性
@@ -426,18 +444,72 @@
     if (scrollView.contentOffset.y < _navScaleHeight) {
         [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:scrollView.contentOffset.y / _navScaleHeight];
         self.navigationItem.title = @"";
+        self.navCollectButton = nil;
         self.navigationItem.rightBarButtonItem = nil;
     }
     else
     {
         [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:1];
         
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button setImage:[UIImage imageNamed:@"未收藏"] forState:UIControlStateNormal];
-        button.frame = CGRectMake(0, 0, 25, 25);
-        self.navigationItem.title = self.detailsModel.name;
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+        if (!self.navCollectButton) {
+            
+            UIImage *collectImage;
+            CollectModel *oneCollect = [[DataBaseUtil shareDataBase] selectCollectWithFoodName:self.detailsModel.name urlId:[NSString stringWithFormat:@"%ld",self.urlId]];
+            if ([oneCollect.foodName isEqualToString:self.detailsModel.name] && [oneCollect.urlId isEqualToString:[NSString stringWithFormat:@"%ld",self.urlId]]) {
+                
+                collectImage = [UIImage imageNamed:@"收藏"];
+            }
+            else
+            {
+                collectImage = [UIImage imageNamed:@"未收藏"];
+            }
+            
+            self.navCollectButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            [self.navCollectButton setImage:collectImage forState:UIControlStateNormal];
+            _navCollectButton.frame = CGRectMake(0, 0, 25, 25);
+            self.navigationItem.title = self.detailsModel.name;
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_navCollectButton];
+            [self.navCollectButton addTarget:self action:@selector(touchCollectButton:) forControlEvents:UIControlEventTouchUpInside];
+        }
+        
+        
     }
+}
+
+#pragma -mark  点击收藏
+-(void)touchCollectButton:(UIButton *)button
+{
+    CollectModel *collect = [[CollectModel alloc] init];
+    collect.topImage = self.detailsModel.topImage;
+    collect.foodName = self.detailsModel.name;
+    collect.content = self.detailsModel.introduce;
+    collect.foodId = self.foodId;
+    collect.url = self.url;
+    collect.urlId = [NSString stringWithFormat:@"%ld",self.urlId];
+    collect.header = self.header;
+    collect.parDic = self.parDic;
+    
+    if (self.urlId == 2) {
+        collect.materiaDic = [NSDictionary dictionaryWithObjectsAndKeys:@"DishesMaterial",@"methodName",self.foodId,@"dishes_id",@"4.40",@"version" ,nil];
+        collect.stepDic = [NSDictionary dictionaryWithObjectsAndKeys:@"DishesView",@"methodName",self.foodId,@"dishes_id",@"4.40",@"version" ,nil];
+        collect.tipDic = [NSDictionary dictionaryWithObjectsAndKeys:@"DishesCommensense",@"methodName",self.foodId,@"dishes_id",@"4.40",@"version" ,nil];
+    }
+    
+    CollectModel *oneCollect = [[DataBaseUtil shareDataBase] selectCollectWithFoodName:collect.foodName urlId:collect.urlId];
+    if ([oneCollect.foodName isEqualToString:collect.foodName] && [oneCollect.urlId isEqualToString:collect.urlId]) {
+        [[DataBaseUtil shareDataBase] deleteCollectWithFoodName:collect.foodName urlId:collect.urlId];
+        [self.collectView.collectButton setImage:[UIImage imageNamed:@"未收藏"] forState:UIControlStateNormal];
+        [_navCollectButton setImage:[UIImage imageNamed:@"未收藏"] forState:UIControlStateNormal];
+        
+    }
+    else
+    {
+        [[DataBaseUtil shareDataBase] insertCollectModel:collect];
+        [self.collectView.collectButton setImage:[UIImage imageNamed:@"收藏"] forState:UIControlStateNormal];
+        [_navCollectButton setImage:[UIImage imageNamed:@"收藏"] forState:UIControlStateNormal];
+       
+    }
+    
 }
 
 
