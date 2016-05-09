@@ -14,6 +14,8 @@
     if (self = [super initWithFrame:frame]) {
         self.layer.cornerRadius = 5;
         self.layer.masksToBounds = YES;
+        self.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        self.layer.borderWidth = 0.5;
 #pragma mark第一张图片
        self.shapedImageV = [[ShapedImageView alloc]initWithFrame:CGRectMake(0,0, frame.size.width,(frame.size.height -50)/3)];
         [self addSubview:_shapedImageV];

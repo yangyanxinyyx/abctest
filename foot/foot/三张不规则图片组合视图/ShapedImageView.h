@@ -19,5 +19,4 @@
 @property (nonatomic,strong)UILabel *labelIntroduce;
 
 -(void)setup;
--(void)toucheImageView;
 @end
