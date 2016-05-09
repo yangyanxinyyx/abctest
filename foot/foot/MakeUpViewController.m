@@ -425,7 +425,7 @@
     UIButton *bu = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.bottomView addSubview:bu];
     bu.tag = self.arraySelected.count;
-    bu.backgroundColor = [UIColor orangeColor];
+    [bu setBackgroundImage:[UIImage imageNamed:@"等待占位图"] forState:UIControlStateNormal];
     bu.layer.cornerRadius = (SCREEN_W/5*4-110)/3/2;
     bu.layer.masksToBounds = YES;
     bu.frame = CGRectMake(20+(30+(SCREEN_W/5*4-110)/3) * (self.arraySelected.count-1), (self.bottomView.frame.size.height-(SCREEN_W/5*4-110)/3)/2, (SCREEN_W/5*4-110)/3, (SCREEN_W/5*4-110)/3);

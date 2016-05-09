@@ -14,6 +14,7 @@
 #import "DataBaseUtil.h"
 #import "CollectModel.h"
 #import "UIImageView+WebCache.h"
+#import "CookDetailsViewController.h"
 
 @interface MyCollectViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
@@ -35,13 +36,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    self.navigationItem.title = @"历史收藏";
     [self createColl];
     
     
     
     //设置nav左返回按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+    
+    //设置nav右边删除全部按钮
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"删除全部" style:UIBarButtonItemStylePlain target:self action:@selector(deleteAll)];
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
     
 }
 
@@ -84,6 +89,31 @@
     
     cell.labelName.text = model.foodName;
     return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CookDetailsViewController *cook = [[CookDetailsViewController alloc] init];
+    
+    CollectModel *model = [self.dataArrayColl objectAtIndex:indexPath.row];
+    
+    cook.url = model.url;
+    cook.parDic = model.parDic;
+    cook.header = model.header;
+    cook.urlId = [model.urlId integerValue];
+    cook.content = model.content;
+    cook.foodName = model.foodName;
+    cook.foodId = model.foodId;
+    
+    
+    
+    [self.navigationController pushViewController:cook animated:YES];
+}
+
+-(void)deleteAll
+{
+    [[DataBaseUtil shareDataBase] deleteCollectAll];
+    [_collectColl reloadData];
 }
 
 -(void)viewWillAppear:(BOOL)animated

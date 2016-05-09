@@ -34,7 +34,8 @@
     [super layoutSubviews];
     
     self.imageV.frame = self.contentView.frame;
-    self.imageV.backgroundColor = [UIColor redColor];
+    self.imageV.contentMode = UIViewContentModeScaleAspectFill;
+    self.imageV.clipsToBounds = YES;
     
     //添加一个渐变色
     self.layerView = [[UIView alloc] initWithFrame:CGRectMake(0, Cell_W - 30, Cell_W, 30)];
