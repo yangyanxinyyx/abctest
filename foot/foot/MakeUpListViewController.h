@@ -11,5 +11,6 @@
 @interface MakeUpListViewController : FoodViewController
 
 @property(nonatomic,strong)NSMutableArray *dataArrayid;
+@property(nonatomic,strong)NSString *foodtotal;
 
 @end
