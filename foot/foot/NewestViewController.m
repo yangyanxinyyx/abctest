@@ -28,12 +28,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"今日最新";    
-    //设置nav左返回按钮
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
     flag = 0;
     self.newestArray = [NSMutableArray array];
-    self.newestTab = [[UITableView alloc]initWithFrame:CGRectMake(0,0, KScreenWidth, KScreenHeight-64+10) style:UITableViewStylePlain];
+
+#pragma mark- 自定义导航栏视图
+    self.navigationController.navigationBarHidden = YES;
+    UIView *navigationView = [[UIView alloc]initWithFrame:CGRectMake(0, 20, KScreenWidth, 44)];
+    UIImage *image =[UIImage imageNamed:@"back"];
+    UIButton *leftButtonImageV  =[UIButton buttonWithType:UIButtonTypeCustom];
+    leftButtonImageV.frame = CGRectMake(5, 5, 44, 44);
+    [navigationView addSubview:leftButtonImageV];
+    [leftButtonImageV setImage:image forState:UIControlStateNormal];
+    [leftButtonImageV addTarget:self action:@selector(toComeBack) forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:navigationView];
+    
+    UILabel *labeTitle  =[[UILabel alloc]initWithFrame:CGRectMake(60, 10, 100, 30)];
+    labeTitle.text = @"今日最新";
+    labeTitle.textColor = [UIColor orangeColor ];
+    [navigationView addSubview:labeTitle];
+    
+#pragma mark UITableView 创建
+    self.newestTab = [[UITableView alloc]initWithFrame:CGRectMake(0,64, KScreenWidth, KScreenHeight-64+10) style:UITableViewStylePlain];
     self.newestTab.delegate = self;
     self.newestTab.dataSource = self;
     [self.view addSubview:self.newestTab];
@@ -63,8 +78,6 @@
             [self performSelectorOnMainThread:@selector(doMainThread) withObject:nil waitUntilDone:nil ];
             
         }
-
-        NSLog(@"%@",dic);
     } error:^(NSError *error) {
         
     }];
@@ -117,23 +130,22 @@
     
 }
 
--(void)back
-{
-    self.tabBarController.hidesBottomBarWhenPushed = NO;
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 #pragma -mark  tabBar的隐藏和显示
 -(void)viewWillAppear:(BOOL)animated
-{
+{   self.navigationController.navigationBarHidden = YES;
     self.tabBarController.hidesBottomBarWhenPushed = YES;
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    
+    self.navigationController.navigationBarHidden = NO;
 }
-
+#pragma mark - 
+-(void)toComeBack{
+     self.tabBarController.hidesBottomBarWhenPushed = NO;
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 
 @end

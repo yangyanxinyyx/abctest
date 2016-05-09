@@ -8,7 +8,7 @@
 //
 #define KScreenWidth [UIScreen mainScreen].bounds.size.width
 #define KScreenHeight [UIScreen mainScreen].bounds.size.height
-
+#define ColorBack     [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1]
 #import "VideoTableViewCell.h"
 
 @implementation VideoTableViewCell
@@ -21,7 +21,7 @@
         [viewBack addSubview:self.labelBrowse_Collerc];
 
         UIView *viewGray = [[UIView alloc]initWithFrame:CGRectMake(0, 300-10, KScreenWidth, 10)];
-        viewGray.backgroundColor = [UIColor lightGrayColor];
+        viewGray.backgroundColor = ColorBack;
         [viewBack addSubview:viewGray];
     }
     return  self;

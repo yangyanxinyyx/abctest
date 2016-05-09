@@ -8,6 +8,7 @@
 #define KScreenWidth [UIScreen mainScreen].bounds.size.width
 #define KScreenHeight [UIScreen mainScreen].bounds.size.height
 
+#define ColorBack     [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1]
 #import "SelectionTableViewCell.h"
 #import "UIImageView+WebCache.h"
 @implementation SelectionTableViewCell
@@ -22,7 +23,7 @@
         [viewBack addSubview:self.labelBrowse];
         [viewBack addSubview:self.labelCollect];
         UIView *viewGray = [[UIView alloc]initWithFrame:CGRectMake(0, 300-10, KScreenWidth, 10)];
-        viewGray.backgroundColor = [UIColor lightGrayColor];
+        viewGray.backgroundColor = ColorBack;
         [viewBack addSubview:viewGray];
     }
     return  self;

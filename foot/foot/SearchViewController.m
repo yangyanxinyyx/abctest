@@ -9,6 +9,8 @@
 //
 #define KScreenWidth [UIScreen mainScreen].bounds.size.width
 #define KScreenHeight [UIScreen mainScreen].bounds.size.height
+#define ColorBack     [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1]
+
 #import "SearchViewController.h"
 #import "FireTableViewCell.h"
 #import "DetailsSearchViewController.h"
@@ -33,7 +35,7 @@
     self.navigationItem.titleView = self.textF;
     self.textF.placeholder = @"输入菜谱名、食材名";
     self.textF.clearButtonMode = UITextFieldViewModeAlways;
-    self.textF.backgroundColor = [UIColor grayColor];
+    self.textF.backgroundColor = ColorBack;
     self.textF.layer.cornerRadius = 5;
     self.textF.layer.masksToBounds = YES;
     UIImage *imageSearch = [UIImage imageNamed:@"搜索"];
@@ -90,7 +92,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, 40)];
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 10, 20, 20)];
-    view.backgroundColor = [UIColor lightGrayColor];
+    view.backgroundColor = ColorBack;
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(30, 10, KScreenWidth-60, 20)];
     label.font = [UIFont systemFontOfSize:12];
     if (section == 0) {

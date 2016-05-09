@@ -6,6 +6,8 @@
 //  Created by lanou on 16/5/4.
 //  Copyright © 2016年 念恩. All rights reserved.
 //
+#define KScreenWidth [UIScreen mainScreen].bounds.size.width
+#define KScreenHeight [UIScreen mainScreen].bounds.size.height
 
 #import "VideoViewController.h"
 #import "NetworkRequestManager.h"
@@ -29,10 +31,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     flag = 0;
-    self.view.backgroundColor = [UIColor redColor];
-    self.navigationItem.title = @"视频推荐";
+    self.view.backgroundColor = [UIColor whiteColor];
     self.arrayVideo = [NSMutableArray array];
-    self.tabVideo = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    
+#pragma mark- 自定义导航栏视图
+    self.navigationController.navigationBarHidden = YES;
+    UIView *navigationView = [[UIView alloc]initWithFrame:CGRectMake(0, 20, KScreenWidth, 44)];
+    UIImage *image =[UIImage imageNamed:@"back"];
+    UIButton *leftButtonImageV  =[UIButton buttonWithType:UIButtonTypeCustom];
+    leftButtonImageV.frame = CGRectMake(5, 5, 44, 44);
+    [navigationView addSubview:leftButtonImageV];
+    [leftButtonImageV setImage:image forState:UIControlStateNormal];
+    [leftButtonImageV addTarget:self action:@selector(toComeBack) forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:navigationView];
+    
+    UILabel *labeTitle  =[[UILabel alloc]initWithFrame:CGRectMake(60, 10, 100, 30)];
+    labeTitle.text = @"视频推荐";
+    labeTitle.textColor = [UIColor orangeColor ];
+    [navigationView addSubview:labeTitle];
+    
+#pragma mark  UITableView
+    
+    self.tabVideo = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, KScreenWidth, KScreenHeight-64) style:UITableViewStylePlain];
     self.tabVideo.delegate = self;
     self.tabVideo.dataSource = self;
     [self.view addSubview:self.tabVideo];
@@ -98,18 +118,21 @@
 }
 
 
-
-
-
 #pragma -mark  tabBar的隐藏和显示
 -(void)viewWillAppear:(BOOL)animated
-{
+{   self.navigationController.navigationBarHidden = YES;
     self.tabBarController.hidesBottomBarWhenPushed = YES;
 }
 
 -(void)viewWillDisappear:(BOOL)animated
-{
+{    self.navigationController.navigationBarHidden = NO;
     self.tabBarController.hidesBottomBarWhenPushed = NO;
 }
-
+#pragma mark - 返回上一页
+-(void)toComeBack{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    
+}
 @end

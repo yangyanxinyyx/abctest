@@ -7,6 +7,8 @@
 //
 #define KScreenWidth [UIScreen mainScreen].bounds.size.width
 #define KScreenHeight [UIScreen mainScreen].bounds.size.height
+#define ColorBack     [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1]
+
 #import "PlayVideoViewController.h"
 #import "NetworkRequestManager.h"
 @interface PlayVideoViewController ()
@@ -20,7 +22,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor grayColor];
+    
+#pragma mark- 自定义导航栏视图
+    self.navigationController.navigationBarHidden = YES;
+    UIView *navigationView = [[UIView alloc]initWithFrame:CGRectMake(0, 20, KScreenWidth, 44)];
+    UIImage *image =[UIImage imageNamed:@"back"];
+    UIButton *leftButtonImageV  =[UIButton buttonWithType:UIButtonTypeCustom];
+    leftButtonImageV.frame = CGRectMake(5, 5, 44, 44);
+    [navigationView addSubview:leftButtonImageV];
+    [leftButtonImageV setImage:image forState:UIControlStateNormal];
+    [leftButtonImageV addTarget:self action:@selector(toComeBack) forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:navigationView];
+    
+    
+    self.view.backgroundColor = ColorBack;
     NSString *str = [self.videoUrl substringToIndex:8];
     //判断数据给的网址是不是需要再次请求的
     if ([str containsString:@"recipes"]) {
@@ -56,14 +71,16 @@
 }
 #pragma -mark  tabBar的隐藏和显示
 -(void)viewWillAppear:(BOOL)animated
-{
+{   self.navigationController.navigationBarHidden = YES;
     self.tabBarController.hidesBottomBarWhenPushed = YES;
 }
 
 -(void)viewWillDisappear:(BOOL)animated
-{
+{   self.navigationController.navigationBarHidden = NO;
     self.tabBarController.hidesBottomBarWhenPushed = NO;
 }
-
-
+-(void)toComeBack
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end
