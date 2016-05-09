@@ -7,6 +7,9 @@
 //
 #define KScreenWidth [UIScreen mainScreen].bounds.size.width
 #define KScreenHeight [UIScreen mainScreen].bounds.size.height
+#define ColorBack     [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1]
+
+
 #import "DetailsSearchViewController.h"
 #import "NetworkRequestManager.h"
 #import "DetailsModel.h"
@@ -34,7 +37,7 @@
     self.navigationItem.titleView = self.textF;
     self.textF.placeholder = @"输入菜谱名、食材名";
     self.textF.clearButtonMode = UITextFieldViewModeAlways;
-    self.textF.backgroundColor = [UIColor grayColor];
+    self.textF.backgroundColor = ColorBack;
     self.textF.layer.cornerRadius = 5;
     self.textF.layer.masksToBounds = YES;
     self.textF.text = self.searchContent;

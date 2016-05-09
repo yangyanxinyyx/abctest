@@ -12,6 +12,7 @@
 #import "NetworkRequestManager.h"
 
 #import "UIImageView+WebCache.h"
+#import "UIImageView+CreateByUrl.h"
 
 @interface FirstTableViewCell ()
 @property (nonatomic,strong)UIScrollView *scrollViewImageViewS;
@@ -121,10 +122,12 @@
             }
         }
 #pragma mark 第一张图片
+            UIImage *placeImage = [UIImage imageNamed:@"等待占位图"];
         HomeFootModel *hfm = [_dataArray objectAtIndex:[_arr[0] integerValue]];
         NSString *shapedImageURL = [NSString stringWithFormat:@"http://pic.ecook.cn/web/%@.jpg",hfm.imageid];
         combinationView.shapedImageV.contentMode = UIViewContentModeScaleAspectFill;
-        [combinationView.shapedImageV sd_setImageWithURL:[NSURL URLWithString:shapedImageURL]];
+            combinationView.shapedImageV.image = placeImage;
+        [combinationView.shapedImageV setImageByUrl:shapedImageURL];
  
         combinationView.shapedImageV.labelName.text = hfm.name;
         combinationView.shapedImageV.labelIntroduce.text = hfm.descriptionFood;
@@ -135,7 +138,8 @@
         HomeFootModel *hfmMid = [_dataArray objectAtIndex:[_arr[1] integerValue]];
         NSString *midImageURL = [NSString stringWithFormat:@"http://pic.ecook.cn/web/%@.jpg",hfmMid.imageid];
         combinationView.midImageV.contentMode = UIViewContentModeScaleAspectFill;
-        [combinationView.midImageV sd_setImageWithURL:[NSURL URLWithString:midImageURL]];
+            combinationView.midImageV.image = placeImage;
+        [combinationView.midImageV setImageByUrl:midImageURL];
   
         combinationView.midImageV.labelName.text = hfmMid.name;
         combinationView.midImageV.labelIntroduce.text = hfmMid.descriptionFood;
@@ -146,7 +150,8 @@
         HomeFootModel *hfmEnd = [_dataArray objectAtIndex:[_arr[2] integerValue]];
         NSString *endImageURL = [NSString stringWithFormat:@"http://pic.ecook.cn/web/%@.jpg",hfmEnd.imageid];
         combinationView.endImageV.contentMode = UIViewContentModeScaleAspectFill;
-        [combinationView.endImageV sd_setImageWithURL:[NSURL URLWithString:endImageURL]];
+            combinationView.endImageV.image = placeImage;
+        [combinationView.endImageV setImageByUrl:endImageURL];
         combinationView.endImageV.labelName.text = hfmEnd.name;
         combinationView.endImageV.labelIntroduce.text = hfmEnd.descriptionFood;
         UITapGestureRecognizer *tapG3 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toucheEndimage)];

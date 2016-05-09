@@ -12,6 +12,9 @@
 #import "MyModel.h"
 #import "MyProblemViewController.h"
 #import "ClauseView.h"
+
+#import "MyCollectViewController.h"
+
 @interface MyViewController ()<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,ClauseViewDelegate>
 {
     ClauseView *viewClause;
@@ -31,7 +34,7 @@
     self.view.backgroundColor = ColorBack;
     self.navigationItem.title = @"我的";
     self.arrayMySection = [NSMutableArray array];
-    self.arrayNumber = [NSArray arrayWithObjects:@"3",@"4",@"5", nil];
+    self.arrayNumber = [NSArray array];
     NSArray *arrayHelp = [NSArray arrayWithObjects:@"常见问题",@"联系客服",@"使用条款与隐私政策", nil];
     NSArray *arrayAbout = [NSArray arrayWithObjects:@"检查更新",@"清楚缓存",@"推荐给好友",@"关于我们", nil];
     self.dicData = [NSDictionary dictionaryWithObjectsAndKeys:self.arrayNumber,@"0",arrayHelp,@"1",arrayAbout,@"2",nil];
@@ -53,6 +56,7 @@
     self.tabMy = [[UITableView alloc]initWithFrame:CGRectMake(0, 100, KScreenWidth, KScreenHeight -64 -49-100) style:UITableViewStyleGrouped];
     self.tabMy.delegate = self;
     self.tabMy.dataSource = self;
+    self.tabMy.bounces = NO;
     [self.view addSubview:self.tabMy];
     
 #pragma 获取数据
@@ -189,9 +193,12 @@
     
     
 }
-#pragma mark - 点击关闭分区
+#pragma mark - 点击开关分区
 -(void)toucheSectionToSwitch:(UIButton *)but{
-    
+    if ([but.titleLabel.text isEqualToString:@"历史收藏"]) {
+        MyCollectViewController *myCollect = [[MyCollectViewController alloc]init];
+        [self.navigationController pushViewController:myCollect animated:YES];
+    }
     MyModel *myModel = [self.arrayMySection objectAtIndex:but.tag];
     myModel.isOpen = !myModel.isOpen;
 //    [self.tabMy reloadData];
