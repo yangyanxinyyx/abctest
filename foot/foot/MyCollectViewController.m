@@ -11,6 +11,9 @@
 
 #import "MyCollectViewController.h"
 #import "MyCollectCollectionViewCell.h"
+#import "DataBaseUtil.h"
+#import "CollectModel.h"
+#import "UIImageView+WebCache.h"
 
 @interface MyCollectViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
@@ -35,6 +38,8 @@
     
     [self createColl];
     
+    
+    
     //设置nav左返回按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
     
@@ -47,8 +52,7 @@
     
     layout.minimumInteritemSpacing = 0;
     layout.minimumLineSpacing = 0;
-    layout.sectionInset = UIEdgeInsetsMake(10, 10, 0, 10);
-    layout.itemSize = CGSizeMake((SCREEN_W-20)/2, (SCREEN_W-20)/2);
+    layout.itemSize = CGSizeMake(SCREEN_W/2, SCREEN_W/2);
     
     self.collectColl = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_H) collectionViewLayout:layout];
     
@@ -66,13 +70,19 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    self.dataArrayColl = [[DataBaseUtil shareDataBase] selectCollectModel];
+    return self.dataArrayColl.count;
 }
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     MyCollectCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    cell.labelName.text = @"111";
+    CollectModel *model = [self.dataArrayColl objectAtIndex:indexPath.row];
+    
+    [cell.imageV sd_setImageWithURL:[NSURL URLWithString:model.topImage] placeholderImage:[UIImage imageNamed:@"等待占位图"]];
+    
+    
+    cell.labelName.text = model.foodName;
     return cell;
 }
 
