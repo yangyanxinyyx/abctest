@@ -9,15 +9,21 @@
 #import "VideoBuutonAndNewestButton.h"
 #define KScreenWidth [UIScreen mainScreen].bounds.size.width
 #define KScreenHeight [UIScreen mainScreen].bounds.size.height
+#define ColorBack     [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1]
 @implementation VideoBuutonAndNewestButton
 
 -(instancetype)initWithFrame:(CGRect)frame{
     
     if (self = [super initWithFrame:frame]) {
+        
+//        UIImage *image = [UIImage imageNamed:@"背景.jpg"];
+//        UIImageView *imageView = [[UIImageView alloc]initWithFrame:self.bounds];
+//        imageView.image = image;
+//        [self addSubview:imageView];
         [self addSubview:self.VideoButton];
         [self addSubview:self.NewestButton];
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 70, KScreenWidth, 10)];
-        view.backgroundColor = [UIColor lightGrayColor];
+        view.backgroundColor = ColorBack;
         [self addSubview:view];
     }
     return self;

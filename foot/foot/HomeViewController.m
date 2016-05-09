@@ -8,6 +8,7 @@
 //
 #define KScreenWidth [UIScreen mainScreen].bounds.size.width
 #define KScreenHeight [UIScreen mainScreen].bounds.size.height
+#define ColorBack     [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1]
 
 #import "HomeViewController.h"
 #import "CombinationView.h"
@@ -25,6 +26,7 @@
 #import "ImageManager.h"
 
 #import "CookDetailsViewController.h"
+
 @interface HomeViewController ()<UIScrollViewDelegate,FirstTableViewCellDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 {
     NSInteger flag;
@@ -42,11 +44,15 @@
 //    self.navigationItem.title = @"首页";
     flag = 0;
     self.selectDataArray = [NSMutableArray array];
+    UIImage *image = [UIImage imageNamed:@"背景.jpg"];
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
+    imageView.image = image;
+
 
 #pragma mark 搜素引擎
     UIButton *buttonSearch = [UIButton buttonWithType:UIButtonTypeCustom];
     buttonSearch.frame = CGRectMake(0, 30, 250, 30);
-    buttonSearch.backgroundColor = [UIColor lightGrayColor];
+    buttonSearch.backgroundColor = ColorBack;
     [buttonSearch setTitle:@"🔍 搜素菜谱" forState:UIControlStateNormal];
     [buttonSearch setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     buttonSearch.titleLabel.textAlignment = NSTextAlignmentLeft;
@@ -232,7 +238,8 @@
     SearchViewController *searchVC  = [[SearchViewController alloc]init];
     [self.navigationController pushViewController:searchVC animated:YES];
 }
-#pragma mark scrollView的方法
+#pragma mark scrollView的方法 
+//实现拖拽到精选的时候停止一下
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
   
 //    if (scrollView.y == 636) {

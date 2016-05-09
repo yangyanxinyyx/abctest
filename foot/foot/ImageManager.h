@@ -11,4 +11,5 @@
 @interface ImageManager : FoodModel
 +(instancetype)shareImageManger;
 -(UIImage *)oldImage:(UIImage *)image scaleToSize :(CGSize)size;
++(UIImage*)getSubImage:(UIImage *)image mCGRect:(CGRect)mCGRect centerBool:(BOOL)centerBool;
 @end
