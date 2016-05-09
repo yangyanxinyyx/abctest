@@ -260,12 +260,12 @@
     [self.scrollView addSubview:redView];
     redView.backgroundColor = Color(228, 53, 42, 1);
     
-    UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(18, _height + 20, 80, 20)];
+    UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(18, _height + 30, 80, 20)];
     label1.text = @"需要材料";
     label1.font = [UIFont boldSystemFontOfSize:17];
     [self.scrollView addSubview:label1];
     
-    _height += 40 + 10;
+    _height += 40 + 20;
  
     for (int i = 0; i<self.detailsModel.materiaArray.count; i++) {
         
