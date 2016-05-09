@@ -70,29 +70,58 @@
 
 @implementation MakeUpViewController
 
+#pragma mark- 懒加载
+-(NSMutableArray*)dataArrayTab
+{
+    if (_dataArrayTab == nil) {
+        _dataArrayTab = [NSMutableArray array];
+    }
+    return _dataArrayTab;
+}
 
+-(NSMutableArray*)dataArrayColl
+{
+    if (_dataArrayColl == nil) {
+        _dataArrayColl = [NSMutableArray array];
+    }
+    return _dataArrayColl;
+}
+
+-(NSMutableArray*)arraySelected
+{
+    if (_arraySelected == nil) {
+        _arraySelected = [NSMutableArray array];
+    }
+    return _arraySelected;
+}
+
+-(NSMutableArray*)arrayButtomSelected
+{
+    if (_arrayButtomSelected == nil) {
+        _arrayButtomSelected = [NSMutableArray array];
+    }
+    return _arrayButtomSelected;
+}
+
+-(NSMutableArray*)arrayCell
+{
+    if (_arrayCell == nil) {
+        _arrayCell = [NSMutableArray array];
+    }
+    return _arrayCell;
+}
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"食材组合";
-    
 
-    self.dataArrayTab = [NSMutableArray array];
-    self.dataArrayColl = [NSMutableArray array];
-    self.arraySelected = [NSMutableArray array];
-    self.arrayButtomSelected = [NSMutableArray array];
-    self.arrayCell = [NSMutableArray array];
-  
-    
     [self requestData];
     [self setCollectionView];
     [self setBottomView];
     [self setRightView];
-    
-    
-    
+ 
 }
 
 
