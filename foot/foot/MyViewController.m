@@ -36,7 +36,7 @@
     self.arrayMySection = [NSMutableArray array];
     self.arrayNumber = [NSArray array];
     NSArray *arrayHelp = [NSArray arrayWithObjects:@"常见问题",@"联系客服",@"使用条款与隐私政策", nil];
-    NSArray *arrayAbout = [NSArray arrayWithObjects:@"检查更新",@"清楚缓存",@"推荐给好友",@"关于我们", nil];
+    NSArray *arrayAbout = [NSArray arrayWithObjects:@"检查更新",@"清除缓存",@"推荐给好友",@"关于我们", nil];
     self.dicData = [NSDictionary dictionaryWithObjectsAndKeys:self.arrayNumber,@"0",arrayHelp,@"1",arrayAbout,@"2",nil];
 #pragma mark- 添加头像
     _imageView = [[UIImageView alloc]initWithFrame:CGRectMake((KScreenWidth-80)/2, 10, 80, 80)];
@@ -114,7 +114,7 @@
     view.backgroundColor = [UIColor lightGrayColor];
     
  
-    NSArray *arrayTitle = [NSArray arrayWithObjects:@"历史收藏",@"使用帮助与反馈",@"关于软件",nil];
+    NSArray *arrayTitle = [NSArray arrayWithObjects:@"我的收藏",@"使用帮助与反馈",@"关于软件",nil];
 
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(15, 10, KScreenWidth-30, 26);
@@ -157,8 +157,8 @@
         [self presentViewController:alertC animated:YES completion:^{
             
         }];
-    }else if ([str isEqualToString:@"清楚缓存"]){
-        UIAlertController *alertC = [UIAlertController  alertControllerWithTitle:@"是否要清楚缓存" message:@"现在缓存位M" preferredStyle:UIAlertControllerStyleAlert];
+    }else if ([str isEqualToString:@"清除缓存"]){
+        UIAlertController *alertC = [UIAlertController  alertControllerWithTitle:@"是否要清除缓存" message:@"现在缓存为M" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             //清楚缓冲中的数据
             NSString *cache = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)lastObject];
@@ -195,7 +195,7 @@
 }
 #pragma mark - 点击开关分区
 -(void)toucheSectionToSwitch:(UIButton *)but{
-    if ([but.titleLabel.text isEqualToString:@"历史收藏"]) {
+    if ([but.titleLabel.text isEqualToString:@"我的收藏"]) {
         MyCollectViewController *myCollect = [[MyCollectViewController alloc]init];
         [self.navigationController pushViewController:myCollect animated:YES];
     }
