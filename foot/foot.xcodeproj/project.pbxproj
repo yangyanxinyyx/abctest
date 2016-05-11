@@ -38,6 +38,7 @@
 		3F1FC9151CDD83A800D57F0D /* MixResultCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1FC9141CDD83A800D57F0D /* MixResultCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		3F1FC91E1CDDD1D000D57F0D /* 表16.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1FC91C1CDDD1D000D57F0D /* 表16.png */; settings = {ASSET_TAGS = (); }; };
 		3F1FC91F1CDDD1D000D57F0D /* 厨师帽16.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1FC91D1CDDD1D000D57F0D /* 厨师帽16.png */; settings = {ASSET_TAGS = (); }; };
+		3F329FC01CE0972E00698096 /* MyCollectCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F329FBF1CE0972E00698096 /* MyCollectCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		3F49E3551CDA3FB900E9028A /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F49E3541CDA3FB900E9028A /* VideoViewController.m */; settings = {ASSET_TAGS = (); }; };
 		3F49E3581CDA3FCC00E9028A /* NewestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F49E3571CDA3FCC00E9028A /* NewestViewController.m */; settings = {ASSET_TAGS = (); }; };
 		3F5710431CDC3B79005008DB /* MateriaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5710421CDC3B79005008DB /* MateriaModel.m */; settings = {ASSET_TAGS = (); }; };
@@ -55,14 +56,11 @@
 		3F59E23A1CD8E4CA00749116 /* 后退.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F59E2381CD8E4CA00749116 /* 后退.png */; settings = {ASSET_TAGS = (); }; };
 		3F59E23B1CD8E4CA00749116 /* 前进.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F59E2391CD8E4CA00749116 /* 前进.png */; settings = {ASSET_TAGS = (); }; };
 		3F6520CE1CDCC906007CD97B /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6520CD1CDCC906007CD97B /* libsqlite3.0.tbd */; };
-
 		3F7DF9E11CE06B7800903F18 /* CollectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7DF9E01CE06B7800903F18 /* CollectModel.m */; settings = {ASSET_TAGS = (); }; };
-
 		3F8A5E4E1CE0859700F53C73 /* 背景.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F8A5E4D1CE0859700F53C73 /* 背景.jpg */; settings = {ASSET_TAGS = (); }; };
 		3F8A5E541CE0922300F53C73 /* MyCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8A5E531CE0922300F53C73 /* MyCollectViewController.m */; settings = {ASSET_TAGS = (); }; };
 		3F8E5B321CE0666400CE1BD5 /* 等待占位图.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F8E5B311CE0666400CE1BD5 /* 等待占位图.png */; settings = {ASSET_TAGS = (); }; };
 		3F8E5B351CE06FA600CE1BD5 /* UIImageView+CreateByUrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E5B341CE06FA600CE1BD5 /* UIImageView+CreateByUrl.m */; settings = {ASSET_TAGS = (); }; };
-
 		3FA44E481CDCA0C00055CDB3 /* ImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA44E471CDCA0C00055CDB3 /* ImageManager.m */; settings = {ASSET_TAGS = (); }; };
 		3FA44E4C1CDCC91A0055CDB3 /* MyProblemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA44E4B1CDCC91A0055CDB3 /* MyProblemViewController.m */; settings = {ASSET_TAGS = (); }; };
 		3FA8CE291CDAF03300EC7599 /* VideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA8CE281CDAF03300EC7599 /* VideoModel.m */; settings = {ASSET_TAGS = (); }; };
@@ -218,6 +216,8 @@
 		3F1FC9141CDD83A800D57F0D /* MixResultCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixResultCollectionViewCell.m; sourceTree = "<group>"; };
 		3F1FC91C1CDDD1D000D57F0D /* 表16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "表16.png"; sourceTree = "<group>"; };
 		3F1FC91D1CDDD1D000D57F0D /* 厨师帽16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "厨师帽16.png"; sourceTree = "<group>"; };
+		3F329FBE1CE0972E00698096 /* MyCollectCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectCollectionViewCell.h; sourceTree = "<group>"; };
+		3F329FBF1CE0972E00698096 /* MyCollectCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectCollectionViewCell.m; sourceTree = "<group>"; };
 		3F49E3531CDA3FB900E9028A /* VideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoViewController.h; sourceTree = "<group>"; };
 		3F49E3541CDA3FB900E9028A /* VideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoViewController.m; sourceTree = "<group>"; };
 		3F49E3561CDA3FCC00E9028A /* NewestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewestViewController.h; sourceTree = "<group>"; };
@@ -246,17 +246,14 @@
 		3F59E2381CD8E4CA00749116 /* 后退.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "后退.png"; sourceTree = "<group>"; };
 		3F59E2391CD8E4CA00749116 /* 前进.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "前进.png"; sourceTree = "<group>"; };
 		3F6520CD1CDCC906007CD97B /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
-
 		3F7DF9DF1CE06B7800903F18 /* CollectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectModel.h; sourceTree = "<group>"; };
 		3F7DF9E01CE06B7800903F18 /* CollectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectModel.m; sourceTree = "<group>"; };
-
 		3F8A5E4D1CE0859700F53C73 /* 背景.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "背景.jpg"; sourceTree = "<group>"; };
 		3F8A5E521CE0922300F53C73 /* MyCollectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectViewController.h; sourceTree = "<group>"; };
 		3F8A5E531CE0922300F53C73 /* MyCollectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectViewController.m; sourceTree = "<group>"; };
 		3F8E5B311CE0666400CE1BD5 /* 等待占位图.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "等待占位图.png"; sourceTree = "<group>"; };
 		3F8E5B331CE06FA600CE1BD5 /* UIImageView+CreateByUrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CreateByUrl.h"; sourceTree = "<group>"; };
 		3F8E5B341CE06FA600CE1BD5 /* UIImageView+CreateByUrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CreateByUrl.m"; sourceTree = "<group>"; };
-
 		3FA44E461CDCA0C00055CDB3 /* ImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManager.h; sourceTree = "<group>"; };
 		3FA44E471CDCA0C00055CDB3 /* ImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageManager.m; sourceTree = "<group>"; };
 		3FA44E4A1CDCC91A0055CDB3 /* MyProblemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProblemViewController.h; sourceTree = "<group>"; };
@@ -649,12 +646,12 @@
 				3FDDB1D81CD8AC61009FA128 /* Tool */,
 				3FDDB1D51CD8A9A9009FA128 /* Resource */,
 				3FDDB1D41CD8A9A6009FA128 /* BaseClass */,
-				3FABA3D31CDB34BB00D35CEA /* 做菜详细页面 */,
 				3FDDB1D61CD8AC51009FA128 /* 首页 */,
+				3FB88C0D1CDB49120085FE05 /* 搜素 */,
 				3FDDB1E21CD8BDAA009FA128 /* 食材组合 */,
 				3FDDB1E31CD8BDAC009FA128 /* 菜谱 */,
 				3FDDB1E41CD8BDAE009FA128 /* 我 */,
-				3FB88C0D1CDB49120085FE05 /* 搜素 */,
+				3FABA3D31CDB34BB00D35CEA /* 做菜详细页面 */,
 				3FDDB1AD1CD8A94E009FA128 /* Assets.xcassets */,
 				3FDDB1AF1CD8A94E009FA128 /* LaunchScreen.storyboard */,
 				3FDDB1B21CD8A94E009FA128 /* Info.plist */,
@@ -912,6 +909,8 @@
 			children = (
 				3FF581F61CDCE2F300BF1D46 /* ClauseView.h */,
 				3FF581F71CDCE2F300BF1D46 /* ClauseView.m */,
+				3F329FBE1CE0972E00698096 /* MyCollectCollectionViewCell.h */,
+				3F329FBF1CE0972E00698096 /* MyCollectCollectionViewCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1207,6 +1206,7 @@
 				3FAEB0A81CDB1EB300F36ED1 /* MJRefreshLegendHeader.m in Sources */,
 				3FF0027E1CDC387D00F85D4E /* FMDatabaseAdditions.m in Sources */,
 				3F1782ED1CDA1D86001FD16D /* UIView+WebCacheOperation.m in Sources */,
+				3F329FC01CE0972E00698096 /* MyCollectCollectionViewCell.m in Sources */,
 				3F1782E11CDA1D86001FD16D /* SDWebImageCompat.m in Sources */,
 				3FF9BD181CD9AAA200D11A51 /* HomeViewController.m in Sources */,
 				3FB88C261CDB6CD00085FE05 /* DetailsSearchViewController.m in Sources */,

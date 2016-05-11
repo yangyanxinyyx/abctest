@@ -49,7 +49,7 @@
     layout.itemSize = CGSizeMake((SCREEN_W-50)/2,(SCREEN_W-50)/2*1.5 );
    
     self.MixListColl = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_H-64) collectionViewLayout:layout];
-    self.MixListColl.backgroundColor = [UIColor whiteColor];
+
     self.MixListColl.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.MixListColl];
     self.MixListColl.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1];

@@ -64,6 +64,7 @@
 }
 
 
+
 #pragma -mark 将字典转为NSData
 -(NSData *)setDicToNSData:(NSDictionary *)dic
 {

@@ -34,6 +34,7 @@ static DataBaseUtil *dataBase = nil;
 }
 //建表
 -(BOOL)createTable{
+    
     if ([_db open]) {
         NSString *sql = [NSString stringWithFormat:@"create table if not exists HistorySql (id integer primary key autoincrement,content text)"];
         BOOL result = [_db executeUpdate:sql];
@@ -191,15 +192,44 @@ static DataBaseUtil *dataBase = nil;
     
 }
 
-//查全部数据
--(NSArray*)selectCollectModel{
+
+-(NSMutableArray*)selectCollectModel{
     NSMutableArray *array = [NSMutableArray array];
     if ([_db open]) {
         NSString *sql = [NSString stringWithFormat:@"select * from CollectSql"];
         FMResultSet *set = [_db executeQuery:sql];
         while ([set next]) {
-            CollectModel *model = [[CollectModel alloc]init];
+          
+            NSString *topImage = [set stringForColumn:@"topImage"];
+            NSString *foodName = [set stringForColumn:@"foodName"];
+            NSString *url = [set stringForColumn:@"url"];
+            NSString *urlId = [set stringForColumn:@"urlId"];
+            NSData *dataParDic = [set dataForColumn:@"parDic"];
+            NSDictionary *parDic = [self setNSDataToDic:dataParDic];
+            NSData *dataHeader = [set dataForColumn:@"header"];
+            NSDictionary *header = [self setNSDataToDic:dataHeader];
+            NSString *content = [set stringForColumn:@"content"];
+            NSString *foodId = [set stringForColumn:@"foodId"];
+            NSData *dataMateriaDic = [set dataForColumn:@"materiaDic"];
+            NSDictionary *materiaDic = [self setNSDataToDic:dataMateriaDic];
+            NSData *dataStepDic = [set dataForColumn:@"stepDic"];
+            NSDictionary *stepDic = [self setNSDataToDic:dataStepDic];
+            NSData *dataTipDic = [set dataForColumn:@"tipDic"];
+            NSDictionary *tipDic = [self setNSDataToDic:dataTipDic];
             
+            CollectModel *model = [[CollectModel alloc]init];
+            model.topImage = topImage;
+            model.foodName = foodName;
+            model.url = url;
+            model.urlId = urlId;
+            model.parDic = parDic;
+            model.header = header;
+            model.content = content;
+            model.foodId = foodId;
+            model.materiaDic = materiaDic;
+            model.stepDic = stepDic;
+            model.tipDic = tipDic;
+         
             [array addObject:model];
         }
         [_db close];
@@ -230,24 +260,30 @@ static DataBaseUtil *dataBase = nil;
 #pragma -mark 将NSData转为字典
 -(NSDictionary *)setNSDataToDic:(NSData *)data
 {
-    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSArray *dicArray = [str componentsSeparatedByString:@"&"];
-    NSMutableArray *keyArray = [NSMutableArray array];
-    NSMutableArray *valueArray = [NSMutableArray array];
-    
-    for (NSString *string in dicArray) {
+    if (data != nil) {
+        NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSArray *dicArray = [str componentsSeparatedByString:@"&"];
+        NSMutableArray *keyArray = [NSMutableArray array];
+        NSMutableArray *valueArray = [NSMutableArray array];
         
-        NSArray *array = [string componentsSeparatedByString:@"="];
-        [keyArray addObject:array[0]];
-        [valueArray addObject:array[1]];
+        for (NSString *string in dicArray) {
+            
+            NSArray *array = [string componentsSeparatedByString:@"="];
+            [keyArray addObject:array[0]];
+            [valueArray addObject:array[1]];
+            
+        }
         
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        for (int i = 0; i<keyArray.count; i++) {
+            [dic setValue:valueArray[i] forKey:keyArray[i]];
+        }
+        return dic;
+    }else
+    {
+        return nil;
     }
-    
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    for (int i = 0; i<keyArray.count; i++) {
-        [dic setValue:valueArray[i] forKey:keyArray[i]];
-    }
-    return dic;
+   
 }
 
 @end

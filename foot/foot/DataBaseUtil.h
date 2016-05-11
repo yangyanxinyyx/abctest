@@ -35,5 +35,5 @@
 
 -(CollectModel *)selectCollectWithFoodName:(NSString *)name urlId:(NSString *)urlId;
 
--(NSArray*)selectCollectModel;
+-(NSMutableArray*)selectCollectModel;
 @end
