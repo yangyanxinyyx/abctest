@@ -21,6 +21,8 @@
 #import "CollectModel.h"
 #import "DataBaseUtil.h"
 
+#import "UploadView.h"
+
 #define SCREEN_W [UIScreen mainScreen].bounds.size.width
 #define SCREEN_H [UIScreen mainScreen].bounds.size.height
 #define Color(x,y,z,a) [UIColor colorWithRed:x/255.0 green:y/255.0 blue:z/255.0 alpha:a]
@@ -37,6 +39,8 @@
 @property(nonatomic,strong)CollectAndTimeView *collectView; //收藏,难度,时间 view
 @property(nonatomic,strong)FoodDetailsModel *detailsModel;
 @property(nonatomic,strong)UIButton *navCollectButton;
+
+@property (nonatomic,strong)UploadView *uploadV;
 
 @end
 
@@ -92,7 +96,8 @@
     {
         [self loadDataFromKMakeDoodMateria];
     }
-    
+    self.uploadV = [[UploadView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:self.uploadV];
 }
 
 #pragma -mark 创建底部scrollView
@@ -226,6 +231,7 @@
 #pragma -mark 加载完数据返回主线程 更新UI
 -(void)doMain
 {
+    [self.uploadV removeFromSuperview];
     [self.topImageView sd_setImageWithURL:[NSURL URLWithString:self.detailsModel.topImage]];
     
     self.nameLabel.text = self.detailsModel.name;

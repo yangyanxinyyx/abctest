@@ -26,7 +26,7 @@
 #import "ImageManager.h"
 
 #import "CookDetailsViewController.h"
-
+#import "UploadView.h"
 @interface HomeViewController ()<UIScrollViewDelegate,FirstTableViewCellDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 {
     NSInteger flag;
@@ -34,6 +34,7 @@
 @property (nonatomic,strong)CombinationView *combinationV;
 @property (nonatomic,strong)UITableView *tab;
 @property (nonatomic,strong)NSMutableArray *selectDataArray;
+@property (nonatomic,strong)UploadView *uploadV;
 @end
 
 @implementation HomeViewController
@@ -47,7 +48,7 @@
     UIImage *image = [UIImage imageNamed:@"背景.jpg"];
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
     imageView.image = image;
-
+    
 
 #pragma mark 搜素引擎
     UIButton *buttonSearch = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -68,11 +69,15 @@
     self.tab = [[UITableView alloc]initWithFrame:CGRectMake(0,0, KScreenWidth, KScreenHeight-64-49) style:UITableViewStylePlain];
     self.tab.delegate = self;
     self.tab.dataSource = self;
+    self.tab.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.tab];
     
     [self getDataWith:@"0"];
     
-
+#pragma mark -加载
+    self.uploadV = [[UploadView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-64-49)];
+    [self.view addSubview:self.uploadV];
+    
   }
 
 #pragma mark UITableView 的代理
@@ -160,6 +165,7 @@
                 }
 
             }
+         
        
             [self performSelectorOnMainThread:@selector(doMainThread) withObject:nil waitUntilDone:YES];
      
@@ -174,6 +180,7 @@
 }
 #pragma mark 回主线程更新UI
 -(void)doMainThread{
+       [self.uploadV removeFromSuperview];
         [self.tab reloadData];
         [self.tab addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(footRefreshing)];
 }
@@ -242,23 +249,17 @@
 //实现拖拽到精选的时候停止一下
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
   
-//    if (scrollView.y == 636) {
-//        scrollView.contentOffset.y = 636;
-//    }
     
-//  CGPoint offset = scrollView.contentOffset;
-//   
-//    NSInteger offsetY = offset.y;
-//     NSLog(@"%ld",offsetY);
-//    if (offsetY>630 && offsetY<650) {
-//   
-//        self.tab.scrollEnabled = !self.tab.scrollEnabled;
-//        self.tab.contentOffset = CGPointMake(0, 635);
-//   
-//    }
-//    
+    if (scrollView.contentOffset.y>630 && scrollView.contentOffset.y<650) {
+        scrollView.scrollEnabled = NO;
+        sleep(0.1);
+        self.tab.scrollsToTop = YES;
+        scrollView.scrollEnabled = YES;
+    }
+    
     
 }
+
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     self.tab.scrollEnabled = YES;
 }

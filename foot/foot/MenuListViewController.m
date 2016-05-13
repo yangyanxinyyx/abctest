@@ -13,6 +13,7 @@
 #import "UIImageView+WebCache.h"
 #import "MJRefresh.h"
 #import "CookDetailsViewController.h"
+#import "UploadView.h"
 
 #define SCREEN_W [UIScreen mainScreen].bounds.size.width
 #define SCREEN_H [UIScreen mainScreen].bounds.size.height
@@ -24,6 +25,7 @@
 }
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *dataArray; //数据
+@property(nonatomic,strong)UploadView *uploadV;
 
 @end
 
@@ -44,6 +46,8 @@
     [self loadData];
     
     [self createTableView];
+    self.uploadV = [[UploadView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_H-64)];
+    [self.view addSubview:self.uploadV];
     
     //设置nav左返回按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
@@ -177,7 +181,7 @@
 
 -(void)doMain
 {
-    
+    [self.uploadV removeFromSuperview];
     [self.tableView reloadData];
 }
 

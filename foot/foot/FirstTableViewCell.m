@@ -164,7 +164,7 @@
         [arrayImageData addObject:hfmMid];
         [arrayImageData addObject:hfmEnd];
         
-        NSString *key = [NSString stringWithFormat:@"%ld",pageID];
+        NSString *key = [NSString stringWithFormat:@"%ld",(long)pageID];
         [self.dicData setValue:arrayImageData forKey:key];
         
         if (_dataArray.count != 0) {

@@ -64,7 +64,9 @@
    
 }
 -(void)doMainThread{
-    UIWebView *webv = [[UIWebView alloc]initWithFrame:CGRectMake(0, 100, KScreenWidth, 400)];
+    UIWebView *webv = [[UIWebView alloc]initWithFrame:CGRectMake(0, 150, KScreenWidth, 300)];
+    webv.scrollView.bounces = NO;
+    webv.scrollView.scrollEnabled = NO;
     [webv loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strURL]]];
     [self.view addSubview:webv];
     NSLog(@"%@",strURL);

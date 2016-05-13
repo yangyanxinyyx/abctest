@@ -20,6 +20,8 @@
 #import "UIButton+WebCache.h"
 #import "MixFoodTableViewCell.h"
 
+#import "UploadView.h"
+
 @interface MakeUpViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UITableViewDataSource,UITableViewDelegate>
 //瀑布流列表
 @property(nonatomic,strong)UICollectionView *mixFoodCollectionView;
@@ -41,7 +43,8 @@
 @property(nonatomic,strong)NSMutableArray *dataArrayColl;
 
 @property(nonatomic,assign)BOOL isHave;
-
+//菊花
+@property (nonatomic,strong)UploadView *uploadV;
 
 //提示框
 @property(nonatomic,strong)UILabel *labelPrompt;
@@ -117,11 +120,15 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"食材组合";
+    
 
+    
     [self requestData];
     [self setCollectionView];
     [self setBottomView];
     [self setRightView];
+    self.uploadV = [[UploadView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_H-64-49)];
+    [self.view addSubview:self.uploadV];
  
 }
 
@@ -425,7 +432,7 @@
     UIButton *bu = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.bottomView addSubview:bu];
     bu.tag = self.arraySelected.count;
-    bu.backgroundColor = [UIColor orangeColor];
+    [bu setBackgroundImage:[UIImage imageNamed:@"等待占位图"] forState:UIControlStateNormal];
     bu.layer.cornerRadius = (SCREEN_W/5*4-110)/3/2;
     bu.layer.masksToBounds = YES;
     bu.frame = CGRectMake(20+(30+(SCREEN_W/5*4-110)/3) * (self.arraySelected.count-1), (self.bottomView.frame.size.height-(SCREEN_W/5*4-110)/3)/2, (SCREEN_W/5*4-110)/3, (SCREEN_W/5*4-110)/3);
@@ -642,15 +649,15 @@
        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
        NSDictionary *dicData1 = [dic valueForKey:@"data"];
        NSArray *arrayData = [dicData1 valueForKey:@"data"];
+       if (!dic) {
+           NSLog(@"%@",error);
+       }else{
        for (NSDictionary *dic in arrayData) {
            MixKindModel *model = [[MixKindModel alloc] init];
            [model setValuesForKeysWithDictionary:dic];
            [self.dataArrayTab addObject:model];
-       }
-       dispatch_async(dispatch_get_main_queue(), ^{
-           [self.tab reloadData];
-       });
        
+       }
        //页面开始先加载第一类的
        MixKindModel *kindModel = [_dataArrayTab objectAtIndex:0];
        NSArray *Array = kindModel.data;
@@ -660,9 +667,11 @@
            [self.dataArrayColl addObject:foodModel];
        }
        dispatch_async(dispatch_get_main_queue(), ^{
+           [self.uploadV removeFromSuperview];
+           [self.tab reloadData];
            [self.mixFoodCollectionView reloadData];
        });
-       
+       }
        
    } error:^(NSError *error) {
        
@@ -716,6 +725,7 @@
     if (self.isOpen == YES) {
         [self touchRightBu];
     }
+  
 }
 
 

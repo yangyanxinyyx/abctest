@@ -14,5 +14,6 @@
 
 @end
 @interface ClauseView : UIView
+@property (nonatomic,strong)NSString *conten;
 @property (nonatomic)id<ClauseViewDelegate>delegate;
 @end

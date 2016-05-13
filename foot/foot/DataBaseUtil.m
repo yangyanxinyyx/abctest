@@ -238,6 +238,21 @@ static DataBaseUtil *dataBase = nil;
     return array;
 }
 
+-(BOOL)deleteCollectAll
+{
+    if ([_db open]) {
+        NSString *sql = [NSString stringWithFormat:@"delete from CollectSql"];
+        BOOL result = [_db executeUpdate:sql];
+        if (result) {
+            NSLog(@"删除全部成功");
+        }
+        [_db close];
+        return result;
+    }
+    return NO;
+}
+
+
 
 #pragma -mark 将字典转为NSData
 -(NSData *)setDicToNSData:(NSDictionary *)dic

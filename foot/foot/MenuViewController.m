@@ -12,6 +12,7 @@
 #import "MenuModel.h"
 #import "MenuCollectionViewCell.h"
 #import "MenuListViewController.h"
+#import "UploadView.h"
 
 #define SCREEN_W [UIScreen mainScreen].bounds.size.width
 #define SCREEN_H [UIScreen mainScreen].bounds.size.height
@@ -21,7 +22,7 @@
 
 @property(nonatomic,strong)UICollectionView *collectionView;
 @property(nonatomic,strong)NSMutableArray *dataArray;  
-
+@property (nonatomic,strong)UploadView *uploadV;
 @end
 
 @implementation MenuViewController
@@ -38,7 +39,10 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"菜谱";
+
     [self createCollectionView];
+    self.uploadV = [[UploadView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_H-64-49)];
+    [self.view addSubview:self.uploadV];
     [self loadData];
 }
 
@@ -190,6 +194,7 @@
 
 -(void)doMain
 {
+    [self.uploadV removeFromSuperview];
     [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
     [self.collectionView reloadData];
 }

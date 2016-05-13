@@ -17,10 +17,13 @@
 #import "MJRefresh.h"
 #import "CookDetailsViewController.h"
 
+#import "UploadView.h"
+
 @interface MakeUpListViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property(nonatomic,strong)UICollectionView *MixListColl;
 @property(nonatomic,strong)NSMutableArray *dataArray;
+@property (nonatomic,strong)UploadView *uploadV;
 @end
 
 @implementation MakeUpListViewController
@@ -34,6 +37,8 @@
     
     [self getMixResult];
     [self createCollection];
+    self.uploadV = [[UploadView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_H-64)];
+    [self.view addSubview:self.uploadV];
     
     //设置nav左返回按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
@@ -134,6 +139,7 @@
             }
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            [self.uploadV removeFromSuperview];
             [self.MixListColl reloadData];
            
         });
