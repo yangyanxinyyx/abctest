@@ -93,7 +93,7 @@
         
         [[SDImageCache sharedImageCache] clearDisk];
      float tmpSize = [[SDImageCache sharedImageCache]checkTmpSize];
-        NSString *clearCacheName = tmpSize >= 1 ? [NSString stringWithFormat:@"%.1fM",tmpSize] : [NSString stringWithFormat:@"%.1fK",tmpSize * 1024];
+        NSString *clearCacheName = tmpSize >= 1 ? [NSString stringWithFormat:@"%.fM",tmpSize] : [NSString stringWithFormat:@"%.fK",tmpSize * 1024];
         [Button setTitle:clearCacheName forState:UIControlStateNormal];
         
     }else if (Button.tag == 3){
@@ -159,7 +159,7 @@
 #pragma mark- 更新缓存的数据
     [[SDImageCache sharedImageCache] clearDisk];
     float tmpSize = [[SDImageCache sharedImageCache]checkTmpSize];
-    NSString *clearCacheName = tmpSize >= 1 ? [NSString stringWithFormat:@"%.1fM",tmpSize] : [NSString stringWithFormat:@"%.1fK",tmpSize * 1024];
+    NSString *clearCacheName = tmpSize >= 1 ? [NSString stringWithFormat:@"%.fM",tmpSize] : [NSString stringWithFormat:@"%.fK",tmpSize * 1024];
     [self.buttonClean setTitle:clearCacheName forState:UIControlStateNormal];
 
 }
