@@ -107,7 +107,10 @@
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_H)];
     [self.view addSubview:self.scrollView];
     self.scrollView.delegate = self;
-    self.scrollView.bounces = NO;
+    //给详细页面加个右滑手势返回上一页
+    UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(returnLastpageValue)];
+    swipeGesture.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.scrollView addGestureRecognizer:swipeGesture];
     
     self.topImageView.frame = CGRectMake(0, _height, SCREEN_W, SCREEN_W/1.5);
     self.topImageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -480,6 +483,14 @@
         
         
     }
+    
+    
+#pragma mark 下拉放大图片
+    if (scrollView.contentOffset.y<-64) {
+        self.topImageView.frame = CGRectMake(0,scrollView.contentOffset.y, SCREEN_W, SCREEN_W/1.5-scrollView.contentOffset.y-64);
+ 
+    }
+ 
 }
 
 #pragma -mark  点击收藏
@@ -541,24 +552,15 @@
     if (self.urlId == 11 || self.urlId == 12) {
         self.tabBarController.hidesBottomBarWhenPushed = NO;
     }
+    
 }
 
 
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark scrollView的右滑手势返回上一页面的方法
+-(void)returnLastpageValue{
+    [self.navigationController popViewControllerAnimated:YES];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -157,7 +157,6 @@
     }
     [self.myViewV2 doButtonValue:nil];
 #pragma mark- 更新缓存的数据
-    [[SDImageCache sharedImageCache] clearDisk];
     float tmpSize = [[SDImageCache sharedImageCache]checkTmpSize];
     NSString *clearCacheName = tmpSize >= 1 ? [NSString stringWithFormat:@"%.fM",tmpSize] : [NSString stringWithFormat:@"%.fK",tmpSize * 1024];
     [self.buttonClean setTitle:clearCacheName forState:UIControlStateNormal];

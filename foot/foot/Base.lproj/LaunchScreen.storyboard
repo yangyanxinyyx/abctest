@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="改版启动图.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="sud-mZ-YeX">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="改版启动图1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="sud-mZ-YeX">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
                         </subviews>
@@ -58,6 +58,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="改版启动图.jpg" width="1200" height="2130"/>
+        <image name="改版启动图1.jpg" width="480" height="800"/>
     </resources>
 </document>
