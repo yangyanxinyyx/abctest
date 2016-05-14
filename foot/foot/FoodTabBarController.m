@@ -31,7 +31,7 @@
 #pragma mark- 引导图
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     NSString *string =[user stringForKey:@"标记"];
-    if (![string isEqualToString:@"yes1"]) {
+    if (![string isEqualToString:@"yes"]) {
         GuideImageView *guideV =[[GuideImageView alloc]initWithFrame:self.view.frame];
         guideV.delegate = self;
         [self.view addSubview:guideV];
