@@ -122,7 +122,7 @@
         button.frame = CGRectMake(0, 0, roundView.bounds.size.width-10, roundView.bounds.size.height-10);
         button.center = CGPointMake(_roatingR/2, _roatingR/2);
         float tmpSize = [[SDImageCache sharedImageCache]checkTmpSize];
-        NSString *clearCacheName = tmpSize >= 1 ? [NSString stringWithFormat:@"%.2fM",tmpSize] : [NSString stringWithFormat:@"%.2fK",tmpSize * 1024];
+        NSString *clearCacheName = tmpSize >= 1 ? [NSString stringWithFormat:@"%.1fM",tmpSize] : [NSString stringWithFormat:@"%.fK",tmpSize * 1024];
         [button setTitle:clearCacheName forState:UIControlStateNormal];
     }else{
         button.titleLabel.font = [UIFont systemFontOfSize:15];
