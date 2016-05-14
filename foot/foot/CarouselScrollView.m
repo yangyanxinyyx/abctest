@@ -60,6 +60,7 @@ typedef enum {
     return self.scrollView.frame.size.height;
 }
 -(CGFloat)width {
+ 
     return self.scrollView.frame.size.width;
 }
 #pragma mark- 懒加载
@@ -147,7 +148,8 @@ typedef enum {
 #pragma mark 设置控件的frame
 -(void)setFrame:(CGRect)frame{
     [super setFrame:frame];
-    self.scrollView.frame = self.bounds;
+    self.scrollView.frame = frame;
+    NSLog(@"%f",self.scrollView.frame.size.width);
     [self setscrollViewContentSize];
 }
 #pragma mark 设置滚动方向
@@ -324,9 +326,7 @@ typedef enum {
     //等于1表示没滚动
     if (self.scrollView.contentOffset.x / self.width == 1) return;
     self.currIndex = self.nextIndex;
-
     self.currImageView.frame = CGRectMake(self.width, 0, self.width, self.height);
-    self.describLabel.text = self.describeArray[self.currIndex];
     self.currImageView.image = self.otherImageView.image;
     self.scrollView.contentOffset = CGPointMake(self.width, 0);
 

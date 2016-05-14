@@ -114,14 +114,20 @@
     UIImage *image = [UIImage imageNamed:imageName];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = roundView.bounds;
+    button.frame = CGRectMake(0, 0, roundView.bounds.size.width-20, roundView.bounds.size.height-20);
+    button.center = CGPointMake(_roatingR/2, _roatingR/2);
     button.tag = tag;
     [button setBackgroundImage:image forState:UIControlStateNormal];
     if ([imageName isEqualToString:@"清除缓存"]) {
+        button.frame = CGRectMake(0, 0, roundView.bounds.size.width-10, roundView.bounds.size.height-10);
+        button.center = CGPointMake(_roatingR/2, _roatingR/2);
         float tmpSize = [[SDImageCache sharedImageCache]checkTmpSize];
         NSString *clearCacheName = tmpSize >= 1 ? [NSString stringWithFormat:@"%.2fM",tmpSize] : [NSString stringWithFormat:@"%.2fK",tmpSize * 1024];
         [button setTitle:clearCacheName forState:UIControlStateNormal];
     }else{
+        button.titleLabel.font = [UIFont systemFontOfSize:15];
+        button.titleLabel.numberOfLines = 0;
+        button.titleLabel.textAlignment = NSTextAlignmentCenter;
     [button setTitle:imageName forState:UIControlStateNormal];
     }
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -143,9 +149,11 @@
     roundView.tag = 1;
     [self addSubview:roundView];
     UIImage *image = [UIImage imageNamed:imageName];
-    
+
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = roundView.bounds;
+    button.titleLabel.font = [UIFont systemFontOfSize:15];
+    button.frame = CGRectMake(0, 0, roundView.bounds.size.width-20, roundView.bounds.size.height-20);
+    button.center = CGPointMake(_roatingR/2, _roatingR/2);
     button.tag = tag;
     [button setBackgroundImage:image forState:UIControlStateNormal];
     [button setTitle:imageName forState:UIControlStateNormal];
@@ -264,7 +272,6 @@
 -(void)doMainThread{
     CarouselScrollView *carouseleS  = [[CarouselScrollView alloc]initWithImageArray:self.arrayImages];
     carouseleS.frame = _centerView.bounds;
-    [carouseleS startTimer];
     [_centerView addSubview:carouseleS];
 }
 @end

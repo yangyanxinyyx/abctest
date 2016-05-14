@@ -9,5 +9,5 @@
 #import "FoodViewController.h"
 
 @interface MyViewController : FoodViewController
-
+@property (nonatomic,strong)UIButton *buttonClean;
 @end

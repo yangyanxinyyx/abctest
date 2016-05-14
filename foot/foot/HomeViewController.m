@@ -9,6 +9,7 @@
 #define KScreenWidth [UIScreen mainScreen].bounds.size.width
 #define KScreenHeight [UIScreen mainScreen].bounds.size.height
 #define ColorBack     [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1]
+#define ColorVray     [UIColor whiteColor]
 
 #import "HomeViewController.h"
 #import "CombinationView.h"
@@ -27,6 +28,7 @@
 
 #import "CookDetailsViewController.h"
 #import "UploadView.h"
+
 @interface HomeViewController ()<UIScrollViewDelegate,FirstTableViewCellDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 {
     NSInteger flag;
@@ -35,12 +37,18 @@
 @property (nonatomic,strong)UITableView *tab;
 @property (nonatomic,strong)NSMutableArray *selectDataArray;
 @property (nonatomic,strong)UploadView *uploadV;
+@property (nonatomic,strong)UIBarButtonItem *rightBarButtonItem;
 @end
 
 @implementation HomeViewController
 
 - (void)viewDidLoad {
+
+
     [super viewDidLoad];
+    
+
+    
     self.view.backgroundColor = [UIColor whiteColor];
 //    self.navigationItem.title = @"首页";
     flag = 0;
@@ -71,13 +79,16 @@
     self.tab.dataSource = self;
     self.tab.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.tab];
-    
     [self getDataWith:@"0"];
     
 #pragma mark -加载
     self.uploadV = [[UploadView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-64-49)];
     [self.view addSubview:self.uploadV];
-    
+#pragma mark- 却换模式
+    UIImage *imageDay = [UIImage imageNamed:@"日间模式"];
+    imageDay = [imageDay imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+   self.rightBarButtonItem =[[UIBarButtonItem alloc]initWithImage:imageDay style:UIBarButtonItemStylePlain target:self action:@selector(exchangeModel)];
+    self.navigationItem.rightBarButtonItem = _rightBarButtonItem;
   }
 
 #pragma mark UITableView 的代理
@@ -96,6 +107,7 @@
             cell = [[FirstTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
             cell.delegate = self;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.backgroundColor = ColorVray;
         }
         return cell;
     
@@ -111,6 +123,7 @@
         cell.labelBrowse.text = [NSString stringWithFormat:@"%@浏览",model.vc];
         cell.labelCollect.text = [NSString stringWithFormat:@"·  %@收藏",model.fc];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = ColorVray;
         return cell;
     }
 
@@ -125,12 +138,19 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
 }
+#pragma -mark 设置分区
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section == 0) {
         return nil;
     }else{
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, 40)];
-    view.backgroundColor = [UIColor whiteColor];
+    view.backgroundColor = ColorVray;
+        UIImageView *imageView = [[UIImageView alloc]initWithFrame:view.bounds];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        UIImage *image = [UIImage imageNamed:@"花边.jpg"];
+        imageView.image = image;
+        [view addSubview:imageView];
+        
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake((KScreenWidth-100)/2, 10, 100, 20)];
     label.text = @"精     选";
     label.textColor = [UIColor redColor];
@@ -139,9 +159,23 @@
     [view addSubview:label];
         view.layer.borderColor = [UIColor lightGrayColor].CGColor;
         view.layer.borderWidth = 1;
+        
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureValue)];
+        tapGesture.numberOfTapsRequired = 1;
+        tapGesture.numberOfTouchesRequired = 1;
+        [view addGestureRecognizer:tapGesture];
+        
+  
         return view;
     }
 }
+#pragma mark -分区的点击事件
+-(void)tapGestureValue{
+  
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+    [self.tab scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
+
 -(CGFloat )tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section{
     if (section ==0) {
         return 0;
@@ -245,24 +279,36 @@
     SearchViewController *searchVC  = [[SearchViewController alloc]init];
     [self.navigationController pushViewController:searchVC animated:YES];
 }
-#pragma mark scrollView的方法 
-//实现拖拽到精选的时候停止一下
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-  
-    
-    if (scrollView.contentOffset.y>630 && scrollView.contentOffset.y<650) {
-        scrollView.scrollEnabled = NO;
-        sleep(0.1);
-        self.tab.scrollsToTop = YES;
-        scrollView.scrollEnabled = YES;
-    }
-    
-    
-}
-
+#pragma mark scrollView的方法
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     self.tab.scrollEnabled = YES;
 }
+//切换日间夜间模式
+-(void)exchangeModel{
+    static NSString *modelValue = @"day";
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    
+    if ([modelValue isEqualToString:@"day"]) {
+        UIImage *imageNight = [UIImage imageNamed:@"夜间模式"];
+        imageNight = [imageNight imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        _rightBarButtonItem.image = imageNight;
+   
+        modelValue = @"night";
+    }else{
+        UIImage *imageDay = [UIImage imageNamed:@"日间模式"];
+        imageDay = [imageDay imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        _rightBarButtonItem.image = imageDay;
+ 
+        modelValue = @"day";
+    }
+    [user setValue:modelValue forKey:@"model"];
 
+    //创建通知
+    NSNotification *notification = [NSNotification notificationWithName:@"tongzhi" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:modelValue,@"model", nil]];
+    //通过通知中心发送通知
+    [[NSNotificationCenter defaultCenter]postNotification:notification];
 
+    
+   
+}
 @end

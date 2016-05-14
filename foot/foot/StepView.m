@@ -64,7 +64,7 @@
         CGRect rect = self.frame;
         rect.size.height = _height;
         self.frame = rect;
-        NSLog(@"%f",self.frame.size.height);
+//        NSLog(@"%f",self.frame.size.height);
         
     }
     return self;

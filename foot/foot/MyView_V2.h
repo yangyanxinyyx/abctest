@@ -11,6 +11,7 @@
 @protocol MyViewDelegate <NSObject>
 -(void)buttonVlaue:(UIButton *)Button;
 -(void)buttonSetValue:(UIButton*)Butoon;
+
 @end
 @interface MyView_V2 : UIView
 @property (nonatomic,strong)UIView *outView;

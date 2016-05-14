@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="启动图.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="sud-mZ-YeX">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="改版启动图.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="sud-mZ-YeX">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
                         </subviews>
@@ -33,10 +33,10 @@
                                 <exclude reference="sud-mZ-YeX"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="paW-Vl-INY"/>
                                 <exclude reference="ZVN-lL-pNw"/>
                                 <exclude reference="caK-kD-JdH"/>
                                 <exclude reference="obS-0F-tHO"/>
-                                <exclude reference="paW-Vl-INY"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -44,10 +44,10 @@
                                 <include reference="sud-mZ-YeX"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="paW-Vl-INY"/>
                                 <include reference="ZVN-lL-pNw"/>
                                 <include reference="caK-kD-JdH"/>
                                 <include reference="obS-0F-tHO"/>
-                                <include reference="paW-Vl-INY"/>
                             </mask>
                         </variation>
                     </view>
@@ -58,6 +58,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="启动图.jpg" width="394" height="560"/>
+        <image name="改版启动图.jpg" width="1200" height="2130"/>
     </resources>
 </document>

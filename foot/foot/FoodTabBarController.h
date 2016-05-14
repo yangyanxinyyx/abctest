@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface FoodTabBarController : UITabBarController
-
+@property(nonatomic,strong)UIView *tabBarView;
 
 @end

@@ -16,10 +16,7 @@
     
     if (self = [super initWithFrame:frame]) {
         
-//        UIImage *image = [UIImage imageNamed:@"背景.jpg"];
-//        UIImageView *imageView = [[UIImageView alloc]initWithFrame:self.bounds];
-//        imageView.image = image;
-//        [self addSubview:imageView];
+
         [self addSubview:self.VideoButton];
         [self addSubview:self.NewestButton];
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 70, KScreenWidth, 10)];
@@ -34,7 +31,7 @@
     if (!_VideoButton) {
         self.VideoButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_VideoButton setBackgroundImage:[UIImage imageNamed:@"视频"] forState:UIControlStateNormal];
-        _VideoButton.frame = CGRectMake(KScreenWidth/4, 0, 55, 55);
+        _VideoButton.frame = CGRectMake(KScreenWidth/4, 10, 55, 38);
         [_VideoButton setTitle:@"视频推荐" forState:UIControlStateNormal];
         _VideoButton.titleLabel.font = [UIFont systemFontOfSize:12];
         [_VideoButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

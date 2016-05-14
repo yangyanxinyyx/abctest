@@ -12,22 +12,33 @@
 #import "MakeUpViewController.h"
 #import "MenuViewController.h"
 #import "MyViewController.h"
+#import "GuideImageView.h"
 
 #define SCREEN_W [UIScreen mainScreen].bounds.size.width
 #define SCREEN_H [UIScreen mainScreen].bounds.size.height
 #define Color(x,y,z,a) [UIColor colorWithRed:x/255.0 green:y/255.0 blue:z/255.0 alpha:a]
 
-@interface FoodTabBarController ()
-
-@property(nonatomic,strong)UIView *tabBarView;
+@interface FoodTabBarController ()<GuideImageViewDelegate>
 @property(nonatomic,strong)UIButton *selectButton;
-
+@property(nonatomic,strong)UIView *backView ;
 @end
 
 @implementation FoodTabBarController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tabBarView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_H - 49, SCREEN_W, 49)];
+#pragma mark- 引导图
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSString *string =[user stringForKey:@"标记"];
+    if (![string isEqualToString:@"yes1"]) {
+        GuideImageView *guideV =[[GuideImageView alloc]initWithFrame:self.view.frame];
+        guideV.delegate = self;
+        [self.view addSubview:guideV];
+        self.tabBarView.hidden = YES;
+    }
+
+    
     
     self.view.backgroundColor = [UIColor whiteColor];
     [self initNavigationController];
@@ -35,6 +46,14 @@
     
     [self.tabBar setTranslucent:NO];
     
+    _backView = [[UIView alloc]initWithFrame:self.view.frame];
+    _backView.backgroundColor = [UIColor blackColor];
+    _backView.alpha = 0;
+    [self.view addSubview:_backView];
+    _backView.userInteractionEnabled = NO;
+    
+    //注册通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationValue:) name:@"tongzhi" object:nil];
 
     
 }
@@ -42,6 +61,7 @@
 #pragma -mark  添加根视图
 -(void)initNavigationController
 {
+
     HomeViewController *home = [[HomeViewController alloc] init];
     FoodNavigationController *homeNav = [[FoodNavigationController alloc] initWithRootViewController:home];
     
@@ -62,7 +82,7 @@
 #pragma -mark  根据需要自定义tabbar视图
 -(void)initCustomTabBar
 {
-    self.tabBarView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_H - 49, SCREEN_W, 49)];
+
     self.tabBarView.backgroundColor = Color(255, 255, 255, 1);
     [self.view addSubview:self.tabBarView];
     
@@ -142,7 +162,19 @@
                      }];
 
 }
+-(void)notificationValue:(NSNotification*)notification{
+    if ([[notification.userInfo objectForKey:@"model"]isEqualToString:@"day"]) {
+        [UIView animateWithDuration:0.5 animations:^{
+            _backView.alpha = 0;
+        }];
+    }else{
+        [UIView animateWithDuration:0.5 animations:^{
+            _backView.alpha = 0.5;
+        }];
+    }
+}
 
-
-
+-(void)toucheToMain{
+    self.tabBarView.hidden = NO;
+}
 @end
