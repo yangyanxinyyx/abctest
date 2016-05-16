@@ -131,7 +131,7 @@
     if (cell == nil) {
         cell = [[SelectionTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
     }
-        [cell.selectImageView sd_setImageWithURL:[NSURL URLWithString:model.img]];
+        [cell.selectImageView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:[UIImage imageNamed:@"等待占位图"]];
         cell.labelName.text = model.n;
         cell.labelBrowse.text = [NSString stringWithFormat:@"%@浏览",model.vc];
         cell.labelCollect.text = [NSString stringWithFormat:@"·  %@收藏",model.fc];
