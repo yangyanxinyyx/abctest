@@ -16,7 +16,7 @@
 #import "UIImageView+WebCache.h"
 #import "PlayVideoViewController.h"
 #import "MJRefresh.h"
-
+#import "UploadView.h"
 
 @interface VideoViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -24,6 +24,7 @@
 }
 @property (nonatomic,strong)UITableView *tabVideo;
 @property (nonatomic,strong)NSMutableArray *arrayVideo;
+@property (nonatomic,strong)UploadView *uploadV;
 @end
 
 @implementation VideoViewController
@@ -58,6 +59,9 @@
     [self.view addSubview:self.tabVideo];
     [self getDataWith:@"0"];
     [self.tabVideo addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(footRefreshing)];
+#pragma mark -加载
+    self.uploadV = [[UploadView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-64)];
+    [self.view addSubview:self.uploadV];
     
 }
 #pragma mark - UITableView的代理
@@ -108,6 +112,7 @@
     }];
 }
 -(void)doMainThread{
+    [self.uploadV removeFromSuperview];
      [self.tabVideo reloadData];
 }
 -(void)footRefreshing{

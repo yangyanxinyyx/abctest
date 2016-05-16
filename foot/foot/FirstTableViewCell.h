@@ -23,4 +23,5 @@
 @property (nonatomic,strong)NSMutableArray *arr;//随机数组
 @property (nonatomic,strong)NSMutableDictionary *dicData;
 @property (nonatomic)id<FirstTableViewCellDelegate>delegate;
+-(void)setLayout;
 @end

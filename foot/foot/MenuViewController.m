@@ -56,6 +56,7 @@
     layout.itemSize = CGSizeMake((SCREEN_W - 50)/4, (SCREEN_W - 50)/4);
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_H - 64 - 49) collectionViewLayout:layout];
+    self.collectionView.bounces = NO;
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.collectionView];

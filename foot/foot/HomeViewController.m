@@ -38,6 +38,7 @@
 @property (nonatomic,strong)NSMutableArray *selectDataArray;
 @property (nonatomic,strong)UploadView *uploadV;
 @property (nonatomic,strong)UIBarButtonItem *rightBarButtonItem;
+@property (nonatomic,strong)UIImageView *imageHeaderView;
 @end
 
 @implementation HomeViewController
@@ -80,7 +81,8 @@
     self.tab.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.tab];
     [self getDataWith:@"0"];
-    
+
+
 #pragma mark -加载
     self.uploadV = [[UploadView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-64-49)];
     [self.view addSubview:self.uploadV];
@@ -91,6 +93,17 @@
     self.navigationItem.rightBarButtonItem = _rightBarButtonItem;
   }
 
+#pragma mark 懒加载
+-(UIImageView *)imageHeaderView{
+    if (!_imageHeaderView) {
+        //加载
+        _imageHeaderView = [[UIImageView alloc]initWithFrame:CGRectMake((KScreenWidth-40)/2, -40, 40, 40)];
+        UIImage *imageHeader = [UIImage imageNamed:@"加载"];
+        _imageHeaderView.image = imageHeader;
+        [self.tab insertSubview:_imageHeaderView atIndex:0];
+    }
+    return _imageHeaderView;
+}
 #pragma mark UITableView 的代理
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
@@ -282,6 +295,31 @@
 #pragma mark scrollView的方法
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     self.tab.scrollEnabled = YES;
+}
+//scrollView
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake((KScreenWidth -250)/2, -40, 250, 30)];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor lightGrayColor];
+    label.font = [UIFont systemFontOfSize:15];
+    if (scrollView.contentOffset.y<0&&scrollView.contentOffset.y>-80) {
+        self.imageHeaderView.hidden = YES;
+        label.text = @"继续下拉则重新加载该页面!!";
+        [self.tab addSubview:label];
+
+    }else if (scrollView.contentOffset.y<-80&&scrollView.contentOffset.y>-120){
+        label.hidden = YES;
+        self.imageHeaderView.hidden = NO;
+        self.imageHeaderView.transform = CGAffineTransformRotate(_imageHeaderView.transform, -M_PI_4*scrollView.contentOffset.y/100);
+    }
+    else if (scrollView.contentOffset.y <-120){
+      
+        [self.tab removeFromSuperview];
+        [self viewDidLoad];
+     
+    }else{
+        label.hidden =NO;
+    }
 }
 //切换日间夜间模式
 -(void)exchangeModel{

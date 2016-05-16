@@ -15,6 +15,7 @@
 #import "UIImageView+WebCache.h"
 #import "MJRefresh.h"
 #import "CookDetailsViewController.h"
+#import "UploadView.h"
 
 @interface NewestViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -22,6 +23,7 @@
 }
 @property (nonatomic,strong)UITableView *newestTab;
 @property (nonatomic,strong)NSMutableArray *newestArray;
+@property (nonatomic,strong)UploadView *uploadV;
 @end
 
 @implementation NewestViewController
@@ -54,6 +56,9 @@
     [self.view addSubview:self.newestTab];
     [self getDataWit:@"0"];
     [self.newestTab addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(footRefreshing)];
+#pragma mark -加载
+    self.uploadV = [[UploadView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-64)];
+    [self.view addSubview:self.uploadV];
     
 }
 
@@ -83,6 +88,7 @@
     }];
 }
 -(void)doMainThread{
+    [self.uploadV removeFromSuperview];
     [self.newestTab reloadData];
 }
 #pragma mark uitableview的代理

@@ -95,6 +95,9 @@
      float tmpSize = [[SDImageCache sharedImageCache]checkTmpSize];
         NSString *clearCacheName = tmpSize >= 1 ? [NSString stringWithFormat:@"%.fM",tmpSize] : [NSString stringWithFormat:@"%.fK",tmpSize * 1024];
         [Button setTitle:clearCacheName forState:UIControlStateNormal];
+        if (![clearCacheName isEqualToString:@"0K"]) {
+            [self buttonVlaue:self.buttonClean];
+        }
         
     }else if (Button.tag == 3){
         //旋转动画

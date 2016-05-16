@@ -144,6 +144,7 @@
     
     
     self.mixFoodCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_H-64-49-SCREEN_W/5) collectionViewLayout:layout];
+    self.mixFoodCollectionView.bounces = NO;
     self.mixFoodCollectionView.backgroundColor = [UIColor whiteColor];
     self.mixFoodCollectionView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.mixFoodCollectionView];

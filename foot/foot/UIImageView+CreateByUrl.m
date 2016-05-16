@@ -32,7 +32,7 @@
         
         //剪切图片
          CGFloat height = KScreenWidth/375*500;
-       image =  [ImageManager getSubImage:image mCGRect:CGRectMake(0, 0, (KScreenWidth-20)*2 , height/3*2) centerBool:YES];
+       image =  [ImageManager getSubImage:image mCGRect:CGRectMake(0, 0, (KScreenWidth-20)*1.5 , height/3*1.5) centerBool:YES];
         
         
         //GCD返回主线程的方法
