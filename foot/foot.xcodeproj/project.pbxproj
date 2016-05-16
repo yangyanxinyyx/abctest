@@ -78,10 +78,7 @@
 		3F7342891CE6062300F11584 /* 引导图4.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F7342881CE6062300F11584 /* 引导图4.png */; settings = {ASSET_TAGS = (); }; };
 		3F73428B1CE611E100F11584 /* 引导图1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F73428A1CE611E100F11584 /* 引导图1.png */; settings = {ASSET_TAGS = (); }; };
 		3F7DF9E11CE06B7800903F18 /* CollectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7DF9E01CE06B7800903F18 /* CollectModel.m */; settings = {ASSET_TAGS = (); }; };
-		3F8637821CE1B36800CA0105 /* 删除.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F8637811CE1B36800CA0105 /* 删除.png */; settings = {ASSET_TAGS = (); }; };
-		3F8637861CE1BA2B00CA0105 /* 菜.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F8637831CE1BA2B00CA0105 /* 菜.png */; settings = {ASSET_TAGS = (); }; };
 		3F8637871CE1BA2B00CA0105 /* 垃圾桶.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F8637841CE1BA2B00CA0105 /* 垃圾桶.png */; settings = {ASSET_TAGS = (); }; };
-		3F8637881CE1BA2B00CA0105 /* 汤.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F8637851CE1BA2B00CA0105 /* 汤.png */; settings = {ASSET_TAGS = (); }; };
 		3F86378A1CE1C29800CA0105 /* 让人收藏.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F8637891CE1C29800CA0105 /* 让人收藏.jpg */; settings = {ASSET_TAGS = (); }; };
 		3F8A5E541CE0922300F53C73 /* MyCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8A5E531CE0922300F53C73 /* MyCollectViewController.m */; settings = {ASSET_TAGS = (); }; };
 		3F8E5B351CE06FA600CE1BD5 /* UIImageView+CreateByUrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E5B341CE06FA600CE1BD5 /* UIImageView+CreateByUrl.m */; settings = {ASSET_TAGS = (); }; };
@@ -301,10 +298,7 @@
 		3F73428A1CE611E100F11584 /* 引导图1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "引导图1.png"; sourceTree = "<group>"; };
 		3F7DF9DF1CE06B7800903F18 /* CollectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectModel.h; sourceTree = "<group>"; };
 		3F7DF9E01CE06B7800903F18 /* CollectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectModel.m; sourceTree = "<group>"; };
-		3F8637811CE1B36800CA0105 /* 删除.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "删除.png"; sourceTree = "<group>"; };
-		3F8637831CE1BA2B00CA0105 /* 菜.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "菜.png"; sourceTree = "<group>"; };
 		3F8637841CE1BA2B00CA0105 /* 垃圾桶.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "垃圾桶.png"; sourceTree = "<group>"; };
-		3F8637851CE1BA2B00CA0105 /* 汤.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "汤.png"; sourceTree = "<group>"; };
 		3F8637891CE1C29800CA0105 /* 让人收藏.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "让人收藏.jpg"; sourceTree = "<group>"; };
 		3F8A5E521CE0922300F53C73 /* MyCollectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectViewController.h; sourceTree = "<group>"; };
 		3F8A5E531CE0922300F53C73 /* MyCollectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectViewController.m; sourceTree = "<group>"; };
@@ -810,10 +804,7 @@
 				3FEC79F91CE3385000C638E8 /* 问题.png */,
 				3F57104A1CDC7634005008DB /* 收藏.png */,
 				3F57104B1CDC7634005008DB /* 未收藏.png */,
-				3F8637811CE1B36800CA0105 /* 删除.png */,
-				3F8637831CE1BA2B00CA0105 /* 菜.png */,
 				3F8637841CE1BA2B00CA0105 /* 垃圾桶.png */,
-				3F8637851CE1BA2B00CA0105 /* 汤.png */,
 				3F8637891CE1C29800CA0105 /* 让人收藏.jpg */,
 				3FB88C161CDB4AE00085FE05 /* 搜素 */,
 				3FABA3D71CDB410000D35CEA /* navigation */,
@@ -1168,7 +1159,7 @@
 				TargetAttributes = {
 					3FDDB19D1CD8A94E009FA128 = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = ETU544CEG9;
+						DevelopmentTeam = Y89L95Z25H;
 					};
 					3FDDB1B61CD8A94E009FA128 = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -1205,7 +1196,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F8637861CE1BA2B00CA0105 /* 菜.png in Resources */,
 				3F7342671CE5797000F11584 /* 清除缓存.png in Resources */,
 				3FF0028C1CDC961D00F85D4E /* 勾勾.png in Resources */,
 				3F73428B1CE611E100F11584 /* 引导图1.png in Resources */,
@@ -1224,7 +1214,6 @@
 				3F73425E1CE5710E00F11584 /* 最新.png in Resources */,
 				3F7342891CE6062300F11584 /* 引导图4.png in Resources */,
 				3FF9BD1D1CD9C83E00D11A51 /* 启动图.jpg in Resources */,
-				3F8637881CE1BA2B00CA0105 /* 汤.png in Resources */,
 				3FDDB2091CD8C53F009FA128 /* 食谱1.png in Resources */,
 				3FDDB2081CD8C53F009FA128 /* 我.png in Resources */,
 				3F73427A1CE5D87F00F11584 /* 日间模式.png in Resources */,
@@ -1255,7 +1244,6 @@
 				3F86378A1CE1C29800CA0105 /* 让人收藏.jpg in Resources */,
 				3FF0028E1CDC9C0C00F85D4E /* 加号红.png in Resources */,
 				3F73427B1CE5D87F00F11584 /* 夜间模式.png in Resources */,
-				3F8637821CE1B36800CA0105 /* 删除.png in Resources */,
 				3FD659411CE2E4C200CF0F51 /* placeholder.png in Resources */,
 				3FAEB0A01CDB1EB300F36ED1 /* MJRefresh.bundle in Resources */,
 				3FDDB20A1CD8C53F009FA128 /* 食谱.png in Resources */,
