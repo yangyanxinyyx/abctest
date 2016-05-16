@@ -94,12 +94,14 @@ typedef enum {
         _scrollView.showsVerticalScrollIndicator = NO;
         _scrollView.delegate = self;
         _currImageView = [[UIImageView alloc]init];
-        _currImageView.contentMode = UIViewContentModeScaleAspectFit;
+        _currImageView.contentMode = UIViewContentModeScaleAspectFill;
+        _currImageView.clipsToBounds = YES;
         _currImageView.userInteractionEnabled = YES;
         [_currImageView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(imageClick)]];
         [_scrollView addSubview:_currImageView];
         _otherImageView = [[UIImageView alloc]init];
-        _otherImageView.contentMode = UIViewContentModeScaleAspectFit;
+        _otherImageView.contentMode = UIViewContentModeScaleAspectFill;
+        _otherImageView.clipsToBounds = YES;
         [_scrollView addSubview:_otherImageView];
         [self addSubview:_scrollView];
     }

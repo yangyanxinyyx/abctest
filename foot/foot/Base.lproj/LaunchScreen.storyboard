@@ -16,38 +16,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="改版启动图.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="1gN-wG-bgt">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="改版启动图.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="GTv-ys-dkp">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="1gN-wG-bgt" secondAttribute="trailing" id="E1x-Ev-qcF"/>
-                            <constraint firstItem="1gN-wG-bgt" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="PZS-J3-fQ8"/>
-                            <constraint firstItem="1gN-wG-bgt" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="Sw2-0X-lDo"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="1gN-wG-bgt" secondAttribute="bottom" id="VfG-8U-S7p"/>
+                            <constraint firstAttribute="trailing" secondItem="GTv-ys-dkp" secondAttribute="trailing" id="9NW-jM-Pgz"/>
+                            <constraint firstItem="GTv-ys-dkp" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="R0A-fn-E3w"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="GTv-ys-dkp" secondAttribute="bottom" id="fVm-gY-CPd"/>
+                            <constraint firstItem="GTv-ys-dkp" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="gu6-wv-CNe"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="1gN-wG-bgt"/>
+                                <exclude reference="GTv-ys-dkp"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="VfG-8U-S7p"/>
-                                <exclude reference="E1x-Ev-qcF"/>
-                                <exclude reference="PZS-J3-fQ8"/>
-                                <exclude reference="Sw2-0X-lDo"/>
+                                <exclude reference="9NW-jM-Pgz"/>
+                                <exclude reference="R0A-fn-E3w"/>
+                                <exclude reference="gu6-wv-CNe"/>
+                                <exclude reference="fVm-gY-CPd"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
-                                <include reference="1gN-wG-bgt"/>
+                                <include reference="GTv-ys-dkp"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="VfG-8U-S7p"/>
-                                <include reference="E1x-Ev-qcF"/>
-                                <include reference="PZS-J3-fQ8"/>
-                                <include reference="Sw2-0X-lDo"/>
+                                <include reference="9NW-jM-Pgz"/>
+                                <include reference="R0A-fn-E3w"/>
+                                <include reference="gu6-wv-CNe"/>
+                                <include reference="fVm-gY-CPd"/>
                             </mask>
                         </variation>
                     </view>
