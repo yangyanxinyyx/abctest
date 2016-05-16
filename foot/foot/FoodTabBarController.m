@@ -90,10 +90,23 @@
 
     for (int i = 0; i < 4; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake((SCREEN_W / 4 - 30)/2 + (i*SCREEN_W/4), (49-30)/2, 30, 30);
+        button.frame = CGRectMake((SCREEN_W / 4 - 30)/2 + (i*SCREEN_W/4), (49-40)/2, 40, 40);
         button.tag = i +1;
         [button setImage:[UIImage imageNamed:array[i]] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(selectButton:) forControlEvents:UIControlEventTouchUpInside];
+        if (i == 0) {
+            [button setTitle:@"首页" forState:UIControlStateNormal];
+            [button setTitleColor:Color(228, 53, 42, 1) forState:UIControlStateNormal];
+        }
+        else
+        {
+            [button setTitle:array[i] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        }
+        [button setImageEdgeInsets:UIEdgeInsetsMake(-15, 3, 0, 0)];
+        [button setTitleEdgeInsets:UIEdgeInsetsMake(0, -35, -30, 0)];
+        
+        button.titleLabel.font = [UIFont systemFontOfSize:12];
         [self.tabBarView addSubview:button];
         if (i == 0) {
             [self setSelectButton:button];
@@ -107,6 +120,7 @@
     NSArray *array1 = @[@"首页1",@"食材1",@"食谱1",@"我1"];
     
     [self.selectButton setImage:[UIImage imageNamed:array[self.selectButton.tag - 1]] forState:UIControlStateNormal];
+    [self.selectButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     switch (button.tag) {
         case 1:
             [button setImage:[UIImage imageNamed:array1[0]] forState:UIControlStateNormal];
@@ -123,6 +137,7 @@
         default:
             break;
     }
+    [button setTitleColor:Color(228, 53, 42, 1) forState:UIControlStateNormal];
     self.selectedViewController = self.viewControllers[button.tag - 1];
     _selectButton = button;
 
