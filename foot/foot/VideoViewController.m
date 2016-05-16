@@ -25,6 +25,7 @@
 @property (nonatomic,strong)UITableView *tabVideo;
 @property (nonatomic,strong)NSMutableArray *arrayVideo;
 @property (nonatomic,strong)UploadView *uploadV;
+@property (nonatomic)BOOL isPush;
 @end
 
 @implementation VideoViewController
@@ -32,6 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     flag = 0;
+    _isPush = NO;
     self.view.backgroundColor = [UIColor whiteColor];
     self.arrayVideo = [NSMutableArray array];
     
@@ -131,11 +133,16 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {    self.navigationController.navigationBarHidden = NO;
-    self.tabBarController.hidesBottomBarWhenPushed = NO;
+    if (_isPush) {
+            self.tabBarController.hidesBottomBarWhenPushed = NO;
+    }else{
+        self.tabBarController.hidesBottomBarWhenPushed = YES;
+        _isPush = NO;
+    }
 }
 #pragma mark - 返回上一页
 -(void)toComeBack{
-    
+    _isPush = YES;
     [self.navigationController popViewControllerAnimated:YES];
     
     

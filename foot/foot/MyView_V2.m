@@ -60,7 +60,7 @@
         _outView.layer.cornerRadius = _outR/2;
         _outView.layer.masksToBounds = YES;
         [self setRoatingViewWith:-0 WithImageName:@"清除缓存" tag:1];
-        [self setRoatingViewWith:-60 WithImageName:@"设置" tag:2];
+        [self setRoatingViewWith:-60 WithImageName:@"更多" tag:2];
         [self setRoatingViewWith:-120 WithImageName:@"更新" tag:3];
         [self setRoatingViewWith:120 WithImageName:@"我的收藏" tag:4];
     }
@@ -138,7 +138,7 @@
     
 }
 -(void)toucheToaddRoatingWithImageName:(NSString *)imageName withPoint:(CGPoint)point witholdPoint:(CGPoint)oldPoint tag:(NSInteger)tag{
-    NSLog(@"%f",self.center.y);
+
     UIView *roundView = [[UIView alloc]initWithFrame:CGRectMake(oldPoint.x,oldPoint.y, _roatingR, _roatingR)];
     roundView.center = point;
     roundView.layer.cornerRadius = _roatingR/2;
@@ -237,7 +237,7 @@
 
 }
 -(void)doButtonValueSet:(UIButton *)but{
-    NSLog(@"%ld",(long)but.tag);   [self.delegate buttonSetValue:but];
+    [self.delegate buttonSetValue:but];
 }
 #pragma mark 获取tab数据 豆果数据
 -(void)getDataWith:(NSString *)pageId{

@@ -31,7 +31,7 @@
             self.imageV = [[UIImageView alloc] init];
             self.imageV.contentMode = UIViewContentModeScaleAspectFill;
             self.imageV.clipsToBounds = YES;
-            [self.imageV sd_setImageWithURL:[NSURL URLWithString:image]];
+            [self.imageV sd_setImageWithURL:[NSURL URLWithString:image] placeholderImage:[UIImage imageNamed:@"等待占位图"]];
             [self addSubview:self.imageV];
         }
         

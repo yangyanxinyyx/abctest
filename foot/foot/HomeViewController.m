@@ -37,22 +37,31 @@
 @property (nonatomic,strong)UITableView *tab;
 @property (nonatomic,strong)NSMutableArray *selectDataArray;
 @property (nonatomic,strong)UploadView *uploadV;
-@property (nonatomic,strong)UIBarButtonItem *rightBarButtonItem;
 @property (nonatomic,strong)UIImageView *imageHeaderView;
+@property (nonatomic)BOOL isUpdate;
 @end
 
 @implementation HomeViewController
+#pragma mark 懒加载
+-(UIImageView *)imageHeaderView{
+    if (!_imageHeaderView) {
+        //加载
+        _imageHeaderView = [[UIImageView alloc]initWithFrame:CGRectMake((KScreenWidth-40)/2, -40, 40, 40)];
+        UIImage *imageHeader = [UIImage imageNamed:@"加载"];
+        _imageHeaderView.image = imageHeader;
+        [self.tab insertSubview:_imageHeaderView atIndex:0];
+    }
+    return _imageHeaderView;
+}
 
 - (void)viewDidLoad {
 
-
     [super viewDidLoad];
-    
 
-    
     self.view.backgroundColor = [UIColor whiteColor];
-//    self.navigationItem.title = @"首页";
+
     flag = 0;
+    _isUpdate = NO;
     self.selectDataArray = [NSMutableArray array];
     UIImage *image = [UIImage imageNamed:@"背景.jpg"];
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
@@ -86,24 +95,11 @@
 #pragma mark -加载
     self.uploadV = [[UploadView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-64-49)];
     [self.view addSubview:self.uploadV];
-#pragma mark- 却换模式
-    UIImage *imageDay = [UIImage imageNamed:@"日间模式"];
-    imageDay = [imageDay imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-   self.rightBarButtonItem =[[UIBarButtonItem alloc]initWithImage:imageDay style:UIBarButtonItemStylePlain target:self action:@selector(exchangeModel)];
-    self.navigationItem.rightBarButtonItem = _rightBarButtonItem;
-  }
 
-#pragma mark 懒加载
--(UIImageView *)imageHeaderView{
-    if (!_imageHeaderView) {
-        //加载
-        _imageHeaderView = [[UIImageView alloc]initWithFrame:CGRectMake((KScreenWidth-40)/2, -40, 40, 40)];
-        UIImage *imageHeader = [UIImage imageNamed:@"加载"];
-        _imageHeaderView.image = imageHeader;
-        [self.tab insertSubview:_imageHeaderView atIndex:0];
-    }
-    return _imageHeaderView;
+    
 }
+
+
 #pragma mark UITableView 的代理
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
@@ -236,12 +232,12 @@
 -(void)toucheVideoButtonOnCell{
     VideoViewController *videoV = [[VideoViewController alloc]init];
     [self.navigationController pushViewController:videoV animated:YES];
-    NSLog(@"点击视频");
+
 }
 -(void)toucheNewestButtonOnCell{
     NewestViewController *newestV = [[NewestViewController alloc]init];
     [self.navigationController pushViewController:newestV animated:YES];
-    NSLog(@"点击今日");
+  
 }
 -(void)toucheComtaionImageViewWith:(HomeFootModel *)model{
     CookDetailsViewController *cookD =[[CookDetailsViewController alloc]init];
@@ -253,7 +249,7 @@
     cookD.parDic = dicPar;
     cookD.header = dicHeader;
     [self.navigationController pushViewController:cookD animated:YES];
-    NSLog(@"%@",model.name);
+
 }
 #pragma mark点击cell
 
@@ -278,9 +274,6 @@
 #pragma mark 上拉加载
 -(void)footRefreshing{
     flag ++;
-    
-    
-    
     NSString *number = [NSString stringWithFormat:@"%ld",flag*20];
     [self getDataWith:number];
     [self.tab.footer endRefreshing];
@@ -296,60 +289,26 @@
     [self.navigationController pushViewController:searchVC animated:YES];
 }
 #pragma mark scrollView的方法
+//将要开始拖拽
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     self.tab.scrollEnabled = YES;
+    
 }
-//scrollView
+//拖拽中
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake((KScreenWidth -250)/2, -40, 250, 30)];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.textColor = [UIColor lightGrayColor];
-    label.font = [UIFont systemFontOfSize:15];
-    if (scrollView.contentOffset.y<0&&scrollView.contentOffset.y>-80) {
-        self.imageHeaderView.hidden = YES;
-        label.text = @"继续下拉则重新加载该页面!!";
-        [self.tab addSubview:label];
-
-    }else if (scrollView.contentOffset.y<-80&&scrollView.contentOffset.y>-120){
-        label.hidden = YES;
-        self.imageHeaderView.hidden = NO;
-        self.imageHeaderView.transform = CGAffineTransformRotate(_imageHeaderView.transform, -M_PI_4*scrollView.contentOffset.y/100);
+    if (scrollView.contentOffset.y<-120) {
+        _isUpdate= !_isUpdate;
     }
-    else if (scrollView.contentOffset.y <-120){
-      
-        [self.tab removeFromSuperview];
-        [self viewDidLoad];
-     
-    }else{
-        label.hidden =NO;
+    
+}
+//将要减速
+-(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
+    if (_isUpdate) {
+        _isUpdate = !_isUpdate;
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+        [self.tab scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
 }
-//切换日间夜间模式
--(void)exchangeModel{
-    static NSString *modelValue = @"day";
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    
-    if ([modelValue isEqualToString:@"day"]) {
-        UIImage *imageNight = [UIImage imageNamed:@"夜间模式"];
-        imageNight = [imageNight imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        _rightBarButtonItem.image = imageNight;
-   
-        modelValue = @"night";
-    }else{
-        UIImage *imageDay = [UIImage imageNamed:@"日间模式"];
-        imageDay = [imageDay imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        _rightBarButtonItem.image = imageDay;
- 
-        modelValue = @"day";
-    }
-    [user setValue:modelValue forKey:@"model"];
 
-    //创建通知
-    NSNotification *notification = [NSNotification notificationWithName:@"tongzhi" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:modelValue,@"model", nil]];
-    //通过通知中心发送通知
-    [[NSNotificationCenter defaultCenter]postNotification:notification];
 
-    
-   
-}
 @end

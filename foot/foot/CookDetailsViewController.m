@@ -239,7 +239,7 @@
 -(void)doMain
 {
     [self.uploadV removeFromSuperview];
-    [self.topImageView sd_setImageWithURL:[NSURL URLWithString:self.detailsModel.topImage]];
+    [self.topImageView sd_setImageWithURL:[NSURL URLWithString:self.detailsModel.topImage]placeholderImage:[UIImage imageNamed:@"等待占位图"]];
     
     self.nameLabel.text = self.detailsModel.name;
     
@@ -535,20 +535,20 @@
     
     self.promptLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_W/2 - 40 , SCREEN_H - 100 , 100, 40)];
     if (_isCollect) {
-        self.promptLabel.text = @"已收藏";
+        self.promptLabel.text = @"收藏成功";
     }
     else
     {
         self.promptLabel.text = @"已取消收藏";
     }
-    self.promptLabel.backgroundColor = Color(220, 220, 220, 0.6);
+    self.promptLabel.backgroundColor = Color(200, 200, 200, 0.9);
     [self.view addSubview:self.promptLabel];
-    
-    self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(closePromptLabel) userInfo:nil repeats:NO];
-    
+ 
     self.promptLabel.layer.cornerRadius = 10;
     self.promptLabel.layer.masksToBounds = YES;
     self.promptLabel.textAlignment = NSTextAlignmentCenter;
+    
+    self.timer = [NSTimer timerWithTimeInterval:1.5 target:self selector:@selector(closePromptLabel) userInfo:nil repeats:NO];
     [[NSRunLoop currentRunLoop]addTimer:self.timer forMode:NSRunLoopCommonModes];
     
     self.collectView.collectButton.userInteractionEnabled = NO;
@@ -561,6 +561,7 @@
     [self.timer invalidate];
     self.timer = nil;
     [self.promptLabel removeFromSuperview];
+    self.promptLabel = nil;
     
     self.collectView.collectButton.userInteractionEnabled = YES;
     self.navCollectButton.userInteractionEnabled = YES;

@@ -255,7 +255,7 @@
 
                         }
                     }
-                    NSLog(@"%ld",self.arraySelected.count);
+       
                     break;
                     
                 }
@@ -292,7 +292,7 @@
         for (MixFoodModel *model in array) {
             if (foodModel.text == model.text) {
                 self.isHave = YES;
-                NSLog(@"11111");
+           
                 //删除菜
                 MixFoodCollectionViewCell *cell = (MixFoodCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
                 cell.viewBack.backgroundColor = [UIColor clearColor];
@@ -470,7 +470,7 @@
     [self.arrayButtomSelected addObject:bu];
     
     
-    NSLog(@"%@",model.id);
+ 
 }
 
 #pragma mark- 点击删除选择的菜
@@ -498,8 +498,7 @@
     }
   
     for (MixFoodCollectionViewCell *cell in self.arrayCell) {
-        NSLog(@"%@",cell.labelName.text);
-        NSLog(@"%@",bu.titleLabel.text);
+
         if ([bu.titleLabel.text isEqualToString:cell.labelName.text]) {
             cell.viewBack.backgroundColor = [UIColor clearColor];
             cell.imageSelect.image = nil;
