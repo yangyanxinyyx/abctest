@@ -23,11 +23,11 @@
 @property (nonatomic,strong)UITextField *textF;
 @property (nonatomic,strong)UITableView *tabDetails;
 @property (nonatomic,strong)NSMutableArray *detailsArray;
-<<<<<<< HEAD
+
 @property (nonatomic)BOOL isPush;//页面的跳转是否是push状态
-=======
+
 @property(nonatomic,strong)UploadView *uploadV;
->>>>>>> 8478f26d53728bc0e104c7430a3a5050f3a127dd
+
 @end
 
 @implementation DetailsSearchViewController

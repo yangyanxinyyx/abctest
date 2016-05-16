@@ -136,6 +136,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     HistoryModel *model = [self.arrayHistory objectAtIndex:( self.arrayHistory.count-indexPath.row -1)];
     self.textF.text = model.content;
+    [[DataBaseUtil shareDataBase]deleteModelWithContent:model.content];
+    [[DataBaseUtil shareDataBase]insertModel:model];
     [self toucheSearch];
     
     
@@ -151,11 +153,8 @@
     //插入到数据库里
     HistoryModel *modele = [[HistoryModel alloc]init];
     modele.content = but.titleLabel.text;
-    NSString *str = [[DataBaseUtil shareDataBase]selectModelWithContent:but.titleLabel.text].content;
-    if (str.length == 0)
-    {
-        [[DataBaseUtil shareDataBase]insertModel:modele];
-    }
+    [[DataBaseUtil shareDataBase]deleteModelWithContent:modele.content];
+    [[DataBaseUtil shareDataBase]insertModel:modele];
     
 
 }
@@ -184,10 +183,8 @@
     //插入到数据库里
     HistoryModel *modele = [[HistoryModel alloc]init];
     modele.content = self.textF.text;
-    if ([[DataBaseUtil shareDataBase]selectModelWithContent:modele.content].content.length == 0)
-    {
+        [[DataBaseUtil shareDataBase]deleteModelWithContent:modele.content];
         [[DataBaseUtil shareDataBase]insertModel:modele];
-    }
 
     }
 }
