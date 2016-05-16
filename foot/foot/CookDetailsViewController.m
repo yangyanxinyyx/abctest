@@ -31,6 +31,7 @@
 {
     float _height;   //控件的y
     float _navScaleHeight;
+    BOOL _isCollect;//判断是否收藏
 }
 
 @property(nonatomic,strong)UIScrollView *scrollView;
@@ -41,6 +42,9 @@
 @property(nonatomic,strong)UIButton *navCollectButton;
 
 @property (nonatomic,strong)UploadView *uploadV;
+
+@property(nonatomic,strong)UILabel *promptLabel; //提示收藏结果
+@property(nonatomic,strong)NSTimer *timer;
 
 @end
 
@@ -517,6 +521,7 @@
         [[DataBaseUtil shareDataBase] deleteCollectWithFoodName:collect.foodName urlId:collect.urlId];
         [self.collectView.collectButton setImage:[UIImage imageNamed:@"未收藏"] forState:UIControlStateNormal];
         [_navCollectButton setImage:[UIImage imageNamed:@"未收藏"] forState:UIControlStateNormal];
+        _isCollect = NO;
         
     }
     else
@@ -524,11 +529,42 @@
         [[DataBaseUtil shareDataBase] insertCollectModel:collect];
         [self.collectView.collectButton setImage:[UIImage imageNamed:@"收藏"] forState:UIControlStateNormal];
         [_navCollectButton setImage:[UIImage imageNamed:@"收藏"] forState:UIControlStateNormal];
+        _isCollect = YES;
        
     }
     
+    self.promptLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_W/2 - 40 , SCREEN_H - 100 , 100, 40)];
+    if (_isCollect) {
+        self.promptLabel.text = @"已收藏";
+    }
+    else
+    {
+        self.promptLabel.text = @"已取消收藏";
+    }
+    self.promptLabel.backgroundColor = Color(220, 220, 220, 0.6);
+    [self.view addSubview:self.promptLabel];
+    
+    self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(closePromptLabel) userInfo:nil repeats:NO];
+    
+    self.promptLabel.layer.cornerRadius = 10;
+    self.promptLabel.layer.masksToBounds = YES;
+    self.promptLabel.textAlignment = NSTextAlignmentCenter;
+    [[NSRunLoop currentRunLoop]addTimer:self.timer forMode:NSRunLoopCommonModes];
+    
+    self.collectView.collectButton.userInteractionEnabled = NO;
+    self.navCollectButton.userInteractionEnabled = NO;
+    
 }
 
+-(void)closePromptLabel
+{
+    [self.timer invalidate];
+    self.timer = nil;
+    [self.promptLabel removeFromSuperview];
+    
+    self.collectView.collectButton.userInteractionEnabled = YES;
+    self.navCollectButton.userInteractionEnabled = YES;
+}
 
 -(void)viewWillAppear:(BOOL)animated
 {
