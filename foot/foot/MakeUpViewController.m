@@ -45,6 +45,8 @@
 @property(nonatomic,assign)BOOL isHave;
 //菊花
 @property (nonatomic,strong)UploadView *uploadV;
+//组合菊花
+@property(nonatomic,strong)UIActivityIndicatorView *indicator;
 
 //提示框
 @property(nonatomic,strong)UILabel *labelPrompt;
@@ -65,6 +67,8 @@
 @property(nonatomic,strong)UILabel *lableResultCount;
 //显示可做的菜的数量
 @property(nonatomic,strong)NSString *totalResult;
+//提示栏
+@property(nonatomic,strong)UILabel *lab;
 
 
 @property(nonatomic,strong)NSTimer *timer;
@@ -225,6 +229,7 @@
             image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             cell.imageSelect.image = image;
             cell.viewBack.alpha = 0.7;
+            [self.arrayCell removeObject:cell];
             [self.arrayCell addObject:cell];
             //选择的菜的按钮
             [self creatFoodButtom];
@@ -271,6 +276,7 @@
                 image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
                 cell.imageSelect.image = image;
                 cell.viewBack.alpha = 0.7;
+                [self.arrayCell removeObject:cell];
                 [self.arrayCell addObject:cell];
                 //选择的菜的按钮
                 [self creatFoodButtom];
@@ -315,20 +321,21 @@
         if (self.isHave == NO) {
  
             //弹出提示动画
-            UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_W-200)/2, self.bottomView.frame.origin.y-38, 200, 38)];
-            [self.view addSubview:lab];
-            lab.textAlignment = NSTextAlignmentCenter;
-            lab.alpha = 0;
+            self.lab = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_W-200)/2, self.bottomView.frame.origin.y-38, 200, 38)];
+            [self.view addSubview:self.lab];
+            self.lab.textAlignment = NSTextAlignmentCenter;
+            self.lab.alpha = 0;
             [UIView animateWithDuration:0.5 animations:^{
-                lab.backgroundColor = [UIColor blackColor];
-                lab.text = @"最多只能选择3种食材哦~";
-                lab.textColor = [UIColor whiteColor];
-                lab.alpha = 0.8;
+                self.lab.backgroundColor = [UIColor blackColor];
+                self.lab.text = @"最多只能选择3种食材哦~";
+                self.lab.textColor = [UIColor whiteColor];
+                self.lab.alpha = 0.8;
             } completion:^(BOOL finished) {
                 [UIView animateWithDuration:0.5 delay:1 options:UIViewAnimationOptionTransitionNone animations:^{
-                    lab.alpha = 0;
+                    self.lab.alpha = 0;
                 } completion:^(BOOL finished) {
-                    [lab removeFromSuperview];
+                    [self.lab removeFromSuperview];
+                    self.lab = nil;
                 }];
             }];
         }
@@ -384,10 +391,29 @@
         self.imageVPlus2.alpha = 1;
         self.viewResult.alpha = 1;
         
+        self.lableResultCount.text = nil;
         [self getMixResult];
+        if (!self.indicator) {
+            self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            self.indicator.center = self.lableResultCount.center;
+            [self.indicator startAnimating];
+            [self.viewResult addSubview:self.indicator];
+        }
+        
+        
     }else if (self.arraySelected.count == 3)
     {
+        self.lableResultCount.text = nil;
         [self getMixResult];
+        if (!self.lab && !self.indicator) {
+            
+            self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            self.indicator.center = self.lableResultCount.center;
+            [self.indicator startAnimating];
+            [self.viewResult addSubview:self.indicator];
+            
+        }
+        
     }
     
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(pause) userInfo:nil repeats:NO];
@@ -496,7 +522,14 @@
     }
     else if (self.arraySelected.count == 2)
     {
+        self.lableResultCount.text = nil;
         [self getMixResult];
+        if (!self.indicator) {
+            self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            self.indicator.center = self.lableResultCount.center;
+            [self.indicator startAnimating];
+            [self.viewResult addSubview:self.indicator];
+        }
     }
 
 }
@@ -696,6 +729,8 @@
         self.totalResult = total;
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            [self.indicator removeFromSuperview];
+            self.indicator = nil;
             self.lableResultCount.text = self.totalResult;
         });
         

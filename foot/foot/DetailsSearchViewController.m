@@ -18,11 +18,16 @@
 #import "DataBaseUtil.h"
 #import "HistoryModel.h"
 #import "CookDetailsViewController.h"
+#import "UploadView.h"
 @interface DetailsSearchViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong)UITextField *textF;
 @property (nonatomic,strong)UITableView *tabDetails;
 @property (nonatomic,strong)NSMutableArray *detailsArray;
+<<<<<<< HEAD
 @property (nonatomic)BOOL isPush;//页面的跳转是否是push状态
+=======
+@property(nonatomic,strong)UploadView *uploadV;
+>>>>>>> 8478f26d53728bc0e104c7430a3a5050f3a127dd
 @end
 
 @implementation DetailsSearchViewController
@@ -52,8 +57,11 @@
     self.tabDetails.dataSource = self;
     [self.view addSubview:self.tabDetails];
     [self getDataWith:self.searchContent];
+    
+    self.uploadV = [[UploadView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-64)];
+    [self.view addSubview:self.uploadV];
 
-   
+    self.tabDetails.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 #pragma mark-点击返回和搜素按钮的方法
 -(void)comeBackValue{
@@ -150,6 +158,8 @@
     
 }
 -(void)doMainThread{
+    [self.uploadV removeFromSuperview];
+    self.tabDetails.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.tabDetails reloadData];
 
 }
