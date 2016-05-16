@@ -237,7 +237,7 @@
 
 }
 -(void)doButtonValueSet:(UIButton *)but{
-    NSLog(@"%ld",but.tag);   [self.delegate buttonSetValue:but];
+    NSLog(@"%ld",(long)but.tag);   [self.delegate buttonSetValue:but];
 }
 #pragma mark 获取tab数据 豆果数据
 -(void)getDataWith:(NSString *)pageId{

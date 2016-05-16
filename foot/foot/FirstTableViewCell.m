@@ -192,14 +192,14 @@
 
 #pragma mark 点击pageControl的方法
 -(void)TouchePageControl:(UIPageControl *)page{
-    NSLog(@"%ld",page.currentPage);
-    _scrollViewImageViewS.contentOffset = CGPointMake(page.currentPage*KScreenWidth, 0);
+  
+ _scrollViewImageViewS.contentOffset = CGPointMake(page.currentPage*KScreenWidth, 0);
 }
 //点击第一个
 -(void)toucheShapedImage{
     NSInteger pageID = self.scrollViewImageViewS.contentOffset.x/KScreenWidth;
    
-    NSString *key = [NSString stringWithFormat:@"%ld",pageID];
+    NSString *key = [NSString stringWithFormat:@"%ld",(long)pageID];
     NSArray *arr = [_dicData objectForKey:key];
     HomeFootModel *homefm = [arr objectAtIndex:0];
     [self.delegate toucheComtaionImageViewWith:homefm];
@@ -209,7 +209,7 @@
 -(void)toucheMidImage{
     
     NSInteger pageID = self.scrollViewImageViewS.contentOffset.x/KScreenWidth;
-    NSString *key = [NSString stringWithFormat:@"%ld",pageID];
+    NSString *key = [NSString stringWithFormat:@"%ld",(long)pageID];
     NSArray *arr = [_dicData objectForKey:key];
     HomeFootModel *homefm = [arr objectAtIndex:1];
     [self.delegate toucheComtaionImageViewWith:homefm];
@@ -220,7 +220,7 @@
     
     NSInteger pageID = self.scrollViewImageViewS.contentOffset.x/KScreenWidth;
  
-    NSString *key = [NSString stringWithFormat:@"%ld",pageID];
+    NSString *key = [NSString stringWithFormat:@"%ld",(long)pageID];
     NSArray *arr = [_dicData objectForKey:key];
     HomeFootModel *homefm = [arr objectAtIndex:2];
     [self.delegate toucheComtaionImageViewWith:homefm];

@@ -278,6 +278,9 @@
 #pragma mark 上拉加载
 -(void)footRefreshing{
     flag ++;
+    
+    
+    
     NSString *number = [NSString stringWithFormat:@"%ld",flag*20];
     [self getDataWith:number];
     [self.tab.footer endRefreshing];

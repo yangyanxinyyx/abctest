@@ -67,8 +67,11 @@
 -(UIButton *)button{
     if (!_button) {
     self.button = [UIButton buttonWithType:UIButtonTypeCustom];
-    _button.frame = CGRectMake(KScreenWidth*3.5-60, 540*KScreenWidth/375, 120, 40);
-//        _button.backgroundColor = [UIColor orangeColor];
+        if (KScreenHeight == 480) {
+            _button.frame = CGRectMake(KScreenWidth*3.5-60, 400, 130, 20);
+        }else{
+            _button.frame = CGRectMake(KScreenWidth*3.5-60, 540*KScreenWidth/375, 120, 40);
+        }
     [_button setShowsTouchWhenHighlighted:YES];
     [_button addTarget:self action:@selector(toucheButtonValue) forControlEvents:UIControlEventTouchDown];
  
