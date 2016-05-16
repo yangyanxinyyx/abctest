@@ -168,8 +168,7 @@
     
     int k = [self.foodtotal intValue]/10;
     
-    NSLog(@"%d",k);
-    NSLog(@"--%d",[strPage intValue]);
+ 
     if ([strPage intValue]<=k+1) {
         [self requestData:dic];
     }

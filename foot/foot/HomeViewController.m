@@ -37,7 +37,6 @@
 @property (nonatomic,strong)UITableView *tab;
 @property (nonatomic,strong)NSMutableArray *selectDataArray;
 @property (nonatomic,strong)UploadView *uploadV;
-@property (nonatomic,strong)UIBarButtonItem *rightBarButtonItem;
 @property (nonatomic,strong)UIImageView *imageHeaderView;
 @property (nonatomic)BOOL isUpdate;
 @end
@@ -96,12 +95,9 @@
 #pragma mark -加载
     self.uploadV = [[UploadView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-64-49)];
     [self.view addSubview:self.uploadV];
-#pragma mark- 却换模式
-    UIImage *imageDay = [UIImage imageNamed:@"日间模式"];
-    imageDay = [imageDay imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-   self.rightBarButtonItem =[[UIBarButtonItem alloc]initWithImage:imageDay style:UIBarButtonItemStylePlain target:self action:@selector(exchangeModel)];
-    self.navigationItem.rightBarButtonItem = _rightBarButtonItem;
-  }
+
+    
+}
 
 
 #pragma mark UITableView 的代理
@@ -236,12 +232,12 @@
 -(void)toucheVideoButtonOnCell{
     VideoViewController *videoV = [[VideoViewController alloc]init];
     [self.navigationController pushViewController:videoV animated:YES];
-    NSLog(@"点击视频");
+
 }
 -(void)toucheNewestButtonOnCell{
     NewestViewController *newestV = [[NewestViewController alloc]init];
     [self.navigationController pushViewController:newestV animated:YES];
-    NSLog(@"点击今日");
+  
 }
 -(void)toucheComtaionImageViewWith:(HomeFootModel *)model{
     CookDetailsViewController *cookD =[[CookDetailsViewController alloc]init];
@@ -253,7 +249,7 @@
     cookD.parDic = dicPar;
     cookD.header = dicHeader;
     [self.navigationController pushViewController:cookD animated:YES];
-    NSLog(@"%@",model.name);
+
 }
 #pragma mark点击cell
 
@@ -314,32 +310,5 @@
     }
 }
 
-//切换日间夜间模式
--(void)exchangeModel{
-    static NSString *modelValue = @"day";
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    
-    if ([modelValue isEqualToString:@"day"]) {
-        UIImage *imageNight = [UIImage imageNamed:@"夜间模式"];
-        imageNight = [imageNight imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        _rightBarButtonItem.image = imageNight;
-   
-        modelValue = @"night";
-    }else{
-        UIImage *imageDay = [UIImage imageNamed:@"日间模式"];
-        imageDay = [imageDay imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        _rightBarButtonItem.image = imageDay;
- 
-        modelValue = @"day";
-    }
-    [user setValue:modelValue forKey:@"model"];
 
-    //创建通知
-    NSNotification *notification = [NSNotification notificationWithName:@"tongzhi" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:modelValue,@"model", nil]];
-    //通过通知中心发送通知
-    [[NSNotificationCenter defaultCenter]postNotification:notification];
-
-    
-   
-}
 @end
