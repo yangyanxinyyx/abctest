@@ -246,7 +246,7 @@
     _height += 50;
     
     UIImage *collectImage;
-    CollectModel *oneCollect = [[DataBaseUtil shareDataBase] selectCollectWithFoodName:self.detailsModel.name urlId:[NSString stringWithFormat:@"%ld",self.urlId]];
+    CollectModel *oneCollect = [[DataBaseUtil shareDataBase] selectCollectWithFoodName:self.detailsModel.name urlId:[NSString stringWithFormat:@"%ld", self.urlId]];
     if ([oneCollect.foodName isEqualToString:self.detailsModel.name] && [oneCollect.urlId isEqualToString:[NSString stringWithFormat:@"%ld",self.urlId]]) {
         
         collectImage = [UIImage imageNamed:@"收藏"];

@@ -64,7 +64,7 @@
    
 }
 -(void)doMainThread{
-    UIWebView *webv = [[UIWebView alloc]initWithFrame:CGRectMake(0, 150, KScreenWidth, 300)];
+    UIWebView *webv = [[UIWebView alloc]initWithFrame:CGRectMake(0, 150, KScreenWidth, KScreenHeight-300)];
     webv.scrollView.bounces = NO;
     webv.scrollView.scrollEnabled = NO;
     [webv loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strURL]]];
@@ -74,12 +74,12 @@
 #pragma -mark  tabBar的隐藏和显示
 -(void)viewWillAppear:(BOOL)animated
 {   self.navigationController.navigationBarHidden = YES;
-    self.tabBarController.hidesBottomBarWhenPushed = YES;
+
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {   self.navigationController.navigationBarHidden = NO;
-    self.tabBarController.hidesBottomBarWhenPushed = NO;
+
 }
 -(void)toComeBack
 {

@@ -34,6 +34,7 @@
 @property (nonatomic,strong)NSMutableArray *arrayPoint;
 @property (nonatomic,strong)MyView_V2 *myViewV2;
 @property (nonatomic)BOOL isRoat;
+@property (nonatomic,strong)UIBarButtonItem *rightBarButtonItem;
 
 @end
 
@@ -59,6 +60,12 @@
     _myViewV2 = [[MyView_V2 alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-64-49)];
     _myViewV2.delegate = self;
     [backImageView addSubview:_myViewV2];
+    
+#pragma mark- 却换模式
+    UIImage *imageDay = [UIImage imageNamed:@"日间模式"];
+    imageDay = [imageDay imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.rightBarButtonItem =[[UIBarButtonItem alloc]initWithImage:imageDay style:UIBarButtonItemStylePlain target:self action:@selector(exchangeModel)];
+    self.navigationItem.rightBarButtonItem = _rightBarButtonItem;
     
     
 }
@@ -182,8 +189,36 @@
       
     });
     
-    
-        
+  
   
 }
+#pragma mark -切换日间夜间模式
+-(void)exchangeModel{
+    static NSString *modelValue = @"day";
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    
+    if ([modelValue isEqualToString:@"day"]) {
+        UIImage *imageNight = [UIImage imageNamed:@"夜间模式"];
+        imageNight = [imageNight imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        _rightBarButtonItem.image = imageNight;
+        
+        modelValue = @"night";
+    }else{
+        UIImage *imageDay = [UIImage imageNamed:@"日间模式"];
+        imageDay = [imageDay imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        _rightBarButtonItem.image = imageDay;
+        
+        modelValue = @"day";
+    }
+    [user setValue:modelValue forKey:@"model"];
+    
+    //创建通知
+    NSNotification *notification = [NSNotification notificationWithName:@"tongzhi" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:modelValue,@"model", nil]];
+    //通过通知中心发送通知
+    [[NSNotificationCenter defaultCenter]postNotification:notification];
+    
+    
+    
+}
+
 @end

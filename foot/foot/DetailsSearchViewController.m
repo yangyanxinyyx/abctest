@@ -160,7 +160,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {   [self.textF endEditing:YES];
-    self.tabBarController.hidesBottomBarWhenPushed = NO;
+ 
 }
 
 

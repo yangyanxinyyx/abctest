@@ -82,6 +82,7 @@
     self.collectColl.showsVerticalScrollIndicator = NO;
     self.collectColl.dataSource = self;
     self.collectColl.delegate = self;
+    self.collectColl.bounces = NO;
     
     [self.view addSubview:self.collectColl];
     
@@ -275,6 +276,15 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     self.tabBarController.hidesBottomBarWhenPushed = YES;
+    [self.collectColl reloadData];
+    NSArray *array = [[DataBaseUtil shareDataBase] selectCollectModel];
+    if (array.count == 0) {
+        self.imageBack = [[UIImageView alloc] init];
+        self.imageBack.image = [UIImage imageNamed:@"让人收藏.jpg"];
+        self.imageBack.frame = CGRectMake((SCREEN_W-195)/2, SCREEN_H/5, 210, 195);
+        
+        [self.view addSubview:self.imageBack];
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated
