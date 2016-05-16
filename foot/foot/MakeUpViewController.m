@@ -514,7 +514,7 @@
     
     
     self.labelPrompt = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_W/5)];
-    self.labelPrompt.text = @"选择2个或3个食材\n爸爸告诉你可以做哪些菜";
+    self.labelPrompt.text = @"选择2个或3个食材\n小厨告诉你可以做哪些菜";
     self.labelPrompt.textAlignment = NSTextAlignmentCenter;
     self.labelPrompt.numberOfLines = 0;
     [self.bottomView addSubview:self.labelPrompt];
