@@ -403,9 +403,10 @@
         
     }else if (self.arraySelected.count == 3)
     {
+        self.lableResultCount.text = nil;
+        [self getMixResult];
         if (!self.lab && !self.indicator) {
-            self.lableResultCount.text = nil;
-            [self getMixResult];
+            
             self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             self.indicator.center = self.lableResultCount.center;
             [self.indicator startAnimating];
