@@ -107,23 +107,13 @@
         }
         
     }else if (Button.tag == 3){
-        //旋转动画
-        CABasicAnimation *basicAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-        basicAnimation.duration = 0.5;
-        basicAnimation.repeatDuration = 1;
-        basicAnimation.fromValue = [NSNumber numberWithFloat:0.0];
-        basicAnimation.toValue = [NSNumber numberWithFloat:-M_PI*2];
-        [Button.layer addAnimation:basicAnimation forKey:@"transform.rotation"];
         [self toucheUpdata];
 
             }else if (Button.tag == 4){
-        self.isRoat = YES;
-        [UIView animateWithDuration:1 animations:^{
-            self.myViewV2.outView.transform = CGAffineTransformRotate(self.myViewV2.outView.transform, M_PI);
-        } completion:^(BOOL finished) {
+
             MyCollectViewController *myCollect = [[MyCollectViewController alloc]init];
             [self.navigationController pushViewController:myCollect animated:YES];
-        }];
+       
 
     }
 }
@@ -159,13 +149,7 @@
 }
 //页面出现
 -(void)viewDidAppear:(BOOL)animated{
-    if (_isRoat) {
-        [UIView animateWithDuration:1 animations:^{
-          self.myViewV2.outView.transform = CGAffineTransformRotate(self.myViewV2.outView.transform, M_PI);
-        }];
-        _isRoat = !_isRoat;
-    }
-    [self.myViewV2 doButtonValue:nil];
+
 #pragma mark- 更新缓存的数据
     float tmpSize = [[SDImageCache sharedImageCache]checkTmpSize];
     NSString *clearCacheName = tmpSize >= 1 ? [NSString stringWithFormat:@"%.fM",tmpSize] : [NSString stringWithFormat:@"%.fK",tmpSize * 1024];
@@ -175,8 +159,7 @@
 #pragma mark 点击更新延迟0.5弹出提示
 -(void)toucheUpdata{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        sleep(1.5);
-        UIAlertController *alertC = [UIAlertController  alertControllerWithTitle:@"当前已是最新版本!!" message:@"版本为：1.0.1" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alertC = [UIAlertController  alertControllerWithTitle:@"当前版本!!" message:@"版本为：1.0" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
         }];

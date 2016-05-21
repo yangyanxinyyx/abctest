@@ -61,7 +61,7 @@
         _outView.layer.masksToBounds = YES;
         [self setRoatingViewWith:-0 WithImageName:@"清除缓存" tag:1];
         [self setRoatingViewWith:-60 WithImageName:@"更多" tag:2];
-        [self setRoatingViewWith:-120 WithImageName:@"更新" tag:3];
+        [self setRoatingViewWith:-120 WithImageName:@"版本" tag:3];
         [self setRoatingViewWith:120 WithImageName:@"我的收藏" tag:4];
     }
     return _outView;
