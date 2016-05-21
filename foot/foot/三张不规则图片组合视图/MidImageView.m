@@ -34,6 +34,7 @@
     _contentLayer.frame = self.bounds;
     [self.layer addSublayer:_contentLayer];
     
+    
 }
 -(void)layoutSubviews{
     [super layoutSubviews];

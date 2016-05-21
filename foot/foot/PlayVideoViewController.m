@@ -11,10 +11,12 @@
 
 #import "PlayVideoViewController.h"
 #import "NetworkRequestManager.h"
+
 @interface PlayVideoViewController ()
 {
     NSString *strURL;
 }
+
 @end
 
 @implementation PlayVideoViewController
@@ -37,6 +39,7 @@
     
     self.view.backgroundColor = ColorBack;
     NSString *str = [self.videoUrl substringToIndex:8];
+
     //判断数据给的网址是不是需要再次请求的
     if ([str containsString:@"recipes"]) {
          [self getDataWith:self.videoiID];
@@ -44,7 +47,7 @@
         strURL = self.videoUrl;
         [self doMainThread];
     }
- 
+
    
 }
 #pragma mark 获取数据
@@ -64,6 +67,7 @@
    
 }
 -(void)doMainThread{
+
     UIWebView *webv = [[UIWebView alloc]initWithFrame:CGRectMake(0, 150, KScreenWidth, KScreenHeight-300)];
     webv.scrollView.bounces = NO;
     webv.scrollView.scrollEnabled = NO;

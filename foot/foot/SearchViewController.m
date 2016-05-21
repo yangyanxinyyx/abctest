@@ -200,6 +200,7 @@
     self.textF.selected = NO;
 }
 
+
 -(void)viewWillDisappear:(BOOL)animated
 {
     [self.textF endEditing:YES];

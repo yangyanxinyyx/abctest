@@ -23,13 +23,18 @@
 @property (nonatomic,strong)UITextField *textF;
 @property (nonatomic,strong)UITableView *tabDetails;
 @property (nonatomic,strong)NSMutableArray *detailsArray;
+
+@property (nonatomic)BOOL isPush;//页面的跳转是否是push状态
+
 @property(nonatomic,strong)UploadView *uploadV;
+
 @end
 
 @implementation DetailsSearchViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _isPush = NO;
     self.view.backgroundColor = [UIColor whiteColor];
     UIImage *imageBack = [UIImage imageNamed:@"返回"];
     self.detailsArray = [NSMutableArray array];
@@ -66,7 +71,6 @@
     if (self.textF.text.length == 0) {
         
     }else
-   
     [self getDataWith:self.textF.text];
     [self.textF endEditing:YES];
     HistoryModel *modele = [[HistoryModel alloc]init];
@@ -112,6 +116,7 @@
     cookD.parDic = dicPar;
     cookD.header = dicHeader;
     cookD.urlId = 11;
+    _isPush = YES;
     [self.navigationController pushViewController:cookD animated:YES];
     
     
@@ -161,13 +166,18 @@
 #pragma -mark  tabBar的隐藏和显示
 -(void)viewWillAppear:(BOOL)animated
 {
+    if (_isPush) {
     self.tabBarController.hidesBottomBarWhenPushed = YES;
-
+        _isPush = NO;
+    }else{
+    self.tabBarController.hidesBottomBarWhenPushed = YES;
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated
-{   [self.textF endEditing:YES];
- 
+{
+    [self.textF endEditing:YES];
+
 }
 
 

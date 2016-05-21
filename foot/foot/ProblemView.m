@@ -30,11 +30,11 @@
      [self addSubview:but];
      UILabel *label = [[UILabel alloc]init];
      label.numberOfLines = 0;
-     label.text = @"<1>、该app由于本软件方向所决定,没有做横屏,所以该软件无法横屏操作.\n <2>、该app存储的个人数据均是本地,无法导出\n <3>、该app暂时没有提供第三方登陆 \n <4>、该app不支持在iPhone4s上运行\n ";
-     label.font = [UIFont systemFontOfSize:15];
+     label.text = @"<1>、该app由于本软件方向所决定,不支持横屏操作.\n <2>、该app存储的个人数据均是本地,无法导出\n <3>、该app暂时没有提供第三方登陆 \n <4>、该app如果视频无法播放,请您移动到数据流畅的地区";
+     label.font = [UIFont systemFontOfSize:15*KScreenWidth/375];
      Tool *tool = [[Tool alloc]init];
      CGFloat height = [tool getLabelHeight:label.text font:[UIFont systemFontOfSize:15]];
-     label.frame = CGRectMake(20, 60,KScreenWidth-40,height);
+     label.frame = CGRectMake(20, 60,KScreenWidth-40,height+40);
      [self addSubview:label];
     
     
