@@ -19,6 +19,10 @@
 
 #import "UploadView.h"
 
+static int lastCount = 2;
+static int i = 1;
+
+
 @interface MakeUpListViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property(nonatomic,strong)UICollectionView *MixListColl;
@@ -152,8 +156,7 @@
 
 -(void)footerRefershing
 {
-    static int lastCount = 2;
-    static int i = 1;
+    
 
     
     NSMutableArray *arrayTemp = [NSMutableArray array];
@@ -181,6 +184,11 @@
     
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+     lastCount = 2;
+     i = 1;
+}
 
 -(void)viewWillAppear:(BOOL)animated
 {
