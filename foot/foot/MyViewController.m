@@ -159,7 +159,7 @@
 #pragma mark 点击更新延迟0.5弹出提示
 -(void)toucheUpdata{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        UIAlertController *alertC = [UIAlertController  alertControllerWithTitle:@"当前版本!!" message:@"版本为：1.0" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alertC = [UIAlertController  alertControllerWithTitle:@"当前版本!!" message:@"版本为：1.1" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
         }];
